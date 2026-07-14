@@ -1,101 +1,156 @@
 # AGENTS.md
 
-This repository is a batteries-included Next.js starter template. Keep this file short, practical, and easy to extend.
-If you have been instructed to update this file/project, then make sure you update ALL the relevant files associated with the new rules or conventions you are adding. For example, if you changing the project name, make sure to update the README, DESIGN, PRODUCT, Package.json, and any other relevant files to reflect the new name consistently across the codebase and documentation.
+Entry point for anyone (or any agent) working on the Cranbakery website. Read this first, then go to whichever doc below actually matters for the task at hand.
 
-## Scope
+## What this project is
 
-- Applies to the whole repository.
-- Prefer links to existing docs instead of duplicating long explanations.
-- For generated projects based on this starter, update this file early with product-specific rules.
+A Next.js (App Router) + TypeScript + Tailwind site for Cranbakery, a boutique bakery, with Payload CMS embedded in the same app for content (products, categories, pricing). Public frontend is fully custom — no Payload prebuilt UI. Delivery-only business, no online payments; the site ends in a cart that compiles into a single WhatsApp message.
 
-## Skill Usage Guidelines
+## Docs Index
 
-- At the start of every new chat/session, invoke `using-superpowers` first; NEVER skip it; ONLY after using this skill, proceed with other tasks.
-- For any new non-trivial implementation task, ALWAYS invoke `brainstorming` before starting work to generate a wide range of ideas and approaches, even if the solution seems straightforward. This helps ensure creativity and thoroughness.
-- `nextjs`, `react-best-practices` and `security-best-practices` are core skills that should be invoked later in every session before any implementation work, to ensure the agent is primed with the right knowledge and guardrails.
-- Whenever implementing a new feature that affects the whole system, use `system-design` to create a high-level design before starting implementation. This is especially important for features that touch multiple layers (e.g., API routes, database, and frontend) or require new architectural patterns.
-- For cross-session context, use `mem` to both recall and save: search memory first before asking the user to repeat information, and persist important new decisions, preferences, and snippets. After every important decision/output, save a very concise summary to memory with `mem` for future recall. Persist only long-term architectural decisions, user preferences, and project-wide conventions.
-- If the task touches any visual output (new components, layout changes, style updates, or new pages), load [PROJECT_STANDARD_CONSTANTS.md](docs/PROJECT_STANDARD_CONSTANTS.md) first — if the file does not exist, notify the user and ask whether to create it or continue without it — then MUST invoke these skills (ALL) in order:
-  1. `impeccable`
-  2. `ui-ux-pro-max`
-  3. `tailwind-design-system`
-- Before starting any implementation work, ALWAYS invoke `subagent-driven-development` and enforce this execution policy:
-  1. Break work into subtasks each completable in a single file or a single well-defined function change, unless a natural larger boundary exists (e.g., a full API route).
-  2. Delegate as many subtasks as possible to fresh subagents.
-  3. Prefer parallel subagents for independent subtasks; keep sequential order only where dependencies require it.
-  4. Keep the main agent as coordinator/reviewer, not primary implementer, unless delegation is blocked.
-- Use `caveman` as the default response style for this user (full intensity) unless the user asks to stop or switch level. Apply caveman style to prose responses only; all code, file edits, and structured output must remain precise and professional.
-- **English only** — all agent communication must be in English unless the user explicitly requests otherwise.
-- Use `stop-slop` whenever the user requests to write text content for the website, product, or codebase but not actual code.
-- If the user asks for a design related to neomorphism or neumorphism, load the `neumorphism-ui` skill and use it along with other design-related skills to ensure the design adheres to neumorphic principles and best practices.
+- **`docs/PRODUCT.md`** — what the site is, audience, goals, IA/sitemap, page specs, conversion
+  model, content model, SEO requirements. Read for any decision about pages, content, or copy.
+- **`docs/DESIGN.md`** — the design language: token architecture, color/type conventions,
+  layout, motion, the signature technique kit, and the component catalog. Read before building
+  or styling any UI.
+- **`docs/CONVENTIONS.md`** — how code is structured and written: naming, folders, modularity,
+  imports, components, styling, TypeScript, lint, tooling. Follow it for every file you create,
+  change, or update — not just a pre-read.
+- **`docs/AUTOMATIONS.md`** — build, lint, typecheck, test, and deploy commands; CI pipeline;
+  Payload seed/migration scripts; environment variables; any scheduled or CMS-triggered jobs.
+  Read before running, scripting, or wiring up anything outside normal app code.
+
+## How to use these docs
+
+- Don't guess when a doc already has the answer — check the relevant one before deciding on a page, a component's data shape, a style, a file's location, or a command.
+- `CONVENTIONS.md` isn't optional context — it applies to every file touched in a session, not just new features.
+- If two docs seem to conflict, `PRODUCT.md` wins on *what* to build, `DESIGN.md` wins on *how it looks*, `CONVENTIONS.md` wins on *how it's coded*, `AUTOMATIONS.md` wins on *how it runs/deploys*. Flag the conflict instead of silently picking one.
+- If something isn't covered in any doc, make the smallest reasonable decision, note the assumption, and keep going rather than blocking on it.
+
+## Skill source of truth
+
+**`.agents/skills/`** is the source of truth for every skill (native ones and portable
+packages like `impeccable`). `.claude/skills` is **not** a real directory — it's a symlink to
+`.agents/skills`, generated by `scripts/skills.js` on `pnpm install` (wired into the `prepare`
+script). This makes skills discoverable by tools that only look under `.claude/skills`, without
+duplicating the files.
+
+**New skills always go into `.agents/skills/<name>/`, never into `.claude/skills/`** — the
+latter is a generated symlink and gets recreated on next install. If `.claude/skills` is ever
+missing or stale, run `pnpm run setup:skills` to relink it.
+
+## Working agreement (how the owner wants you to operate)
+
+These bias toward caution over speed. For genuinely trivial edits, use judgment rather than
+running the full ritual below.
+
+- **Propose before building.** For anything non-trivial, give a concise list of proposed
+  changes and wait for approval before implementing. Do not dump a full implementation upfront.
+- **One step at a time.** For multi-step work, do a step, confirm it is resolved, then move on.
+- **Be concise.** Short, direct updates. Detailed explanation only when asked or when truly
+  important.
+- **Fix lint before calling anything done.** ESLint is configured; keep it green and let it
+  auto-fix.
+- **Ask when unsure** rather than guessing on product or design intent.
+
+### Think before coding
+
+Don't assume, don't hide confusion, surface tradeoffs.
+
+- State assumptions explicitly before implementing. If genuinely uncertain, ask instead of
+  guessing.
+- If multiple reasonable interpretations exist, present them — don't silently pick one.
+- If a simpler approach exists than what was asked for, say so. Push back when warranted.
+- If something is unclear, stop, name what's confusing, and ask — don't plow ahead on a guess.
+
+### Simplicity first
+
+Minimum code that solves the problem. Nothing speculative.
+
+- No features beyond what was asked, no abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for scenarios that can't happen.
+- If a change could be a fraction of its current size without losing correctness, cut it down.
+- Test: would a senior engineer call this overcomplicated? If yes, simplify.
+
+### Surgical changes
+
+Touch only what the task requires. Clean up only your own mess.
+
+- Don't "improve" adjacent code, comments, or formatting while you're in a file for another
+  reason.
+- Don't refactor things that aren't broken as a side effect of an unrelated task.
+- Match existing style/conventions even where you'd personally do it differently (see
+  `docs/CONVENTIONS.md`).
+- If you notice unrelated dead code or a pre-existing bug, mention it — don't fix or delete it
+  unasked.
+- Remove imports/variables/functions that your own change made unused; leave pre-existing dead
+  code alone unless asked to remove it.
+- Test: every changed line should trace directly back to the request being handled.
+
+### Goal-driven execution
+
+Turn tasks into verifiable success criteria, then loop against them instead of guessing when
+done.
+
+- "Add validation" → write cases for invalid input, then make them pass.
+- "Fix the bug" → reproduce it first (test, script, or manual repro), then make it pass.
+- "Refactor X" → confirm behavior/tests match before and after.
+- For multi-step work, state a brief plan with a verification per step, e.g.:
+
+  ```
+  1. [Step] → verify: [check]
+  2. [Step] → verify: [check]
+  ```
+
+- Strong success criteria (a failing test, a reproduced bug, a passing build) let you work
+  independently without constant check-ins. Weak criteria ("make it work") force guessing —
+  push back and ask for a concrete check instead.
+
+These guidelines are working if diffs shrink to what was asked, fewer rewrites happen due to
+overcomplication, and clarifying questions land before implementation rather than after a
+mistake.
 
 ## Commands
 
-- Install dependencies: `pnpm install`
-- Start dev server: `pnpm dev`
-- Production build: `pnpm build`
-- Start production server: `pnpm start`
-- Lint check: `pnpm lint`
-- Lint and auto-fix: `pnpm lint:fix`
+**Dev server: never kill and restart one that's already running.** The owner usually has
+`pnpm dev` running in their own terminal while working alongside an agent. Before starting a
+dev server to verify a change, check whether one is already up (e.g. `curl -sf
+http://localhost:3000 >/dev/null` or check for a listener on the port) and reuse it. Only start
+a new one if none is running, and don't kill an existing process to "get a clean start" unless
+the owner asks.
 
-Notes:
+## Golden rules (distilled, do not violate)
 
-- `pnpm build` runs `pnpm lint:fix` first via `prebuild`; so prefer `pnpm build` over `pnpm lint` for a more comprehensive check that also attempts auto-fixes.
-- There is no test script yet. If tests are added, document and enforce the command here.
+1. **Tokens only.** Style through the tokens in `global.css` / DESIGN.md. No inline hex/HSL,
+   no raw px font sizes, no magic numbers, no `dark:` color literals (rely on ramp inversion).
+2. **Kebab-case filenames.** Every file and folder is lower kebab-case. (Component identifiers
+   and TS types stay PascalCase in code; that is language, not filenames.)
+3. **Folders with `index`.** A unit is a kebab folder with `index.tsx` + optional `types.ts`,
+   not a loose file. Import by folder via the `@` alias.
+4. **150 LOC split rule.** Any file past ~150 lines must be split by responsibility. Applies to
+   all files, not just components.
+5. **`@` path aliases** over relative imports (relative only for true siblings).
+6. **Server components by default.** Add `"use client"` only at the smallest leaf that needs it.
+7. **SSR/SSG everything indexable.** Per-page metadata + OG images, JSON-LD, sitemap, robots,
+   canonicals. Performance (Core Web Vitals) is a feature.
+8. **Accessibility + reduced motion** always: semantic HTML, visible focus, AA contrast, and
+   every animation no-ops under `prefers-reduced-motion`.
+9. **Reuse the kit.** Use DESIGN.md's signature techniques and component catalog; do not invent
+   parallel ornament.
 
-## Project Shape
+## Definition of done
 
-- `src/app`: Next.js App Router route segments, layouts, and route entry points
-- `src/components`: reusable global shared components
-- `src/app/globals.css`: Tailwind v4 import, global layer styles, and app-wide defaults
-- `src/app/*.module.css`: optional scoped styles for edge-case components/routes
-- `public/assets`: static assets (fonts, images)
+- Matches PRODUCT intent, DESIGN patterns/tokens, and CONVENTIONS structure.
+- Files are kebab, modular (<150 LOC), folder+index where they are units.
+- ESLint green and auto-fixed; TypeScript strict, no `any`.
+- Server-rendered with correct metadata where it should rank; images optimized.
+- Responsive to mobile, themed light/dark, reduced-motion safe, keyboard accessible.
 
-## Conventions
+## Do not
 
-- Use the App Router pattern already in place; do not mix legacy router patterns unless intentionally migrating.
-- Keep route files in `src/app` focused on route concerns; colocate route-specific UI and logic with each route segment, and share reusable pieces via `src/components`.
-- Use `kebab-case` for all file and folder names.
-- **Component placement** — global/reusable components live in `src/components/`, page-specific components are co-located in `app/<route>/components/`.
-- **Folder-per-component** — each component gets its own directory with `index.tsx` as the component entry point and co-located types.
-- Prefer path aliases from `tsconfig.json` (`@components/*`, `@hooks/*`, `@styles/*`, etc.) over deep relative imports.
-- Follow the module file pattern where practical: `index.tsx`, `styles.ts` and `types.ts`.
-- Tailwind v4 is available and is the primary styling path for routes and components.
-- Use CSS modules optionally for edge cases where utility classes are not a good fit.
-- NEVER use anonymous/unnamed functions. Every function must be assigned to a named `const` declaration before being passed as a callback or handler. For example, `onClick={() => { return onTabChange("preview"); }}` is forbidden — extract to `const handleTabChange = () => onTabChange("preview")` first, then pass `onClick={handleTabChange}`.
-- NEVER suppress Hydration Warnings with `suppressHydrationWarning`. If a hydration warning occurs, fix the underlying cause instead of silencing it.
-
-## Quality Gates
-
-- If adding build-time or runtime behavior, verify with: `pnpm build`.
-- If `pnpm lint` or `pnpm build` exits with errors, do not mark the task complete. Fix all reported errors before finishing, or explicitly surface the unresolved errors to the user with the full error output.
-- No generated or modified file shall exceed 150 lines of code. If a file exceeds 150 LOC, split it into a modular folder structure (index.tsx entry + focused sibling files). Apply this proactively — before writing, break large outputs into modules; after writing, audit and refactor any file that exceeds the limit.
-
-## Security
-
-- Never commit secrets, API keys, or credentials to source files.
-- Use `.env` for secrets; never commit `.env` to version control.
-- Never read `.env` or `.env.*` files. If a secret needs to be present, updated, or verified, instruct the user to do it manually.
-- If a secret is detected in code, halt and alert the user before proceeding.
-
-## Known Pitfalls
-
-- Lint scripts target `src/**/*.{ts,js,tsx,jsx}`; files outside `src/` may not be covered.
-- `next.config.js` currently has `images.remotePatterns` empty; remote image sources must be explicitly added.
-- TypeScript is strict via `@tsconfig/strictest` + `@tsconfig/next`; keep types explicit and avoid bypass patterns.
-
-## Design Context
-
-- [PRODUCT.md](docs/PRODUCT.md): Strategic brief — register, users, brand personality, anti-references, design principles. **Edit this for your product.**
-- [DESIGN.md](docs/DESIGN.md): Visual design system — colors, typography, elevation, components. **Swap tokens to rebrand.**
-
-## References
-
-- [README](README.md)
-- [TypeScript config](tsconfig.json)
-- [ESLint config](eslint.config.mjs)
-- [Next config](next.config.js)
-- [Project standard constants](docs/PROJECT_STANDARD_CONSTANTS.md)
-- [Design system](docs/DESIGN.md)
-- [Product brief](docs/PRODUCT.md)
+- Implement large changes without a proposed change list and approval.
+- Inline colors/sizes or add `dark:` literals.
+- Leave ESLint red or disable rules to silence them without a clear reason.
+- Create monolithic files, bare component files, or deep relative imports.
+- Add pricing, packages, popups, or gated content (out of scope per PRODUCT.md).

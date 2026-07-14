@@ -1,214 +1,173 @@
-# PRODUCT.md
+# Cranbakery — Product Document
 
-Product spec and source of truth for the portfolio site. Pairs with DESIGN.md (how it looks)
-and AGENTS.md (how it is built). This file defines what the site is, who it is for, what it
-must achieve, and what content and structure deliver that. Agents read this before deciding
-information architecture, copy, pages, or SEO.
+## 1. Business Overview
 
----
+**Cranbakery** ("Desserts & Delights") is a home/boutique bakery brand, established 2024, selling cakes, cheesecakes, cake tubs, cookies, brownies, tea cakes, muffins, cupcakes, and donuts. It currently operates as an Instagram-and-WhatsApp order business with no website — customers browse PDF/image menus and order via WhatsApp/DM.
 
-## 1. What this is
+- **Brand tagline:** "We bake happiness"
+- **Brand line:** "Life is too short to skip dessert!"
+- **Positioning:** premium ingredients, notably Belgian chocolate sourced from Callebaut; 100% hygiene during production and packaging
+- **Contact / ordering channels:**
+  - Instagram: [@cranbakery](https://instagram.com/cranbakery)
+  - WhatsApp ordering: +91 84000 19540 (Devpriya)
+  - Additional listed contact: +91 8174955472
+- **Fulfillment model:** delivery only — no pickup/storefront flow needed on the site.
+- **Visual identity:** see `DESIGN.md` for brand colors, typography, and visual direction — not covered in this document.
 
-A personal portfolio for a full stack developer. It is a showcase, not a storefront: there
-are no packages, prices, or service menus. It proves capability through real work and clear
-writing, then makes it effortless to start a conversation.
+## 2. Product Vision
 
-One line: "Full stack developer who designs and ships polished, performant web apps. See the
-work, then let's talk."
+Build a clean, mobile-first website that replaces static PDF/Instagram menus with a proper digital catalog, so customers can:
 
-## 2. Audience (two readers, one site)
+1. Browse the full product range by category, with photos, descriptions, weights, and prices.
+2. Enquire/order directly (WhatsApp-first ordering, since there's no payment gateway or delivery logistics system currently in place).
+3. Trust the brand — reinforce premium ingredient sourcing, hygiene standards, and customization options (ribbons, toppers, festive packaging).
 
-1. **Freelance prospects (primary).** Founders, small businesses, and agencies who need a web
-   app or site built, an existing product rebuilt or modernized, or systems and APIs
-   integrated. Often non-technical or semi-technical. They skim, judge credibility fast, and
-   want to know "can this person build my thing, and is it easy to reach them."
-2. **Hiring managers / recruiters (secondary).** Want depth: real engineering, breadth of
-   stack, code quality signals, and writing that shows how the person thinks.
+This is **not** intended (at least initially) to be a full e-commerce checkout/payment system — it's a **digital menu + lead-generation / WhatsApp-order funnel**, matching how the business actually operates today. This can evolve later into full cart + payments if the business scales.
 
-The balance: lead with outcomes and trust for prospects, but keep enough technical depth
-(case studies, GitHub activity, resume) that an engineer or hiring manager respects it. Never
-dumb it down; never bury the contact path under jargon.
+## 3. Target Users
 
-## 3. Goals and success signals
+- **Primary:** Local customers (Mohali/Chandigarh/Punjab region, per existing WhatsApp-based ordering) browsing on mobile, deciding what to order for birthdays, get-togethers, or personal indulgence.
+- **Secondary:** People discovering Cranbakery via Instagram and wanting a more detailed/organized menu than an IG grid can offer.
+- **Tertiary:** Repeat/corporate customers wanting bulk orders (cookie boxes, cupcake boxes, tea cakes) for events.
 
-Primary goal: turn a qualified visitor into a booked call or a sent message.
-Secondary goals: communicate range (build / rebuild / integrate), build trust, rank for the
-owner's name and relevant niche queries, and give recruiters a fast credible read.
+## 4. Core Requirements
 
-Success signals to design toward (instrument later): call bookings and contact submissions,
-resume downloads, case-study read-through, time on case-study pages, returning visits from
-search, and indexable pages ranking for name + niche terms.
+### 4.1 Must-Have (v1)
 
-## 4. Positioning and voice
+- **Home page:** brand intro, tagline, hero imagery, links into categories, WhatsApp CTA always visible (sticky button).
+- **Menu/Catalog pages** organized by category (see §5 for full data), each item showing:
+  - Name, short description, image
+  - Available sizes/weights and corresponding prices
+  - Allergen notes where specified (e.g., Chocolate Caramel Bliss contains cashew)
+  - Minimum order quantities where applicable (muffins, donuts, brownies, cupcakes)
+- **Order flow — cart system:** the site has a proper cart (client-side, no payment) rather than a simple button. Users add items (with selected pack + quantity) to the cart from any category page, review/edit the cart (remove items, change quantity/pack), and see a persistent cart indicator (e.g. floating button/badge with item count) while browsing.
+- **Checkout-to-WhatsApp:** a final "Send Order" / "Checkout via WhatsApp" CTA compiles the entire cart into one formatted text message (item names, packs, quantities) and opens it as a pre-filled `wa.me` link.
+- **Post-send cart clearing:** after the user is redirected to WhatsApp and returns to the site (tab refocus/visibility change), the app should detect the return and prompt them to confirm clearing the cart (since the order has presumably been sent) — rather than silently clearing it or leaving stale items in the cart indefinitely.
+- **About/Story section:** premium ingredients (Callebaut Belgian chocolate), hygiene commitment, customization options (ribbons/flowers/toppers, sliceable cake versions of tubs).
+- **Contact section:** Instagram handle, WhatsApp number, delivery-only note (no pickup/storefront), maybe embedded IG feed or link-out.
+- **Out-of-stock handling:** unavailable items stay visible in the catalog but are clearly marked (e.g. "Out of stock" badge, disabled order action) rather than being hidden.
+- **Responsive design:** mobile-first (majority of traffic will be mobile, coming from Instagram bio link).
 
-Calm, confident, specific. Show, don't sell. No hype words, no "rockstar/ninja," no fake
-scarcity. Outcomes first ("cut checkout load time in half"), tech second. Plain verbs,
-sentence-case, active voice. Copy reads human, with small natural cadence, never AI-generic.
-First person ("I build", "I worked with") since it is personal. Avoid em dashes.
+### 4.2 Nice-to-Have (v1.5+)
 
-## 5. Conversion model
+- Search/filter by category, price range, or flavor (chocolate/fruit/coffee/etc.)
+- "Popular" or "Signature" tagging (e.g., Signature Chocolate cake, Tiramisu, Black Forest)
+- Basic analytics (which categories/items get the most clicks/WhatsApp taps)
 
-Lead with **Book a call**; offer all paths.
+### 4.3 Out of Scope (for now)
 
-- Primary CTA everywhere: "Book a call" (embedded scheduler, e.g. Cal.com, or a clean link).
-- Secondary: a short contact form (name, email, what they need, optional budget/timeline).
-- Tertiary: direct email and WhatsApp links for people who prefer that.
+- Online payments / checkout
+- Delivery tracking / logistics (delivery happens, but no in-app tracking/routing)
+- User accounts / login
+- Inventory management (beyond a simple available/out-of-stock flag)
 
-CTA placement: persistent in the nav, a strong block in the hero, the end of every case
-study, and the footer. The contact section repeats all three options with a one-line nudge.
-Keep the form short; every extra field costs conversions. No gated content, no popups.
+## 5. Product Categories (structure, not pricing)
 
-**Gap:** as built, there is no embedded booking scheduler yet. The header CTA is "Resume", not
-"Book a call"; `/contact` offers a 3-field form (name, email, project) + email/LinkedIn/GitHub
-links, no Cal.com-style widget or WhatsApp link. Close this gap or update this section once a
-scheduler decision is made — don't let the two silently diverge further.
+All actual items, prices, weights, and copy will live in **Payload CMS**, not in code. From researching the existing menus, these are the categories the schema needs to support:
 
-## 6. Information architecture
+- Cakes (signature sponge cakes, sold by weight, e.g. 600g / 1200g)
+- Cheesecakes (sold by weight, e.g. 350g / 600g / 1200g)
+- Cake Tubs / Gateaux (sold by weight, e.g. 250g / 500g / 1200g, often grouped into sub-collections like "Signature Collection", "Premium Gateaux", "Fruit Delights")
+- Cookies (sold by box, e.g. box of 6/8/15, or by weight e.g. ½kg)
+- Brownies (sold per piece with a minimum box size, plus a separate "Brownie Cake" sold by weight)
+- Tea Cakes (mostly flat single-size pricing, one item sold as a box of 4)
+- Muffins (sold per piece with a minimum order quantity)
+- Cupcakes (sold per piece, available in box sizes e.g. 4/6/9)
+- Donuts (sold per piece with a minimum pack size)
 
-Hybrid: a strong single-page home that funnels, plus real routes for depth and SEO. More
-indexable, linkable pages help search; the home stays the highlight reel.
+Key patterns the data model must handle (seen repeatedly across the source menus):
 
-**Status:** `/` (Home), `/about`, `/work` (case studies, projects, experience, endorsements),
-`/work/[slug]`, and `/contact` (form + connect links) are built and live. `/blog` and
-`/blog/[slug]` are still planned, not yet built. `sitemap.xml`, `robots.txt`, and a custom 404
-are built (`src/app/sitemap.ts`, `robots.ts`, `not-found.tsx`); RSS for the blog is not (blog
-doesn't exist yet).
+- **Weight-based pricing:** same item, multiple weight tiers, each with its own price (e.g. 250g / 500g / 1200g).
+- **Piece-based pricing with minimums:** price per piece, but only orderable in a minimum quantity or fixed box sizes (e.g. "minimum box of 4", "box of 6/8").
+- **Flat pricing:** single price, no variants (e.g. some tea cakes).
+- **Allergen / dietary notes:** at least one item calls out an allergen (cashew) — needs to be a field, not just prose.
+- **Customization notes:** some products (cake tubs) support add-ons like ribbon, flower, topper, or a "sliceable cake version" — could be modeled as optional add-ons or just a note field for v1.
+- **Category grouping / sub-collections:** some catalogs group items under named collections (e.g. "Signature Collection", "Premium Gateaux Selection") — worth supporting a "collection/tag" field so products can be grouped without needing a rigid category tree.
 
-Sitemap:
+### 5.1 Suggested Payload CMS Collections
 
-- `/` Home (the funnel: hero, work history, engineering manifesto, skills, selected case
-  studies & projects).
-- `/work` Case studies, projects, full experience timeline, and endorsements (testimonials),
-  all on one page. **Gap:** the spec below calls for filtering by type
-  (build/rebuild/integration/frontend); category is shown as a label on each card but no
-  interactive filter UI exists yet.
-- `/work/[slug]` Exists but is a noindexed placeholder ("full write-up coming soon") with a
-  back link to `/work`; the real detail content lives inline on the `/work` index via
-  `id={slug}` anchors on each card. Not yet the full case-study page the spec below describes.
-- `/blog` Article index.
-- `/blog/[slug]` Article.
-- `/about` Portrait/intro, "my approach" statement, values/principles, stack, resume download +
-  contact CTA. No dedicated timeline component; the career narrative lives on `/work` instead.
-- `/contact` Availability status, connect links (email/LinkedIn/GitHub), short form (name,
-  email, project) posting to `/api/contact`, response-time expectation, IST timezone, and a
-  location/closing band. No embedded booking scheduler yet (see §5 gap below).
-- Utility: `/resume` (or direct PDF), `sitemap.xml`, `robots.txt`, RSS for blog, custom 404.
+**`Categories`**
 
-Global nav: Work, Blog, About, plus a persistent "Book a call". **As built (`headerAndNavData`
-in `src/data.ts`), this has drifted:** the live header nav is Home / Design / About / Work / Contact, with a "Resume" button, not "Book a call". "Design" points at
-`/temp` (a dev color/type scratch page, `robots.txt`-disallowed), which has no route and 404s. Flagged as a bug to fix, not a spec change
-to make — the intended nav is still Work / Blog / About / Contact + a primary CTA. Footer
-carries full nav, contact paths, social, status (open for work), and a back-to-top.
+- `name` (text)
+- `slug` (text, unique)
+- `description` (richtext, optional)
+- `image` (upload, optional — category cover)
+- `order` (number — for display sequencing)
 
-## 7. Page specs (purpose + must-have content)
+**`Products`**
 
-- **Home.** _As built:_ hero (name, positioning line, strongholds tags), work history
-  (`Work`, experience cards), engineering manifesto (principles grid), skills grid, and
-  selected case studies & projects (`Projects`), each linking out to `/work`. No GitHub
-  activity, no testimonials, and no latest-articles block on the home page yet — testimonials
-  live on `/work` (Endorsements) instead; GitHub activity and a blog teaser are still
-  unbuilt. There is no explicit mid-page contact block; contact paths currently live only in
-  the header (Resume) and footer. Revisit this spec once those pieces land, or trim the spec to
-  match intent.
-- **/work index.** _As built:_ one page combining case studies, independent projects, full
-  experience timeline, and endorsements (testimonials), each a `Section`. Cards show a category
-  chip (build/rebuild/integration/frontend) but there is no interactive filter yet — the "filter
-  by type" requirement below is not yet implemented.
-- **/work/[slug] case study.** _As built:_ a noindexed placeholder page (title, description,
-  timeframe, "full write-up coming soon"). The full structure below (problem, decisions,
-  metrics, client quote, screenshots) is not yet implemented — case-study depth currently lives
-  as inline expandable cards (`WorkItemCard`, a `<details>` element) on the `/work` index, not
-  as dedicated per-slug pages.
-- **/blog index + article.** Technical and process writing (Next.js, frontend architecture,
-  design systems, performance). Drives SEO and shows how the owner thinks. Articles need a
-  clear title, date, reading time, tags, canonical URL, and a CTA at the end. Not yet built.
-- **/about.** _As built:_ hero (name label + headline), portrait + intro statement, "My
-  Approach" (a statement + two supporting paragraphs), Principles (values around
-  communication/ownership/clarity/reliability), Stack (categorized skills), and a closing
-  accent CTA band (resume download, contact link, LinkedIn, GitHub). There is no dedicated
-  timeline/evolution component; the career narrative lives on `/work`'s Experience section
-  instead, not here.
-- **/contact.** _As built:_ availability status + location in the hero, a headline, a Connect
-  block (email/LinkedIn/GitHub with response-time and availability notes), a 3-field form
-  (name, email, project) posting to `/api/contact` with idle/submitting/success/error states,
-  and a closing image band with coordinates. No WhatsApp link and no embedded scheduler (see §5
-  gap note).
+- `name` (text)
+- `slug` (text, unique)
+- `category` (relationship → Categories)
+- `collectionTag` (text/select, optional — e.g. "Signature Collection", "Specials")
+- `description` (textarea/richtext)
+- `images` (array of uploads)
+- `pricingType` (select: `weight` | `piece` | `flat`)
+- `pricePacks` (array — see below, shown conditionally based on `pricingType`)
+- `minOrderQty` (number, optional — e.g. "minimum box of 4")
+- `allergens` (array of text/select, optional)
+- `customizationNotes` (textarea, optional)
+- `isSignature` / `isFeatured` (checkbox, optional — for homepage highlights)
+- `isAvailable` (checkbox — when off, item stays visible in the catalog but is marked "Out of stock" and its order action is disabled)
 
-## 8. Content model (fields agents should assume)
+**`PricePacks`** (can be a Payload array/block field on `Products` rather than its own collection)
 
-- **Case study:** title, slug, client/context, type (build|rebuild|integration|frontend),
-  role, stack[], timeframe, summary (1-2 lines), problem, approach, outcome, metrics[],
-  testimonial ref, links {live, repo}, cover image, gallery[], featured (bool), order, SEO
-  {title, description, ogImage}.
-- **Testimonial:** quote, author name, role/company, avatar (optional), related case study,
-  featured (bool).
-- **Article:** title, slug, date, updated, tags[], readingTime, excerpt, body (MDX), cover
-  image, canonical, SEO fields.
-- **Project (lighter than case study, for GitHub/minor work):** name, description, stack[],
-  links, source (manual | GitHub-synced).
-- **Profile/site config:** name, role title, location, availability status, social links,
-  email, WhatsApp, scheduler URL, resume URL.
+- `label` (text — e.g. "600g", "Box of 8", "1200g")
+- `price` (number)
+- `unit` (select: `grams` | `piece` | `box`, optional, for consistent formatting)
 
-Content should be data-driven (MDX/markdown or a light CMS), so adding a case study or article
-never requires touching layout.
+This keeps all catalog content editable by the bakery owner through the Payload admin UI, with no code changes needed to add/remove items or change prices.
 
-## 9. SEO requirements (high priority)
+## 6. Information Architecture (suggested)
 
-Technical:
+```
+/                      → Home (hero, brand story teaser, category shortcuts, WhatsApp CTA)
+/about                 → Brand story, ingredient sourcing, hygiene, customization
+/menu                  → Category overview / index
+/menu/cakes
+/menu/cheesecakes
+/menu/cake-tubs
+/menu/cookies
+/menu/brownies
+/menu/tea-cakes
+/menu/muffins
+/menu/cupcakes
+/menu/donuts
+/contact               → WhatsApp, Instagram, (map/location if applicable)
+```
 
-- Server-render or statically generate every page (Next.js App Router, SSG/ISR). No
-  client-only content for anything that should rank.
-- Per-page unique `<title>` and meta description; canonical URLs; Open Graph + Twitter cards
-  with per-page OG images (generate dynamically for case studies and articles).
-- `sitemap.xml`, `robots.txt`, RSS feed for the blog, clean human-readable slugs.
-- One `<h1>` per page; logical heading order; descriptive `alt` on every image; descriptive
-  link text (not "click here").
-- Core Web Vitals as a feature: optimized images (next/image, AVIF/WebP, sized), lazy-load
-  below the fold, preload fonts, minimal JS, fast LCP. Performance is both UX and ranking.
+Each `/menu/[category]` page renders a grid of item cards → item detail (modal or page) with sizes/prices and a WhatsApp order CTA.
 
-Structured data (JSON-LD):
+## 7. Component Architecture (frontend, data-driven)
 
-- `Person` (the owner) and `WebSite` on the home/about.
-- `BreadcrumbList` on nested pages.
-- `Article`/`BlogPosting` on blog posts (author, dates, image).
-- `CreativeWork` (optional) on case studies.
+Components should be generic and driven entirely by the CMS data shape, not hardcoded per category:
 
-On-page / content:
+- **`<ProductCard />`** — takes a `Product`, renders image, name, short description, starting price (lowest `pricePacks` entry), out-of-stock badge if `isAvailable` is false, and an "Add to cart" action (with pack/quantity selection). Links to detail view.
+- **`<PricePackSelector />`** — takes a `pricePacks[]` array, renders selectable size/box options with prices; adapts label formatting based on `pricingType` (grams vs. piece vs. box).
+- **`<ProductDetail />`** — takes a `Product`, composes `<PricePackSelector />`, allergen tags, customization notes, and the "Add to cart" action (disabled if out of stock).
+- **`<CategoryGrid />`** — takes a `Category` + its `Product[]`, renders a responsive grid of `<ProductCard />`.
+- **`<Cart />`** — global, persistent (client-side state, e.g. `localStorage` + context) list of `{ product, pricePack, quantity }` entries across categories. Shows a floating indicator/badge with item count while browsing, and a review view (drawer/page) to edit quantity, change pack, or remove items.
+- **`<WhatsAppCheckoutButton />`** — takes the full cart contents, builds one combined, formatted, prefilled `wa.me` message listing every item + pack + quantity, and opens it. After the user returns to the tab (via the Page Visibility API or a return-focus listener), triggers a confirm prompt asking whether to clear the cart, on the assumption the order was sent.
+- **`<CollectionSection />`** (optional) — takes a `collectionTag` string and renders products grouped under it (for cases like "Signature Collection" / "Premium Gateaux Selection") within a category page.
 
-- Target queries: the owner's name, "full stack developer [region/remote]", "Next.js
-  developer", and the niches the case studies represent (e.g. rebuilds, integrations). Work
-  these naturally into titles, headings, and copy; never keyword-stuff.
-- Strong internal linking: home to case studies to related articles to contact.
-- Keep the blog updated; freshness and depth compound for search.
+This keeps every page essentially a thin fetch-from-Payload + map-to-component layer, so adding a new category or product later requires zero new components.
 
-Accessibility doubles as SEO: semantic HTML, labeled controls, sufficient contrast.
+## 8. Technical Considerations
 
-## 10. Trust and proof
+- **Stack:** Next.js (App Router) + TypeScript + Tailwind CSS + Payload CMS, with **Payload embedded in the same Next.js app** (single codebase/deploy, shared DB connection).
+- **Frontend:** fully custom — Payload's prebuilt admin UI is used only for content management; none of Payload's default frontend components/blocks are used for the public-facing site. All public UI is built from scratch per §7.
+- **Data fetching:** use Payload's Local API (since it's embedded in the same app) for server-side fetching, with ISR/SSG so menu pages stay fast and SEO-friendly while still reflecting CMS edits without a redeploy.
+- **Images:** need proper product photography or at least consistent illustration/photo treatment — currently a mix of illustrated menu graphics and real photos; pick one visual language for the live site (recommend real photography for trust, illustrations only for decorative/hero use). Payload's upload collection can serve as the image source of truth.
+- **WhatsApp deep links:** use `https://wa.me/918400019540?text=...` with a URL-encoded message built from the full cart contents (all items, packs, quantities) as a single combined order summary.
+- **SEO:** category and item names/descriptions should be indexable (not locked behind client-side-only rendering) — good candidate for Next.js SSG/ISR.
+- **Performance:** optimize images (next/image), since menu pages will be image-heavy.
 
-Testimonials placed near CTAs and on relevant case studies. Live GitHub activity (stars,
-repos, contributions, recent projects) for engineering credibility. Resume download for
-recruiters. An "open for work / available" status with the local time signals responsiveness.
-Real screenshots and concrete outcomes beat adjectives.
+## 9. Decisions Log
 
-## 11. Non-goals
-
-No pricing tables, service packages, or checkout. No lead-gen gating or email-wall. No popups
-or aggressive capture. Not a blog-first site (writing supports the portfolio, it is not the
-product). No fabricated metrics or testimonials; if a number or quote is not real, omit it.
-
-## 12. Build expectations (summary; details in AGENTS.md)
-
-Next.js (App Router) + TypeScript + Tailwind, MDX/markdown or light CMS for content,
-token-driven styling per DESIGN.md, deployed somewhere with good edge performance. Analytics
-that respects privacy. Everything responsive to mobile, dark/light themed, reduced-motion safe.
-
-## 13. Launch checklist
-
-- All pages render server-side with unique metadata and OG images.
-- Sitemap, robots, RSS, canonicals, 404 in place.
-- Lighthouse: strong Performance, Accessibility, Best Practices, SEO scores; Core Web Vitals
-  green on mobile.
-- Every CTA works (booking, form delivery, email, WhatsApp); form has success/error states.
-- At least 3 real case studies, 2-3 testimonials, 2-3 articles, resume PDF current.
-- Structured data validates; social previews render correctly.
-- Keyboard and screen-reader pass on nav, forms, and case studies.
+| Question | Decision |
+|---|---|
+| Payload deployment | Embedded in the same Next.js app; custom frontend only, no Payload prebuilt UI components on the public site |
+| Fulfillment | Delivery only, no pickup |
+| Order flow | Full cart system (add/edit/remove across categories), single combined WhatsApp message on checkout, prompt to clear cart when user returns from WhatsApp |
+| Out-of-stock items | Stay visible in the catalog, clearly marked, order action disabled |
+| Visual direction | Tracked separately in `DESIGN.md` |

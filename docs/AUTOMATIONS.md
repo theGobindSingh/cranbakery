@@ -115,12 +115,6 @@ Audits every `page.tsx` for metadata, canonical, OG/Twitter, JSON-LD, heading st
 image/link accessibility, using the homepage's existing implementation as the compliance
 baseline. See `.agents/skills/seo-audit/SKILL.md`.
 
-### `content-update`
-
-Enforces the copy rules and verified-metrics list from `AGENTS.md` before any portfolio copy
-is written or edited. Claude applies it automatically; also user-invocable (`/content-update`)
-to spot-check existing copy. See `.agents/skills/content-update/SKILL.md`.
-
 ### Skill symlink setup
 
 `scripts/skills.js` runs as part of `pnpm install` (via the `prepare` script, `pnpm run

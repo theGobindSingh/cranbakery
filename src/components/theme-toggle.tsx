@@ -26,7 +26,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggle}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-12 h-12 rounded-full border border-grey-300 bg-grey-200 text-grey-900 transition-all duration-200 hover:border-accent hover:shadow-[0_0_20px_-4px_var(--color-accent-400)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="fixed right-6 bottom-6 z-50 flex size-12 items-center justify-center rounded-full border border-grey-300 bg-grey-200 text-grey-900 transition-all duration-200 hover:border-accent hover:shadow-[0_0_20px_-4px_var(--color-accent-400)] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {dark ? <SunIcon /> : <MoonIcon />}
