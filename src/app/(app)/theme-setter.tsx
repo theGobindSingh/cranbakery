@@ -5,15 +5,19 @@ import { useEffect } from "react";
 
 export default function ThemeSetter() {
   useEffect(() => {
+    const queryTheme = new URLSearchParams(window.location.search).get(
+      "theme",
+    );
     const cookieTheme = clientCookies.get("theme");
     const localTheme = localStorage.getItem("theme");
 
+    // Light is the committed default for this brand — never infer from
+    // prefers-color-scheme. An explicit ?theme= query param always wins,
+    // then a returning visitor's stored choice, then default light.
     const theme =
-      localTheme ??
-      cookieTheme ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
+      queryTheme === "light" || queryTheme === "dark"
+        ? queryTheme
+        : (localTheme ?? cookieTheme ?? "light");
 
     localStorage.setItem("theme", theme);
     clientCookies.set("theme", theme);

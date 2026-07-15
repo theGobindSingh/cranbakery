@@ -4,6 +4,7 @@ export type InteractionVariant = "filled" | "outlined" | "text";
 export type InteractionSize = "sm" | "md" | "lg";
 export type ColorFamily =
   | "grey"
+  | "neutral"
   | "primary"
   | "secondary"
   | "accent"

@@ -116,9 +116,12 @@ mistake.
 **Dev server: never kill and restart one that's already running.** The owner usually has
 `pnpm dev` running in their own terminal while working alongside an agent. Before starting a
 dev server to verify a change, check whether one is already up (e.g. `curl -sf
-http://localhost:3000 >/dev/null` or check for a listener on the port) and reuse it. Only start
-a new one if none is running, and don't kill an existing process to "get a clean start" unless
-the owner asks.
+http://localhost:3000 >/dev/null` or check for a listener on the port). If one is already
+running, don't just reuse or kill it silently — **ask the owner first** what they want done
+with it (reuse as-is, restart, leave it alone). It may be the owner's own terminal session,
+not something the agent started, so it isn't the agent's call to make. Only start a new
+server without asking if none is running at all, and never kill an existing process to "get a
+clean start" unless the owner explicitly asks.
 
 ## Golden rules (distilled, do not violate)
 

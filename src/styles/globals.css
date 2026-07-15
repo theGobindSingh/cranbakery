@@ -17,12 +17,12 @@
  *    3. @theme      — Tailwind v4 registration, making tokens available as utilities
  *    4. BASE STYLES — resets, body, grain, scrollbar (@ line ~640)
  *
- *  COLOR SYSTEM — ramp-based, 7 families × 11 stops (50…950) + -base for alpha:
+ *  COLOR SYSTEM — ramp-based, 9 families × 11 stops (50…950) + -base for alpha:
  *
  *    --color-{family}-{stop}-base: {H}, {S}%, {L}%;   ← raw numbers for hsl()
  *    --color-{family}-{stop}: hsl(var(--color-{family}-{stop}-base));
  *
- *    Families: grey | primary | secondary | accent | success | caution | info | error
+ *    Families: grey | neutral | primary | secondary | accent | success | caution | info | error
  *    Stops:    50 (lightest) → 950 (darkest) in light mode
  *
  *    To use a color at alpha:  hsl(var(--color-grey-900-base) / 0.15)
@@ -34,21 +34,21 @@
  *    Semantics stay: grey-50 = background, grey-950 = ink in both modes.
  *
  *  SEMANTIC ROLES — use these in preference to raw ramp numbers:
- *    --color-bg             page background (grey-50)
- *    --color-surface        muted panels (grey-200)
- *    --color-surface-raised cards / elevated (grey-400)
- *    --color-text           primary ink (grey-950)
- *    --color-text-muted     secondary text (grey-800)
- *    --color-text-subtle    captions (grey-700)
- *    --color-text-inverse   text on dark fills (grey-50)
- *    --color-border         hairline rules (grey-700 at 30% alpha)
- *    --color-border-strong  solid borders (grey-700)
+ *    --color-bg             page background (neutral-50)
+ *    --color-surface        muted panels (neutral-200)
+ *    --color-surface-raised cards / elevated (neutral-400)
+ *    --color-text           primary ink (neutral-950)
+ *    --color-text-muted     secondary text (neutral-800)
+ *    --color-text-subtle    captions (neutral-700)
+ *    --color-text-inverse   text on dark fills (neutral-50)
+ *    --color-border         hairline rules (neutral-700 at 30% alpha)
+ *    --color-border-strong  solid borders (neutral-700)
  *    --color-focus          focus ring (accent-500)
  *
  *  PALETTE (dark mode anchor hex values):
  *    Surface:  #0e0e0e → #141313 → #1c1b1b → #201f1f → #2a2a2a → #353434 → #3a3939
  *    On-surface: #e5e2e1    Outline: #8e9192    Outline-variant: #444748
- *    Accent (peach/orange, ~hue 16°, used sparingly for CTAs): #b73700 → #ffdbd0
+ *    Accent (cranberry, ~hue 350°, used for CTAs, links, focus rings, and merchandising tags): #8b1828 → #f8d8dd
  *
  *  TYPOGRAPHY — raw fs-* scale (line ~245) + display clamps; fonts wired via next/font
  *    into @theme as --font-display / --font-sans / --font-mono.
@@ -96,76 +96,100 @@
   --color-grey-950-base: 210, 17.5%, 5%;
   --color-grey-950: hsl(var(--color-grey-950-base));
 
-  /* primary */
-  --color-primary-50-base: 0, 1%, 95%;
+  /* neutral — Cream & Ink neutrals */
+  --color-neutral-50-base: 33, 100%, 97.8%;
+  --color-neutral-50: hsl(var(--color-neutral-50-base));
+  --color-neutral-100-base: 36, 65%, 95.5%;
+  --color-neutral-100: hsl(var(--color-neutral-100-base));
+  --color-neutral-200-base: 33, 58%, 92.5%;
+  --color-neutral-200: hsl(var(--color-neutral-200-base));
+  --color-neutral-300-base: 32, 45%, 85%;
+  --color-neutral-300: hsl(var(--color-neutral-300-base));
+  --color-neutral-400-base: 30, 35%, 74%;
+  --color-neutral-400: hsl(var(--color-neutral-400-base));
+  --color-neutral-500-base: 28, 28%, 62%;
+  --color-neutral-500: hsl(var(--color-neutral-500-base));
+  --color-neutral-600-base: 26, 30%, 48%;
+  --color-neutral-600: hsl(var(--color-neutral-600-base));
+  --color-neutral-700-base: 23.3, 36.8%, 26.1%;
+  --color-neutral-700: hsl(var(--color-neutral-700-base));
+  --color-neutral-800-base: 23, 40%, 20%;
+  --color-neutral-800: hsl(var(--color-neutral-800-base));
+  --color-neutral-900-base: 23.3, 45%, 15.7%;
+  --color-neutral-900: hsl(var(--color-neutral-900-base));
+  --color-neutral-950-base: 22, 48%, 9%;
+  --color-neutral-950: hsl(var(--color-neutral-950-base));
+
+  /* primary — Rust */
+  --color-primary-50-base: 14, 100%, 96%;
   --color-primary-50: hsl(var(--color-primary-50-base));
-  --color-primary-100-base: 0, 0%, 91%;
+  --color-primary-100-base: 14, 90%, 90%;
   --color-primary-100: hsl(var(--color-primary-100-base));
-  --color-primary-200-base: 180, 3%, 86%;
+  --color-primary-200-base: 15, 85%, 82%;
   --color-primary-200: hsl(var(--color-primary-200-base));
-  --color-primary-300-base: 180, 2%, 81%;
+  --color-primary-300-base: 15, 75%, 70%;
   --color-primary-300: hsl(var(--color-primary-300-base));
-  --color-primary-400-base: 180, 2%, 73%;
+  --color-primary-400-base: 14, 65%, 58%;
   --color-primary-400: hsl(var(--color-primary-400-base));
-  --color-primary-500-base: 180, 1%, 63%;
+  --color-primary-500-base: 14, 58%, 51%;
   --color-primary-500: hsl(var(--color-primary-500-base));
-  --color-primary-600-base: 180, 1%, 43%;
+  --color-primary-600-base: 13.3, 47.4%, 44.7%;
   --color-primary-600: hsl(var(--color-primary-600-base));
-  --color-primary-700-base: 180, 1%, 23%;
+  --color-primary-700-base: 13.9, 50.6%, 31.8%;
   --color-primary-700: hsl(var(--color-primary-700-base));
-  --color-primary-800-base: 0, 0%, 11%;
+  --color-primary-800-base: 14, 55%, 22%;
   --color-primary-800: hsl(var(--color-primary-800-base));
-  --color-primary-900-base: 0, 0%, 5%;
+  --color-primary-900-base: 14, 60%, 13%;
   --color-primary-900: hsl(var(--color-primary-900-base));
-  --color-primary-950-base: 0, 0%, 0%;
+  --color-primary-950-base: 14, 65%, 7%;
   --color-primary-950: hsl(var(--color-primary-950-base));
 
-  /* secondary */
-  --color-secondary-50-base: 0, 1%, 95%;
+  /* secondary — Mustard */
+  --color-secondary-50-base: 40, 95%, 96%;
   --color-secondary-50: hsl(var(--color-secondary-50-base));
-  --color-secondary-100-base: 0, 1%, 90%;
+  --color-secondary-100-base: 39, 90%, 90%;
   --color-secondary-100: hsl(var(--color-secondary-100-base));
-  --color-secondary-200-base: 0, 1%, 81%;
+  --color-secondary-200-base: 38, 88%, 82%;
   --color-secondary-200: hsl(var(--color-secondary-200-base));
-  --color-secondary-300-base: 0, 1%, 72%;
+  --color-secondary-300-base: 38, 86%, 73%;
   --color-secondary-300: hsl(var(--color-secondary-300-base));
-  --color-secondary-400-base: 0, 1%, 71%;
+  --color-secondary-400-base: 37, 85%, 66%;
   --color-secondary-400: hsl(var(--color-secondary-400-base));
-  --color-secondary-500-base: 0, 1%, 55%;
+  --color-secondary-500-base: 37.1, 83.2%, 60.4%;
   --color-secondary-500: hsl(var(--color-secondary-500-base));
-  --color-secondary-600-base: 20, 2%, 28%;
+  --color-secondary-600-base: 35, 80%, 50%;
   --color-secondary-600: hsl(var(--color-secondary-600-base));
-  --color-secondary-700-base: 15, 4%, 22%;
+  --color-secondary-700-base: 33, 78%, 38%;
   --color-secondary-700: hsl(var(--color-secondary-700-base));
-  --color-secondary-800-base: 15, 7%, 11%;
+  --color-secondary-800-base: 31, 75%, 26%;
   --color-secondary-800: hsl(var(--color-secondary-800-base));
-  --color-secondary-900-base: 15, 7%, 6%;
+  --color-secondary-900-base: 29, 70%, 15%;
   --color-secondary-900: hsl(var(--color-secondary-900-base));
-  --color-secondary-950-base: 15, 7%, 2%;
+  --color-secondary-950-base: 27, 65%, 8%;
   --color-secondary-950: hsl(var(--color-secondary-950-base));
 
-  /* accent */
-  --color-accent-50-base: 15, 100%, 95%;
+  /* accent — Cranberry (CTAs, links, focus rings, and merchandising tags — one color, every interactive/highlight role) */
+  --color-accent-50-base: 350, 75%, 96%;
   --color-accent-50: hsl(var(--color-accent-50-base));
-  --color-accent-100-base: 15, 100%, 88%;
+  --color-accent-100-base: 350, 70%, 91%;
   --color-accent-100: hsl(var(--color-accent-100-base));
-  --color-accent-200-base: 16, 100%, 82%;
+  --color-accent-200-base: 351, 68%, 84%;
   --color-accent-200: hsl(var(--color-accent-200-base));
-  --color-accent-300-base: 17, 100%, 74%;
+  --color-accent-300-base: 351, 66%, 74%;
   --color-accent-300: hsl(var(--color-accent-300-base));
-  --color-accent-400-base: 18, 100%, 64%;
+  --color-accent-400-base: 350, 64%, 62%;
   --color-accent-400: hsl(var(--color-accent-400-base));
-  --color-accent-500-base: 16, 100%, 47%;
+  --color-accent-500-base: 350, 65%, 50%;
   --color-accent-500: hsl(var(--color-accent-500-base));
-  --color-accent-600-base: 15, 100%, 40.75%;
+  --color-accent-600-base: 351, 68%, 42%;
   --color-accent-600: hsl(var(--color-accent-600-base));
-  --color-accent-700-base: 14, 100%, 19%;
+  --color-accent-700-base: 352, 70%, 32%;
   --color-accent-700: hsl(var(--color-accent-700-base));
-  --color-accent-800-base: 14, 100%, 9%;
+  --color-accent-800-base: 353, 72%, 22%;
   --color-accent-800: hsl(var(--color-accent-800-base));
-  --color-accent-900-base: 14, 100%, 4%;
+  --color-accent-900-base: 354, 74%, 13%;
   --color-accent-900: hsl(var(--color-accent-900-base));
-  --color-accent-950-base: 14, 100%, 2%;
+  --color-accent-950-base: 355, 76%, 7%;
   --color-accent-950: hsl(var(--color-accent-950-base));
 
   /* success */
@@ -265,15 +289,15 @@
   --color-error-950: hsl(var(--color-error-950-base));
 
   /* ---- semantic roles (map to the ramp; auto-invert in dark, define once) ---- */
-  --color-bg: var(--color-grey-50);
-  --color-surface: var(--color-grey-200);
-  --color-surface-raised: var(--color-grey-400);
-  --color-text: var(--color-grey-950);
-  --color-text-muted: var(--color-grey-800);
-  --color-text-subtle: var(--color-grey-700);
-  --color-text-inverse: var(--color-grey-50);
-  --color-border: hsl(var(--color-grey-700-base) / 0.3);
-  --color-border-strong: var(--color-grey-700);
+  --color-bg: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-200);
+  --color-surface-raised: var(--color-neutral-400);
+  --color-text: var(--color-neutral-950);
+  --color-text-muted: var(--color-neutral-800);
+  --color-text-subtle: var(--color-neutral-700);
+  --color-text-inverse: var(--color-neutral-50);
+  --color-border: hsl(var(--color-neutral-700-base) / 0.3);
+  --color-border-strong: var(--color-neutral-700);
   --color-grid-line: hsl(var(--color-grey-700-base) / 0.12);
   --color-crosshair: hsl(var(--color-grey-700-base) / 0.35);
   --color-overlay: hsl(var(--color-grey-50-base) / 0.85);
@@ -316,14 +340,23 @@
   --gutter: clamp(1.5rem, 4vw, 3rem);
   --section-pad-y: clamp(6rem, 12vw, 12rem);
 
-  /* ---- radius (brutalist = sharp; pill only for chips) ---- */
+  /* ---- radius (restrained warmth: small/mid rounding, pill only for chips) ---- */
   --radius-none: 0px;
   --radius-sm: 2px;
+  --radius-md: 6px;
   --radius-pill: 9999px;
 
   /* ---- borders ---- */
   --border-hairline: 1px;
   --border-strong: 2px;
+
+  /* ---- shadows (ink-tinted, sparing use — liftable/interactive elements only) ---- */
+  --shadow-sm:
+    0 1px 2px hsl(var(--color-grey-900-base) / 0.06),
+    0 1px 1px hsl(var(--color-grey-900-base) / 0.04);
+  --shadow-md:
+    0 4px 12px hsl(var(--color-grey-900-base) / 0.1),
+    0 2px 4px hsl(var(--color-grey-900-base) / 0.06);
 
   /* ---- z-index ladder ---- */
   --z-grid: 0;
@@ -369,44 +402,57 @@
   --color-grey-900-base: 210, 13%, 91%;
   --color-grey-950-base: 210, 12%, 97%;
 
+  /* neutral */
+  --color-neutral-50-base: 22, 48%, 9%;
+  --color-neutral-100-base: 23.3, 45%, 15.7%;
+  --color-neutral-200-base: 23, 40%, 20%;
+  --color-neutral-300-base: 23.3, 36.8%, 26.1%;
+  --color-neutral-400-base: 26, 30%, 48%;
+  --color-neutral-500-base: 28, 28%, 62%;
+  --color-neutral-600-base: 30, 35%, 74%;
+  --color-neutral-700-base: 32, 45%, 85%;
+  --color-neutral-800-base: 33, 58%, 92.5%;
+  --color-neutral-900-base: 36, 65%, 95.5%;
+  --color-neutral-950-base: 33, 100%, 97.8%;
+
   /* primary */
-  --color-primary-50-base: 15, 7%, 2%;
-  --color-primary-100-base: 0, 0%, 5%;
-  --color-primary-200-base: 0, 0%, 11%;
-  --color-primary-300-base: 180, 1%, 23%;
-  --color-primary-400-base: 180, 1%, 43%;
-  --color-primary-500-base: 180, 1%, 63%;
-  --color-primary-600-base: 180, 2%, 73%;
-  --color-primary-700-base: 180, 2%, 81%;
-  --color-primary-800-base: 180, 3%, 86%;
-  --color-primary-900-base: 0, 0%, 91%;
-  --color-primary-950-base: 0, 0%, 95%;
+  --color-primary-50-base: 14, 65%, 7%;
+  --color-primary-100-base: 14, 60%, 13%;
+  --color-primary-200-base: 14, 55%, 22%;
+  --color-primary-300-base: 13.9, 50.6%, 31.8%;
+  --color-primary-400-base: 13.3, 47.4%, 44.7%;
+  --color-primary-500-base: 14, 58%, 51%;
+  --color-primary-600-base: 14, 65%, 58%;
+  --color-primary-700-base: 15, 75%, 70%;
+  --color-primary-800-base: 15, 85%, 82%;
+  --color-primary-900-base: 14, 90%, 90%;
+  --color-primary-950-base: 14, 100%, 96%;
 
   /* secondary */
-  --color-secondary-50-base: 15, 7%, 2%;
-  --color-secondary-100-base: 15, 7%, 6%;
-  --color-secondary-200-base: 15, 7%, 11%;
-  --color-secondary-300-base: 15, 4%, 22%;
-  --color-secondary-400-base: 20, 2%, 28%;
-  --color-secondary-500-base: 0, 1%, 55%;
-  --color-secondary-600-base: 0, 1%, 71%;
-  --color-secondary-700-base: 0, 1%, 72%;
-  --color-secondary-800-base: 0, 1%, 81%;
-  --color-secondary-900-base: 0, 1%, 90%;
-  --color-secondary-950-base: 0, 1%, 95%;
+  --color-secondary-50-base: 27, 65%, 8%;
+  --color-secondary-100-base: 29, 70%, 15%;
+  --color-secondary-200-base: 31, 75%, 26%;
+  --color-secondary-300-base: 33, 78%, 38%;
+  --color-secondary-400-base: 35, 80%, 50%;
+  --color-secondary-500-base: 37.1, 83.2%, 60.4%;
+  --color-secondary-600-base: 37, 85%, 66%;
+  --color-secondary-700-base: 38, 86%, 73%;
+  --color-secondary-800-base: 38, 88%, 82%;
+  --color-secondary-900-base: 39, 90%, 90%;
+  --color-secondary-950-base: 40, 95%, 96%;
 
   /* accent */
-  --color-accent-50-base: 14, 100%, 2%;
-  --color-accent-100-base: 14, 100%, 4%;
-  --color-accent-200-base: 14, 100%, 9%;
-  --color-accent-300-base: 14, 100%, 19%;
-  --color-accent-400-base: 14, 100%, 29%;
-  --color-accent-500-base: 16, 100%, 47%;
-  --color-accent-600-base: 18, 100%, 64%;
-  --color-accent-700-base: 17, 100%, 74%;
-  --color-accent-800-base: 16, 100%, 82%;
-  --color-accent-900-base: 15, 100%, 88%;
-  --color-accent-950-base: 15, 100%, 95%;
+  --color-accent-50-base: 355, 76%, 7%;
+  --color-accent-100-base: 354, 74%, 13%;
+  --color-accent-200-base: 353, 72%, 22%;
+  --color-accent-300-base: 352, 70%, 32%;
+  --color-accent-400-base: 351, 68%, 42%;
+  --color-accent-500-base: 350, 65%, 50%;
+  --color-accent-600-base: 350, 64%, 62%;
+  --color-accent-700-base: 351, 66%, 74%;
+  --color-accent-800-base: 351, 68%, 84%;
+  --color-accent-900-base: 350, 70%, 91%;
+  --color-accent-950-base: 350, 75%, 96%;
 
   /* success */
   --color-success-50-base: 145, 88%, 2%;
@@ -484,7 +530,6 @@
   */
   --font-display: var(--ff-display);
   --font-sans: var(--ff-sans);
-  --font-serif: var(--ff-serif);
   --font-mono: var(--ff-mono);
   --font-cursive: var(--ff-cursive);
 
@@ -502,6 +547,21 @@
   --color-grey: var(--color-grey-500);
   --color-grey-deep: var(--color-grey-700);
   --color-grey-muted: var(--color-grey-100);
+
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-950: var(--color-neutral-950);
+  --color-neutral: var(--color-neutral-500);
+  --color-neutral-deep: var(--color-neutral-700);
+  --color-neutral-muted: var(--color-neutral-100);
 
   --color-primary-50: var(--color-primary-50);
   --color-primary-100: var(--color-primary-100);

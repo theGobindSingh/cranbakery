@@ -34,7 +34,7 @@ This is **not** intended (at least initially) to be a full e-commerce checkout/p
 
 ### 4.1 Must-Have (v1)
 
-- **Home page:** brand intro, tagline, hero imagery, links into categories, WhatsApp CTA always visible (sticky button).
+- **Home page:** brand intro, tagline, hero imagery, links into categories. WhatsApp is not a persistent floating button — it surfaces at cart checkout (compiled order message) and as a contextual contact action (header, footer, contact section) elsewhere.
 - **Menu/Catalog pages** organized by category (see §5 for full data), each item showing:
   - Name, short description, image
   - Available sizes/weights and corresponding prices
@@ -171,3 +171,4 @@ This keeps every page essentially a thin fetch-from-Payload + map-to-component l
 | Order flow | Full cart system (add/edit/remove across categories), single combined WhatsApp message on checkout, prompt to clear cart when user returns from WhatsApp |
 | Out-of-stock items | Stay visible in the catalog, clearly marked, order action disabled |
 | Visual direction | Tracked separately in `DESIGN.md` |
+| WhatsApp CTA | No persistent floating sticky button; WhatsApp surfaces at cart checkout (compiled order message) and as a contextual contact action (header, footer, contact section) elsewhere |
