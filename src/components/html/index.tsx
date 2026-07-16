@@ -15,10 +15,12 @@ type TextSizeToken =
 
 type WeightToken =
   "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800";
+type ColorWeightToken = WeightToken | "50" | "900" | "950";
 
 type ColorToken =
   | "primary"
   | "secondary"
+  | "neutral"
   | "accent"
   | "success"
   | "caution"
@@ -35,7 +37,7 @@ export interface CommonTextProps {
   $size?: TextSizeToken;
   $weight?: WeightToken;
   $color?: ColorToken;
-  $colorWeight?: WeightToken;
+  $colorWeight?: ColorWeightToken;
   $margin?: CSSProperties["margin"];
   $lineHeight?: CSSProperties["lineHeight"];
   $letterSpacing?: CSSProperties["letterSpacing"];
@@ -51,7 +53,7 @@ interface TextStyleOptions {
   $size: TextSizeToken | undefined;
   $weight: WeightToken | undefined;
   $color: ColorToken | undefined;
-  $colorWeight: WeightToken | undefined;
+  $colorWeight?: ColorWeightToken | undefined;
   $margin: CSSProperties["margin"] | undefined;
   $lineHeight: CSSProperties["lineHeight"] | undefined;
   $letterSpacing: CSSProperties["letterSpacing"] | undefined;
@@ -62,7 +64,7 @@ const cn = (...classes: (string | undefined)[]) => {
   return classes.filter(Boolean).join(" ");
 };
 
-const resolveColor = (color?: ColorToken, colorWeight?: WeightToken) => {
+const resolveColor = (color?: ColorToken, colorWeight?: ColorWeightToken) => {
   if (!color) {
     return "inherit";
   }

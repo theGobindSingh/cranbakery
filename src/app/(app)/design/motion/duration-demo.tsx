@@ -1,4 +1,4 @@
-import TokenChip from "@/app/(app)/design/components/token-chip";
+import TokenChip from "@app/design/components/token-chip";
 
 const DURATIONS = [
   { token: "--dur-fast", label: "0.2s", widthPct: 29 },

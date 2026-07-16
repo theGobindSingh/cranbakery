@@ -1,7 +1,4 @@
-import {
-  featuredCollections,
-  indexedCategories,
-} from "@/app/(app)/_home/constants";
+import { featuredCollections, indexedCategories } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import { H2, P, Span } from "@components/html";
 import Image from "next/image";

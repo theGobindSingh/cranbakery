@@ -1,4 +1,4 @@
-import { moments } from "@/app/(app)/_home/constants";
+import { moments } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import { H2, P } from "@components/html";
 import Link from "@components/link";

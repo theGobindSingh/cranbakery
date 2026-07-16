@@ -1,5 +1,5 @@
-import SectionHeading from "@/app/(app)/design/components/section-heading";
-import TokenChip from "@/app/(app)/design/components/token-chip";
+import SectionHeading from "@app/design/components/section-heading";
+import TokenChip from "@app/design/components/token-chip";
 
 const STEPS = [1, 2, 3, 4, 6, 8, 12, 16, 24, 32];
 const MAX_REM = 8;

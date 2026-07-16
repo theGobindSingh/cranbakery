@@ -1,10 +1,10 @@
-import BrandStory from "@/app/(app)/_home/brand-story";
-import CategoryShortcuts from "@/app/(app)/_home/category-shortcuts";
-import ClosingCta from "@/app/(app)/_home/closing-cta";
-import Hero from "@/app/(app)/_home/hero";
-import InstagramTeaser from "@/app/(app)/_home/instagram-teaser";
-import SignatureProducts from "@/app/(app)/_home/signature-products";
-import Testimonials from "@/app/(app)/_home/testimonials";
+import BrandStory from "@app/_home/brand-story";
+import CategoryShortcuts from "@app/_home/category-shortcuts";
+import ClosingCta from "@app/_home/closing-cta";
+import Hero from "@app/_home/hero";
+import InstagramTeaser from "@app/_home/instagram-teaser";
+import SignatureProducts from "@app/_home/signature-products";
+import Testimonials from "@app/_home/testimonials";
 import ScrollReveal from "@components/scroll-reveal";
 
 const HomePage = () => {

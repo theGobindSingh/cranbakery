@@ -1,4 +1,4 @@
-import SectionHeading from "@/app/(app)/design/components/section-heading";
+import SectionHeading from "@app/design/components/section-heading";
 import ColorRamp from "./color-ramp";
 import MerchBadges from "./merch-badges";
 import SemanticRoles from "./semantic-roles";

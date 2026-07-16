@@ -1,5 +1,6 @@
-import ThemeSetter from "@/app/(app)/theme-setter";
+import ThemeSetter from "@app/theme-setter";
 import SmoothScroll from "@components/smooth-scroll";
+import ThemeToggle from "@components/theme-toggle";
 import "@styles/globals.css";
 import type { Metadata } from "next";
 import {
@@ -56,12 +57,15 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
   return (
     <html
       lang="en"
+      // eslint-disable-next-line better-tailwindcss/no-unknown-classes -- theme
       className={`${fontDisplay.variable} ${fontSans.variable} ${fontCursive.variable} ${fontMono.variable} ${theme === "dark" ? "dark" : "light"}`}
     >
       <head />
       <body>
         <ThemeSetter />
-        <SmoothScroll>{children}</SmoothScroll>
+        <ThemeToggle />
+        {children}
+        <SmoothScroll />
       </body>
     </html>
   );

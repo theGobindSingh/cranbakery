@@ -1,4 +1,4 @@
-import SectionHeading from "@/app/(app)/design/components/section-heading";
+import SectionHeading from "@app/design/components/section-heading";
 import FontRoles from "./font-roles";
 import TypeScale from "./type-scale";
 

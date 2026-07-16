@@ -1,4 +1,4 @@
-import TokenChip from "@/app/(app)/design/components/token-chip";
+import TokenChip from "@app/design/components/token-chip";
 
 const STEPS = [
   "4xs",

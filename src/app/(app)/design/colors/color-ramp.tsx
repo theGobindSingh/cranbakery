@@ -1,4 +1,4 @@
-import TokenChip from "@/app/(app)/design/components/token-chip";
+import TokenChip from "@app/design/components/token-chip";
 import { H3 } from "@components/html";
 import ColorSwatch from "./color-swatch";
 

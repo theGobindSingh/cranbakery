@@ -1,5 +1,5 @@
-import SectionHeading from "@/app/(app)/design/components/section-heading";
-import TokenChip from "@/app/(app)/design/components/token-chip";
+import SectionHeading from "@app/design/components/section-heading";
+import TokenChip from "@app/design/components/token-chip";
 import DurationDemo from "./duration-demo";
 import EasingCurve from "./easing-curve";
 

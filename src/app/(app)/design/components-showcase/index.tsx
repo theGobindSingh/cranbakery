@@ -1,4 +1,4 @@
-import SectionHeading from "@/app/(app)/design/components/section-heading";
+import SectionHeading from "@app/design/components/section-heading";
 import ButtonMatrix from "./button-matrix";
 import LinkDemo from "./link-demo";
 

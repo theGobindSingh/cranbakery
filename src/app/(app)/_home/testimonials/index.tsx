@@ -1,4 +1,4 @@
-import { testimonials } from "@/app/(app)/_home/constants";
+import { testimonials } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import { H2, P, Span } from "@components/html";
 

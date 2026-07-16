@@ -38,32 +38,34 @@ Stack: Next.js (App Router) + TypeScript + Tailwind, pnpm, `src/` directory, con
 
 ```
 src/
-  app/                   # routes (App Router): page.tsx, layout.tsx, route folders
-    home/                # example route
-      components/        # components local to this route only (e.g. about's RailSection)
-      hero/, work/, ...  # one kebab folder per section/module of the route
-      constants.ts       # this route's copy/presentation data, reads from @data
-  components/            # global reusable UI units (kebab folder + index.tsx), used by 2+ routes
-  lib/                    # framework-agnostic helpers (e.g. site-config)
-  providers/              # client context providers (e.g. lenis)
-  utils/                  # small framework-agnostic helpers (e.g. tw, cookies)
-  styles/                 # globals.css, defaults.css, components.css
-  hooks/                  # shared hooks (not populated yet; a hook lives beside its consumer
+  app/
+    (app)/                 # route group: page.tsx, layout.tsx, route folders (aliased @app)
+      <route>/             # example route
+        components/        # components local to this route only
+        hero/, work/, ...  # one kebab folder per section/module of the route
+        constants.ts       # this route's copy/presentation data
+        page.tsx, layout.tsx, ... # next.js route files
+  components/              # global reusable UI units (kebab folder + index.tsx), used by 2+ routes
+  utils/                   # small framework-agnostic helpers (e.g. tw, cookies)
+  styles/                  # globals.css, defaults.css, components.css
+  hooks/                   # shared hooks (a hook lives beside its consumer
                            # in its component folder until a second route needs it)
-  icons/                  # shared icon components (not populated yet)
-  data.ts                 # raw portfolio data (experience, case studies, projects), aliased @data
+  icons/                   # custom icon components — last resort only, see §7a
 public/
-  assets/images/          # images
-  blogs/                  # blog markdown, see 4
-  ...                     # resume pdf, og images, other static assets
+  assets/images/           # images
+  ...                      # resume pdf, og images, other static assets
 ```
 
 Keep route files thin: a route's `page.tsx`/`layout.tsx` compose its section folders and local
 `components/`, they do not hold large logic blocks themselves.
 
+- **`(app)` route group**: all real routes live under `src/app/(app)/`, which holds the shared
+  root `layout.tsx` (fonts, theme, global chrome). The group name is stripped from the URL —
+  it exists purely to scope that layout to app routes, aliased as `@app/*`.
+
 ### Route sections vs. route components
 
-A route (e.g. `home`) is built from two kinds of folders:
+A route is built from two kinds of folders:
 
 - **`<route>/<section>/`** — one modular slice of the route (e.g. `hero/`, `work/`,
   `manifesto/`). Each is a kebab folder with its own `index.tsx` (+ sibling files as needed).
@@ -77,20 +79,11 @@ A route (e.g. `home`) is built from two kinds of folders:
 
 ## 4. Data & content model
 
-Three layers, from raw to rendered:
-
-- **`src/data.ts`** (aliased `@data`) — the single source of raw structured data: experience
-  entries, case studies, project data. No copy/presentation logic, just data.
-- **Per-route `constants.ts`** (e.g. `src/app/home/constants.ts`) — that route's copy and
-  presentation objects (section titles, descriptions, tag lists), built by reading `@data` and
-  adding route-specific framing. Route sections import from their own route's `constants.ts`,
-  not straight from `@data`, unless the data needs no route-specific shaping.
-- **`public/blogs/*.md`** (planned, not yet built) — blog posts as markdown files. **The
-  filename is the slug**: `public/blogs/why-i-shifted-to-next-js.md` serves at
-  `/blog/why-i-shifted-to-next-js`. Frontmatter carries metadata (title, date, tags, excerpt,
-  cover); the slug is never duplicated in frontmatter. Other file-based content (case studies,
-  testimonials) would follow the same pattern in its own `public/<type>/` folder if/when it
-  becomes markdown-driven rather than living in `data.ts`.
+- **Per-route `constants.ts`** (i.e. `src/app/(app)/<route>/constants.ts`) — that route's copy
+  and presentation data (section titles, descriptions, image URLs, tag lists). Route sections
+  import from their own route's `constants.ts`, not from another route's.
+- No shared raw-data layer (`@data`) exists yet. If cross-route data emerges, introduce a
+  `src/data.ts` aliased `@data` at that point — add the alias to `tsconfig.json` first (see §6) and update this line.
 
 ## 5. Modular code (applies to ALL files, not just components)
 
@@ -100,10 +93,11 @@ Three layers, from raw to rendered:
 - Split by responsibility, not by line count alone: extract a sub-component, a hook, a types
   file, a pure helper. A unit folder ends up like `index.tsx` + `parts/*` + `types.ts` +
   `utils.ts` rather than one long file.
-- One primary export per file; a file does one job. Pure functions live in `lib/` or the
-  unit's `utils.ts`, not inline in a component.
+- One primary export per file; a file does one job. Pure functions live in the unit's
+  `utils.ts`, not inline in a component (introduce a shared `src/lib/` only once a helper is
+  genuinely cross-cutting.
 - Prefer composition (small pieces assembled) over large monoliths everywhere, including
-  `lib/`, hooks, and route files.
+  hooks and route files.
 
 ## 6. Imports
 
@@ -116,21 +110,21 @@ Three layers, from raw to rendered:
 
 **Alias reference** (`tsconfig.json`):
 
-| Alias                | Resolves to                                         |
-| -------------------- | --------------------------------------------------- |
-| `@app/*`             | `src/app/*`                                         |
-| `@components/*`      | `src/components/*`                                  |
-| `@hooks/*`           | `src/hooks/*` (not populated yet)                   |
-| `@utils/*`           | `src/utils/*`                                       |
-| `@providers/*`       | `src/providers/*`                                   |
-| `@lib/*`             | `src/lib/*`                                         |
-| `@styles/*`          | `src/styles/*`                                      |
-| `@icons`, `@icons/*` | `src/icons/*` (not populated yet - use lucid-react) |
-| `@images/*`          | `public/assets/images/*`                            |
-| `@assets/*`          | `public/assets/*`                                   |
-| `@public/*`          | `public/*`                                          |
-| `@data`              | `src/data.ts`                                       |
-| `@/*`                | `src/*`                                             |
+| Alias                | Resolves to                          |
+| -------------------- | ------------------------------------ |
+| `@app/*`             | `src/app/(app)/*`                    |
+| `@components/*`      | `src/components/*`                   |
+| `@hooks/*`           | `src/hooks/*`                        |
+| `@utils/*`           | `src/utils/*`                        |
+| `@styles/*`          | `src/styles/*`                       |
+| `@icons`, `@icons/*` | `src/icons/*` — last resort, see §7a |
+| `@images/*`          | `public/assets/images/*`             |
+| `@assets/*`          | `public/assets/*`                    |
+| `@public/*`          | `public/*`                           |
+| `@/*`                | `src/*`                              |
+
+Add a new alias to `tsconfig.json`'s `paths` (and mirror it here) before using it — don't
+introduce an import path the config doesn't yet resolve.
 
 ## 7. Components
 
@@ -153,6 +147,17 @@ Three layers, from raw to rendered:
   `src/components/`, generalize its props (drop the route-specific data dependency), and
   update both routes to import it from there. Don't cross-import one route's local component
   into another route.
+
+### 7a. Icons
+
+- **Lucide React (`lucide-react`) is the default for icons.** Import the icon you need
+  directly from the package; do not build a custom SVG component for something Lucide already
+  covers.
+- **`src/icons/` (aliased `@icons`) is a last resort**, for icons Lucide genuinely doesn't
+  have (a brand mark, a bespoke shape) or where the design calls for custom line art. Adding a
+  file here should be the exception, not the default reach.
+- When a custom icon is truly needed, follow the same rules as any component: kebab filename,
+  typed props, no inline magic numbers.
 
 ## 8. Styling
 
@@ -186,13 +191,14 @@ components`. See `button/button.css` for the reference example.
   sets exactly one class, `light` or `dark`, on `<html>` at SSR (defaults to `light` when no
   cookie). This makes returning visitors render correct on the server with no flash.
 - A client `ThemeSetter` (mounted in `body`) reconciles on mount with precedence
-  **localStorage > cookie > system (`prefers-color-scheme`)**, persists the result to both
-  localStorage and the cookie, and toggles the `light`/`dark` class on `documentElement`.
+  **`?theme=` query param > cookie > default light**, persists the result to the cookie, and
+  toggles the `light`/`dark` class on `documentElement`. Theme state lives only in the cookie —
+  no localStorage.
 - `src/styles/globals.css` keys styling off `:root, .light` (light) and `.dark` (inverted
   ramp). Exactly one of those classes is always present.
 - **Components never branch on theme in JS for styling.** They use tokens; the class on
-  `<html>` does the rest. Only the theme toggle writes the cookie + localStorage and flips the
-  class (reuse the existing client helper, do not re-implement).
+  `<html>` does the rest. Only the theme toggle writes the cookie and flips the class (reuse
+  the existing client helper, do not re-implement).
 - Known tradeoff: a first-time visitor with no cookie whose system is dark sees a brief light
   paint before `ThemeSetter` runs. Acceptable as-is; if you want to remove it, set the class
   from a tiny blocking inline script in `<head>` before paint (do not change the cookie model).
@@ -202,14 +208,14 @@ components`. See `button/button.css` for the reference example.
 - Strict mode on. No `any` (use `unknown` + narrowing when truly unknown). Exported functions
   declare return types. Prefer `type` for unions/utility shapes, `interface` for object
   contracts that may extend; stay consistent within a folder.
-- Types live next to what they describe (`types.ts` in the unit folder), shared types in
-  `lib/` or a `types/` area only when genuinely cross-cutting.
+- Types live next to what they describe (`types.ts` in the unit folder); introduce a shared
+  `src/lib/` or `types/` area only once a type is genuinely cross-cutting.
 
 ## 10. Linting and quality gates
 
 - ESLint is already configured; **follow it, and always fix what it reports.** Do not leave
   lint errors or disable rules to silence them without a clear, commented reason.
-- Run lint (and let it auto-fix) as part of finishing any change. A change is not done while
+- Run lint:fix (and let it auto-fix) as part of finishing any change. A change is not done while
   ESLint is red.
 
 ## 11. Tooling
@@ -222,6 +228,7 @@ components`. See `button/button.css` for the reference example.
 - Conventional Commits for messages (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, etc.),
   short and present-tense. This is a soft convention, not a heavy process; keep commits
   focused and readable.
+- Do not commit on your own, unless asked by the user.
 
 ## 13. Quick checklist for any new file
 

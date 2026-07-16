@@ -107,7 +107,7 @@ every time, regardless of the visitor's OS-level dark-mode setting.** A five-sta
 storefront doesn't ask "what mode is your phone in" before deciding what to look like.
 
 - `ThemeSetter` (`src/app/(app)/theme-setter.tsx`) resolves theme as
-  `localStorage → cookie → "light"` — it must never call
+  `?theme= query param → cookie → "light"` — it must never call
   `window.matchMedia("(prefers-color-scheme: dark)")`. That media query is for a
   visitor's *explicit* toggle to persist across visits, not for the initial guess.
 - `RootLayout` (`src/app/(app)/layout.tsx`) mirrors this server-side: the `<html>` class is

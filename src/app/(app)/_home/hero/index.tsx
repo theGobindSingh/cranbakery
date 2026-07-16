@@ -1,6 +1,6 @@
 "use client";
 
-import { images } from "@/app/(app)/_home/constants";
+import { images } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import { H1, P, Span } from "@components/html";
 import Link from "@components/link";
@@ -8,15 +8,13 @@ import { useLenis } from "lenis/react";
 import Image from "next/image";
 import { useRef } from "react";
 
-const PARALLAX_SPEED = 0.5;
-
 const Hero = () => {
   const imgRef = useRef<HTMLImageElement>(null);
 
-  useLenis(() => {
+  useLenis((lenis) => {
     const img = imgRef.current;
     if (!img) return;
-    img.style.transform = `translateY(${window.scrollY * PARALLAX_SPEED}px)`;
+    img.style.transform = `translateY(${lenis.animatedScroll * 0.5}px)`;
   }, []);
 
   return (
@@ -37,13 +35,13 @@ const Hero = () => {
             priority
             sizes="100vw"
             quality={100}
-            className="absolute top-0 left-0 h-[110%] w-full object-cover will-change-transform select-none"
+            className="absolute top-0 left-0 h-[110%] w-full object-cover transition-[none] will-change-transform select-none"
           />
           <div
             className="absolute inset-0 z-1"
             style={{
               background:
-                "linear-gradient(90deg, color-mix(in srgb, var(--color-neutral-950) 88%, transparent) 0%, color-mix(in srgb, var(--color-neutral-950) 88%, transparent) 38%, color-mix(in srgb, var(--color-neutral-950) 20%, transparent) 62%, transparent 85%)",
+                "linear-gradient(90deg, var(--color-neutral-300), hsla(var(--color-neutral-300-base), 0.75), transparent)",
             }}
           />
         </>
@@ -54,36 +52,30 @@ const Hero = () => {
           className="font-cursive"
           $size="l"
           $color="accent"
-          $colorWeight="100"
-          style={{
-            textShadow:
-              "0 2px 12px color-mix(in srgb, var(--color-neutral-950) 60%, transparent)",
-          }}
+          $colorWeight="950"
         >
           Life is too short to skip dessert.
         </Span>
         <H1
           className="font-display"
           style={{
-            color: "var(--color-text-inverse)",
+            color: "var(--color-neutral-700)",
             fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
             letterSpacing: "-0.02em",
-            textShadow:
-              "0 2px 24px color-mix(in srgb, var(--color-neutral-950) 35%, transparent)",
           }}
-          $margin="0"
+          $color="white"
         >
           We bake{" "}
           <Span
             $color="accent"
-            $colorWeight="200"
+            $colorWeight="700"
             style={{ fontSize: "inherit", fontWeight: "inherit" }}
           >
             happiness
           </Span>
           .
         </H1>
-        <P style={{ color: "var(--color-text-inverse)" }} $size="s">
+        <P $color="neutral" $colorWeight="700" $size="s">
           Callebaut Belgian chocolate, made to order, delivered across Mohali
           and Chandigarh.
         </P>
@@ -100,9 +92,10 @@ const Hero = () => {
           <Link
             href="https://instagram.com/cranbakery"
             variant="text"
-            className="text-neutral-50"
+            className="text-neutral-700"
             color="neutral"
-            colorWeight={50}
+            colorWeight={700}
+            hoverBgColorWeight={500}
           >
             @cranbakery
           </Link>
