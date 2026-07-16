@@ -1,6 +1,5 @@
 import { signatureCreations } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P, Span } from "@components/html";
 import Image from "next/image";
 
 const SignatureProducts = () => {
@@ -10,12 +9,12 @@ const SignatureProducts = () => {
       wrapperProps={{ style: { background: "var(--color-surface)" } }}
     >
       <div className="mb-10 flex max-w-[60ch] flex-col gap-3 lg:mb-14">
-        <H2 className="font-display text-neutral-950" $size="2xl" $margin="0">
+        <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
           Signature Creations
-        </H2>
-        <P className="text-neutral-700" $size="s">
+        </h2>
+        <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
           The ones customers order again and again.
-        </P>
+        </p>
       </div>
       <div
         className="grid gap-8"
@@ -46,23 +45,19 @@ const SignatureProducts = () => {
                       boxShadow: "var(--shadow-sm)",
                     }}
                   >
-                    <Span
-                      className="font-cursive text-neutral-50"
-                      $size="s"
-                      $lineHeight="1"
-                    >
+                    <span className="m-0 font-cursive text-(length:--fs-s) leading-none font-normal tracking-normal text-neutral-50">
                       {product.badge}
-                    </Span>
+                    </span>
                   </span>
                 )}
               </div>
               <div className="flex items-baseline justify-between gap-3">
-                <Span className="text-neutral-950" $size="s" $weight="600">
+                <span className="m-0 text-(length:--fs-s) leading-normal font-semibold tracking-normal text-neutral-950">
                   {product.name}
-                </Span>
-                <Span className="text-accent-700" $size="1xs" $weight="500">
+                </span>
+                <span className="m-0 text-(length:--fs-1xs) leading-normal font-medium tracking-normal text-accent-700">
                   {product.startingPrice}
-                </Span>
+                </span>
               </div>
             </div>
           );

@@ -1,5 +1,3 @@
-import { H2, P } from "@components/html";
-
 interface SectionHeadingProps {
   index: string;
   title: string;
@@ -15,16 +13,12 @@ const SectionHeading = ({ index, title, description }: SectionHeadingProps) => {
       >
         {index}
       </span>
-      <H2
-        className="font-display"
-        $margin="0"
-        style={{ fontSize: "var(--fs-1xl)" }}
-      >
+      <h2 className="m-0 font-display text-headline/normal font-bold tracking-normal">
         {title}
-      </H2>
-      <P className="text-grey-700" style={{ maxWidth: "60ch" }}>
+      </h2>
+      <p className="m-0 max-w-[60ch] text-(length:--fs-2xs) leading-normal font-normal tracking-normal text-grey-700">
         {description}
-      </P>
+      </p>
     </div>
   );
 };

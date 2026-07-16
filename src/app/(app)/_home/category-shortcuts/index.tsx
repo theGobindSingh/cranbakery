@@ -1,6 +1,5 @@
 import { featuredCollections, indexedCategories } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P, Span } from "@components/html";
 import Image from "next/image";
 import NextLink from "next/link";
 
@@ -8,13 +7,13 @@ const CategoryShortcuts = () => {
   return (
     <FullWidthWrapper wrapperClassName="py-20 lg:py-28">
       <div className="mb-10 flex max-w-[60ch] flex-col gap-3 lg:mb-14">
-        <H2 className="font-display text-neutral-950" $size="2xl" $margin="0">
+        <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
           The Collections
-        </H2>
-        <P className="text-neutral-700" $size="s">
+        </h2>
+        <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
           Nine collections, each sized and priced for how you actually order —
           by weight, by box, or by the piece.
-        </P>
+        </p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
@@ -43,17 +42,12 @@ const CategoryShortcuts = () => {
                       "linear-gradient(0deg, hsl(var(--color-neutral-950-base) / 0.75) 0%, transparent 70%)",
                   }}
                 >
-                  <Span
-                    className="text-neutral-50"
-                    $size="1xs"
-                    $weight="600"
-                    $margin="0 0 0.15em 0"
-                  >
+                  <span className="mb-[0.15em] text-(length:--fs-1xs) leading-normal font-semibold tracking-normal text-neutral-50">
                     {collection.name}
-                  </Span>
-                  <P className="text-neutral-200" $size="4xs" $margin="0">
+                  </span>
+                  <p className="m-0 text-(length:--fs-4xs) leading-normal font-normal tracking-normal text-neutral-200">
                     {collection.description}
-                  </P>
+                  </p>
                 </div>
               </NextLink>
             );
@@ -67,13 +61,9 @@ const CategoryShortcuts = () => {
             border: "1px solid var(--color-border)",
           }}
         >
-          <Span
-            className="font-cursive text-accent-700"
-            $size="1xl"
-            $margin="0 0 1rem 0"
-          >
+          <span className="mb-4 font-cursive text-headline/normal font-normal tracking-normal text-accent-700">
             Also in the book
-          </Span>
+          </span>
           <ul className="flex flex-col">
             {indexedCategories.map((category) => {
               return (
@@ -85,19 +75,15 @@ const CategoryShortcuts = () => {
                     href={`/menu/${category.slug}`}
                     className="group flex items-center justify-between gap-3 py-3"
                   >
-                    <Span
-                      className="text-neutral-800 transition-colors group-hover:text-accent-700"
-                      $size="s"
-                    >
+                    <span className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-800 transition-colors group-hover:text-accent-700">
                       {category.name}
-                    </Span>
-                    <Span
-                      className="text-accent-700 opacity-0 transition-opacity group-hover:opacity-100"
-                      $size="s"
+                    </span>
+                    <span
+                      className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-accent-700 opacity-0 transition-opacity group-hover:opacity-100"
                       aria-hidden
                     >
                       →
-                    </Span>
+                    </span>
                   </NextLink>
                 </li>
               );

@@ -320,6 +320,9 @@
   --fs-display-section: clamp(2.5rem, 8vw, 9rem);
   --fs-display-hero: clamp(3rem, 14vw, 16rem);
   --leading-display: 0.8;
+
+  /* home hero headline; smaller than the monumental --fs-display-hero tier above */
+  --fs-hero-headline: clamp(2.75rem, 12vw, 10rem);
   --tracking-display: -0.02em;
 
   /* ---- spacing (4px base) ---- */
@@ -673,6 +676,9 @@
 
   --text-headline: var(--fs-1xl);
   --text-title: var(--fs-m);
+  --text-display-section: var(--fs-display-section);
+  --text-display-hero: var(--fs-display-hero);
+  --text-hero-headline: var(--fs-hero-headline);
 
   --text-xs: 0.625rem;
   --text-sm: 0.6875rem;

@@ -1,5 +1,4 @@
 import TokenChip from "@app/design/components/token-chip";
-import { H3 } from "@components/html";
 import ColorSwatch from "./color-swatch";
 
 const STOPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
@@ -15,9 +14,9 @@ const ColorRamp = ({ family, name, role }: ColorRampProps) => {
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <div className="flex items-baseline gap-3">
-          <H3 $margin="0" style={{ fontSize: "var(--fs-2xs)" }}>
+          <h3 className="m-0 text-(length:--fs-2xs) leading-normal font-medium tracking-normal">
             {name}
-          </H3>
+          </h3>
           <span className="text-[0.7rem] text-grey-600">{role}</span>
         </div>
         <TokenChip label={`--color-${family}-*`} />

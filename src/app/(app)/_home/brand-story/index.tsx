@@ -1,6 +1,5 @@
 import { images } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P, Span } from "@components/html";
 import Image from "next/image";
 
 const BrandStory = () => {
@@ -21,27 +20,27 @@ const BrandStory = () => {
           />
         </div>
         <div className="flex flex-col gap-5">
-          <Span className="font-cursive text-accent-700" $size="1xl">
+          <span className="m-0 font-cursive text-headline/normal font-normal tracking-normal text-accent-700">
             The Atelier
-          </Span>
-          <H2 className="font-display text-neutral-950" $size="2xl" $margin="0">
+          </span>
+          <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
             What goes into every order
-          </H2>
-          <P className="text-neutral-700" $size="s">
+          </h2>
+          <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
             Every cake starts with Callebaut Belgian chocolate, not a
             substitute. Our kitchen holds to full hygiene protocol at every
             stage of production and packaging — the discipline of a commercial
             kitchen, applied to a made-to-order box.
-          </P>
+          </p>
           <div
             className="my-1 h-px w-16"
             style={{ background: "var(--color-accent-200)" }}
           />
-          <P className="text-neutral-700" $size="s">
+          <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
             Ask for a ribbon, a topper, or a cake tub sliced and packed like a
             full cake — customization is built into the order, at no extra
             charge.
-          </P>
+          </p>
         </div>
       </div>
     </FullWidthWrapper>

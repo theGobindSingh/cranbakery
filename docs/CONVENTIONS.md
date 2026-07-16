@@ -169,6 +169,21 @@ introduce an import path the config doesn't yet resolve.
 - Never add `dark:` color literals; rely on the ramp inversion. Reuse the signature kit and
   component patterns from DESIGN.md instead of inventing new ornament.
 
+### Tailwind first, `style` prop as a last resort
+
+- **Default to Tailwind utility classes.** The inline `style` prop is not an equal alternative
+  to Tailwind — reach for it only when Tailwind genuinely cannot express the value (e.g. a
+  computed/dynamic value driven by JS state, a `clamp()`/`calc()` expression with runtime
+  variables, or a third-party integration that requires raw CSS properties).
+- **If Tailwind can't express it because the component is missing a variant/prop/token, fix the
+  component first.** Extend the component (add a variant, expose a prop, add a token per
+  DESIGN.md) so the call site can stay Tailwind-only, rather than reaching for `style` at the
+  call site as a workaround. Treat a `style` prop appearing at a call site as a signal the
+  underlying component or token set is incomplete.
+- If `style` is truly required, keep it minimal (only the properties that can't be expressed any
+  other way) and keep everything else — layout, spacing, color — as Tailwind classes on the same
+  element.
+
 ### Complex CSS as a co-located file
 
 - Simple styling stays inline as Tailwind classes on the element. Once a component's styling

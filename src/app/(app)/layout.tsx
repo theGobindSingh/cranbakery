@@ -1,5 +1,5 @@
-import ThemeSetter from "@app/theme-setter";
 import SmoothScroll from "@components/smooth-scroll";
+import ThemeSetter from "@components/theme-setter";
 import ThemeToggle from "@components/theme-toggle";
 import "@styles/globals.css";
 import type { Metadata } from "next";

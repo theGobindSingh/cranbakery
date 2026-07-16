@@ -183,7 +183,12 @@ Two systems working together, matching what's actually implemented:
    under `1024px`) inner element. Every section-level block goes through it.
 3. **The hero/display-type exception**: hand-tuned `clamp()` sizing for hero headline and
    comparably large section-opener type, per `--fs-display-hero`/`--fs-display-section`.
-   Don't extend fluid sizing to ordinary body copy, card padding, or grid gaps.
+   Don't extend fluid sizing to ordinary body copy, card padding, or grid gaps. Even here,
+   prefer expressing the token via a Tailwind arbitrary value (e.g. `text-[length:var(--fs-display-hero)]`)
+   over an inline `style` prop — see CONVENTIONS.md §8 ("Tailwind first, `style` prop as a
+   last resort"). A one-off literal `clamp()` in `style` bypasses the token entirely and is
+   not this exception; if a page needs a size the token doesn't cover, extend the token, don't
+   hardcode around it.
 4. **`--space-*`, `--container-max`, `--content-max`, `--gutter`, `--section-pad-y`** are
    dead code (nothing reads them). Do not use them.
 

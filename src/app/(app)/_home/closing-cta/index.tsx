@@ -1,5 +1,4 @@
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P, Span } from "@components/html";
 import Link from "@components/link";
 
 const ClosingCta = () => {
@@ -13,25 +12,16 @@ const ClosingCta = () => {
         },
       }}
     >
-      <Span
-        className="font-cursive text-neutral-50"
-        $size="1xl"
-        $margin="0 0 0.5rem 0"
-      >
+      <span className="mb-2 font-cursive text-headline/normal font-normal tracking-normal text-neutral-50">
         With love, from our kitchen.
-      </Span>
-      <H2
-        className="font-display text-neutral-50"
-        $size="2xl"
-        $weight="600"
-        $margin="0 0 0.75rem 0"
-      >
+      </span>
+      <h2 className="mb-3 font-display text-(length:--fs-2xl) leading-normal font-semibold tracking-normal text-neutral-50">
         Order your next dessert
-      </H2>
-      <P className="mx-auto mb-8 max-w-[50ch] text-neutral-50/85" $size="s">
+      </h2>
+      <p className="m-0 mx-auto max-w-[50ch] text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-50/85">
         Browse the menu, build your order, and send it to us on WhatsApp. Takes
         two minutes.
-      </P>
+      </p>
       <Link
         href="/menu"
         variant="filled"

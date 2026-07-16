@@ -1,6 +1,5 @@
 import { moments } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P } from "@components/html";
 import Link from "@components/link";
 import Image from "next/image";
 
@@ -9,13 +8,13 @@ const InstagramTeaser = () => {
     <FullWidthWrapper wrapperClassName="py-20 lg:py-28">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4 lg:mb-14">
         <div className="flex max-w-[52ch] flex-col gap-3">
-          <H2 className="font-display text-neutral-950" $size="2xl" $margin="0">
+          <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
             Finishing Touches
-          </H2>
-          <P className="text-neutral-700" $size="s">
+          </h2>
+          <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
             Ribbons, pearls, toppers — the small details we build into every
             order, and the moments they belong to.
-          </P>
+          </p>
         </div>
         <Link
           href="https://instagram.com/cranbakery"

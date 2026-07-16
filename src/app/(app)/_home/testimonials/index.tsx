@@ -1,6 +1,5 @@
 import { testimonials } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { H2, P, Span } from "@components/html";
 
 const Testimonials = () => {
   return (
@@ -8,13 +7,9 @@ const Testimonials = () => {
       wrapperClassName="py-20 lg:py-28"
       wrapperProps={{ style: { background: "var(--color-surface)" } }}
     >
-      <H2
-        className="font-display text-neutral-950"
-        $size="2xl"
-        $margin="0 0 2.5rem 0"
-      >
+      <h2 className="mb-10 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
         Love Notes
-      </H2>
+      </h2>
       <div
         className="grid gap-8"
         style={{
@@ -32,21 +27,17 @@ const Testimonials = () => {
                 border: "1px solid var(--color-border)",
               }}
             >
-              <P
-                className="font-display text-neutral-800 italic"
-                $size="s"
-                $margin="0"
-              >
+              <p className="m-0 font-display text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-800 italic">
                 &ldquo;{testimonial.quote}&rdquo;
-              </P>
+              </p>
               <div
                 className="h-px w-10"
                 style={{ background: "var(--color-accent-200)" }}
               />
               <span className="flex items-center gap-2">
-                <Span className="text-neutral-700" $size="1xs" $weight="600">
+                <span className="m-0 text-(length:--fs-1xs) leading-normal font-semibold tracking-normal text-neutral-700">
                   {testimonial.name}
-                </Span>
+                </span>
                 <span
                   aria-hidden
                   className="inline-block size-1"
@@ -55,9 +46,9 @@ const Testimonials = () => {
                     borderRadius: "var(--radius-pill)",
                   }}
                 />
-                <Span className="text-neutral-600" $size="1xs">
+                <span className="m-0 text-(length:--fs-1xs) leading-normal font-normal tracking-normal text-neutral-600">
                   {testimonial.location}
-                </Span>
+                </span>
               </span>
             </div>
           );
