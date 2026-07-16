@@ -26,7 +26,7 @@ This is **not** intended (at least initially) to be a full e-commerce checkout/p
 
 ## 3. Target Users
 
-- **Primary:** Local customers (Mohali/Chandigarh/Punjab region, per existing WhatsApp-based ordering) browsing on mobile, deciding what to order for birthdays, get-togethers, or personal indulgence.
+- **Primary:** Local customers (Kanpur, Uttar Pradesh region, per existing WhatsApp-based ordering) browsing on mobile, deciding what to order for birthdays, get-togethers, or personal indulgence.
 - **Secondary:** People discovering Cranbakery via Instagram and wanting a more detailed/organized menu than an IG grid can offer.
 - **Tertiary:** Repeat/corporate customers wanting bulk orders (cookie boxes, cupcake boxes, tea cakes) for events.
 

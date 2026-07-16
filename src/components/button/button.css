@@ -64,7 +64,8 @@
 
   &:hover {
     background-color: var(--c-hover);
-    scale: 0.98;
+    border: 1px solid var(--c-hover);
+    color: var(--c-hover-text, var(--c-text, var(--color-grey-50)));
   }
 }
 

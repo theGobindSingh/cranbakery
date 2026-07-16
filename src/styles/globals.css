@@ -2,6 +2,8 @@
 @import "./defaults.css";
 @import "./components.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
  * ═══════════════════════════════════════════════════════════════════════════════
  *  TOKEN ARCHITECTURE — globals.css is the single source of truth for this project.
@@ -322,7 +324,7 @@
   --leading-display: 0.8;
 
   /* home hero headline; smaller than the monumental --fs-display-hero tier above */
-  --fs-hero-headline: clamp(2.75rem, 12vw, 10rem);
+  --fs-hero-headline: clamp(calc(var(--fs-4xl) + var(--fs-1xs)), 12vw, 10rem);
   --tracking-display: -0.02em;
 
   /* ---- spacing (4px base) ---- */

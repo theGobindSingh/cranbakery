@@ -40,7 +40,7 @@ const fontMono = DmMono({
 export const metadata: Metadata = {
   title: "Cranbakery — Belgian Chocolate Cakes & Desserts, Made to Order",
   description:
-    "Cranbakery is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across Mohali and Chandigarh.",
+    "Cranbakery is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
 };
 
 const getTheme = async () => {
@@ -63,8 +63,10 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
       <head />
       <body>
         <ThemeSetter />
-        <ThemeToggle />
-        {children}
+        <main className="relative">
+          {children}
+          <ThemeToggle />
+        </main>
         <SmoothScroll />
       </body>
     </html>

@@ -1,4 +1,5 @@
 import BrandStory from "@app/_home/brand-story";
+import CategoryMarquee from "@app/_home/category-marquee";
 import CategoryShortcuts from "@app/_home/category-shortcuts";
 import ClosingCta from "@app/_home/closing-cta";
 import Hero from "@app/_home/hero";
@@ -9,11 +10,10 @@ import ScrollReveal from "@components/scroll-reveal";
 
 const HomePage = () => {
   return (
-    <main className="relative">
+    <>
       <Hero />
-      <ScrollReveal>
-        <CategoryShortcuts />
-      </ScrollReveal>
+      <CategoryMarquee />
+      <CategoryShortcuts />
       <ScrollReveal>
         <SignatureProducts />
       </ScrollReveal>
@@ -29,7 +29,7 @@ const HomePage = () => {
       <ScrollReveal>
         <ClosingCta />
       </ScrollReveal>
-    </main>
+    </>
   );
 };
 

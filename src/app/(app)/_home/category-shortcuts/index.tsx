@@ -1,95 +1,86 @@
-import { featuredCollections, indexedCategories } from "@app/_home/constants";
+import { collections } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
+import ScrollReveal from "@components/scroll-reveal";
 import Image from "next/image";
 import NextLink from "next/link";
 
+const collectionsMapper = (
+  collection: (typeof collections)[number],
+  index: number,
+) => {
+  const isLarge = collection.span === "large";
+  return (
+    <ScrollReveal
+      key={collection.slug}
+      className={[
+        "group relative overflow-hidden bg-neutral-50",
+        isLarge
+          ? "col-span-2 row-span-2"
+          : "col-span-2 row-span-1 sm:col-span-1",
+      ].join(" ")}
+      wrapperProps={{
+        style: { transitionDelay: `${index * 70}ms` },
+      }}
+    >
+      <NextLink
+        href={`/menu/${collection.slug}`}
+        className="absolute inset-0 block"
+      >
+        <Image
+          src={collection.image}
+          alt={collection.alt}
+          fill
+          sizes="(min-width: 1024px) 40vw, 90vw"
+          className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(0deg, var(--color-neutral-600), hsla(var(--color-neutral-600-base), 0) 65%, transparent)",
+          }}
+        />
+        <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+          <span
+            className={`m-0 block font-display leading-tight font-bold tracking-[-0.01em] text-neutral-50 ${
+              isLarge
+                ? "mb-3 text-(length:--fs-2xl)"
+                : "mb-2 text-(length:--fs-l)"
+            }`}
+          >
+            {collection.name}
+          </span>
+          {collection.subtitle && (
+            <p className="m-0 text-(length:--fs-4xs) leading-normal font-normal tracking-widest text-neutral-200 uppercase">
+              {collection.subtitle}
+            </p>
+          )}
+          {isLarge && collection.cta && (
+            <span className="inline-flex items-center gap-2 border-b-2 border-neutral-50 pb-1 text-(length:--fs-4xs) leading-normal font-semibold tracking-widest text-neutral-50 uppercase transition-all duration-300 group-hover:translate-x-1 group-hover:border-secondary-400 group-hover:text-secondary-200">
+              {collection.cta}
+              <span aria-hidden>→</span>
+            </span>
+          )}
+        </div>
+      </NextLink>
+    </ScrollReveal>
+  );
+};
+
 const CategoryShortcuts = () => {
   return (
-    <FullWidthWrapper wrapperClassName="py-20 lg:py-28">
-      <div className="mb-10 flex max-w-[60ch] flex-col gap-3 lg:mb-14">
-        <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
-          The Collections
-        </h2>
-        <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
-          Nine collections, each sized and priced for how you actually order —
-          by weight, by box, or by the piece.
-        </p>
-      </div>
+    <FullWidthWrapper
+      wrapperClassName="py-24"
+      wrapperProps={{ style: { background: "var(--color-surface)" } }}
+    >
+      <h2 className="sr-only">The Collections</h2>
+      <p className="sr-only">
+        Nine collections, each sized and priced for how you actually order — by
+        weight, by box, or by the piece.
+      </p>
 
-      <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {featuredCollections.map((collection, index) => {
-            return (
-              <NextLink
-                key={collection.slug}
-                href={`/menu/${collection.slug}`}
-                className={`group relative block overflow-hidden ${
-                  index === 0 ? "sm:col-span-2 sm:aspect-video" : "aspect-4/5"
-                }`}
-                style={{ borderRadius: "var(--radius-sm)" }}
-              >
-                <Image
-                  src={collection.image}
-                  alt={collection.alt}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 90vw"
-                  className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 p-4"
-                  style={{
-                    background:
-                      "linear-gradient(0deg, hsl(var(--color-neutral-950-base) / 0.75) 0%, transparent 70%)",
-                  }}
-                >
-                  <span className="mb-[0.15em] text-(length:--fs-1xs) leading-normal font-semibold tracking-normal text-neutral-50">
-                    {collection.name}
-                  </span>
-                  <p className="m-0 text-(length:--fs-4xs) leading-normal font-normal tracking-normal text-neutral-200">
-                    {collection.description}
-                  </p>
-                </div>
-              </NextLink>
-            );
-          })}
-        </div>
-
-        <div
-          className="flex flex-col p-8"
-          style={{
-            borderRadius: "var(--radius-sm)",
-            border: "1px solid var(--color-border)",
-          }}
-        >
-          <span className="mb-4 font-cursive text-headline/normal font-normal tracking-normal text-accent-700">
-            Also in the book
-          </span>
-          <ul className="flex flex-col">
-            {indexedCategories.map((category) => {
-              return (
-                <li
-                  key={category.slug}
-                  className="border-b border-(--color-border) last:border-0"
-                >
-                  <NextLink
-                    href={`/menu/${category.slug}`}
-                    className="group flex items-center justify-between gap-3 py-3"
-                  >
-                    <span className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-800 transition-colors group-hover:text-accent-700">
-                      {category.name}
-                    </span>
-                    <span
-                      className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-accent-700 opacity-0 transition-opacity group-hover:opacity-100"
-                      aria-hidden
-                    >
-                      →
-                    </span>
-                  </NextLink>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+      <div className="mx-auto grid max-w-330 grid-flow-row-dense auto-rows-[220px] grid-cols-2 gap-4 sm:grid-cols-4 lg:auto-rows-[300px] lg:gap-6">
+        {collections.map(collectionsMapper)}
       </div>
     </FullWidthWrapper>
   );
