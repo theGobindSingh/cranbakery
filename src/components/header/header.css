@@ -1,17 +1,31 @@
 /*
- * Header-specific styles: the mobile nav panel's open/close motion — a
- * clip-path reveal (top edge fixed at the header's bottom edge, unrolling
- * downward like a blind) rather than a transform, so the text never
- * visibly squishes mid-animation. A CSS transition (not a @keyframes
- * animation) so it plays symmetrically in both directions — the panel
- * stays mounted and toggles [data-open] instead of being removed from the
- * DOM on close, which is what let the close happen instantly before.
- * defaults.css's global `@media (prefers-reduced-motion: reduce)` guard
- * already collapses this transition's duration, so no extra guard is
- * needed here.
+ * One <nav> markup (see nav.tsx), two presentations via a single `lg:`
+ * breakpoint per rule (no cross-utility override ordering to worry about):
+ *
+ * Mobile (default): header-nav is an off-canvas sheet dropping from the
+ * header's bottom edge — clip-path reveal driven by [data-open], toggled by
+ * the hamburger. A CSS transition (not @keyframes) so it plays
+ * symmetrically forward and back.
+ *
+ * Desktop (>=64rem): header-nav becomes a normal inline row; header-menu-item's
+ * :hover/:focus-within reveals header-submenu — no JS.
+ *
+ * Background/blur are set inline (GLASS_STYLE, see styles.ts + nav.tsx),
+ * not here — backdrop-filter inside an @utility renders broken in this
+ * project's toolchain; inline style on the element does not.
  */
 
-@utility header-mobile-panel {
+@utility header-nav {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  top: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: auto;
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border);
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
   pointer-events: none;
@@ -26,5 +40,76 @@
     transition:
       clip-path var(--dur-slow) var(--ease-out),
       visibility 0s linear 0s;
+  }
+
+  @media (width >= 64rem) {
+    position: static;
+    inset: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    overflow: visible;
+    padding: 0;
+    border-top: none;
+    clip-path: none;
+    visibility: visible;
+    pointer-events: auto;
+    transition: none;
+  }
+}
+
+/*
+ * NAV_GLASS_STYLE (nav.tsx) reads --nav-glass-bg/--nav-glass-blur inline on
+ * <nav>, for the mobile off-canvas sheet's own translucent panel. At desktop
+ * the header already has its own glass layer behind everything, so this
+ * second one just needs switching off here. Setting the *value* of
+ * backdrop-filter directly in this file silently no-ops in this project's
+ * toolchain (see comment at top of file) — going through a custom property
+ * instead sidesteps that, since the property this file sets is just a plain
+ * variable, not backdrop-filter itself.
+ */
+@media (width >= 64rem) {
+  .header-nav {
+    --nav-glass-bg: none;
+    --nav-glass-blur: none;
+  }
+}
+
+@utility header-menu-item {
+  @media (width >= 64rem) {
+    position: relative;
+
+    &:hover .header-submenu,
+    &:focus-within .header-submenu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+
+@utility header-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+
+  @media (width >= 64rem) {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 50%;
+    width: 14rem;
+    margin-top: 0;
+    padding: 0.5rem 0;
+    transform: translateX(-50%);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--dur-base) var(--ease-out);
   }
 }

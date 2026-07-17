@@ -123,6 +123,11 @@ not something the agent started, so it isn't the agent's call to make. Only star
 server without asking if none is running at all, and never kill an existing process to "get a
 clean start" unless the owner explicitly asks.
 
+**Playwright MCP scratch files stay in `.playwright-mcp/`.** Any screenshot, trace, log, or
+other file generated while using the Playwright MCP for agent-only verification (not a
+deliverable for the owner) goes in `.playwright-mcp/` at the repo root — never loose in the
+repo root or elsewhere.
+
 ## Golden rules (distilled, do not violate)
 
 1. **Tokens only.** Style through the tokens in `global.css` / DESIGN.md. No inline hex/HSL,

@@ -23,7 +23,7 @@ const BrandStory = () => {
           <span className="m-0 font-cursive text-headline/normal font-normal tracking-normal text-accent-700">
             The Atelier
           </span>
-          <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
+          <h2 className="m-0 font-gothic text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
             What goes into every order
           </h2>
           <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">

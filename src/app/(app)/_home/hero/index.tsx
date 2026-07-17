@@ -8,7 +8,7 @@ const H1 = () => {
     <h1 className="m-0 font-gothic text-hero-headline/4 font-bold tracking-[-0.02em] text-neutral-700 [text-box:trim-both_cap_text]">
       <span className="">We bake </span>
       <br />
-      <span className="m-0 font-[inherit] leading-normal tracking-normal text-accent-700">
+      <span className="m-0 font-[inherit] leading-normal tracking-normal text-accent-600">
         happiness
       </span>
       <span className="">.</span>
@@ -20,7 +20,7 @@ const Hero = () => {
   return (
     <FullWidthWrapper
       element="section"
-      wrapperClassName={tw`isolate relative overflow-hidden h-svh mt-[calc(var(--header-height)*-1)]`}
+      wrapperClassName={tw`isolate relative overflow-hidden h-[calc(100svh-3.75rem)]`}
       beforeContainer={<HomeHeroImg />}
     >
       <div className="relative z-10 flex flex-col gap-5 pt-[calc(6rem+var(--header-height))] pb-24">

@@ -5,7 +5,7 @@ import { ICON_BUTTON_CLASS, ICON_BUTTON_STYLE } from "./styles";
 
 const UtilityIcons = () => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 lg:col-start-3 lg:justify-self-end">
       <a
         href={WHATSAPP_HREF}
         target="_blank"

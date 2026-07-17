@@ -1,7 +1,6 @@
 import FullWidthWrapper from "@components/full-width-wrapper";
 import type { CSSProperties } from "react";
-import DesktopNav from "./desktop-nav";
-import MobileNav from "./mobile-nav";
+import Nav from "./nav";
 import { GLASS_STYLE } from "./styles";
 import UtilityIcons from "./utility-icons";
 import Wordmark from "./wordmark";
@@ -27,18 +26,26 @@ const Header = () => {
         wrapperClassName="fixed inset-x-0 top-0"
         wrapperProps={{
           style: {
-            ...GLASS_STYLE,
             borderBottom: "1px solid var(--color-border)",
             zIndex: "var(--z-nav)",
           },
         }}
+        // glass lives on this sibling, not the <header> itself — backdrop-filter
+        // on the header would make it a containing block for its fixed-position
+        // descendants (the mobile nav sheet), breaking their positioning
+        beforeContainer={
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={GLASS_STYLE}
+          />
+        }
       >
-        <div className="flex h-(--header-height) w-full items-center justify-between gap-6">
+        <div className="relative flex h-(--header-height) w-full items-center justify-between gap-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
           <Wordmark />
-          <DesktopNav />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 lg:contents">
+            <Nav />
             <UtilityIcons />
-            <MobileNav />
           </div>
         </div>
       </FullWidthWrapper>

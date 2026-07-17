@@ -40,14 +40,11 @@ const ThemeToggle = () => {
       type="button"
       onClick={toggle}
       style={{
-        borderRadius: "var(--radius-sm)",
-        border: "1px solid var(--color-border)",
-        background: "var(--color-surface)",
         color: "var(--color-text-muted)",
         zIndex: "var(--z-nav)",
         transitionDuration: "var(--dur-base)",
       }}
-      className="fixed right-4 bottom-4 flex size-9 cursor-pointer items-center justify-center transition-colors hover:border-accent-700 hover:text-accent-700 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:right-6 sm:bottom-6"
+      className="fixed right-4 bottom-4 flex size-9 cursor-pointer items-center justify-center rounded-md border border-solid border-neutral-950 bg-[hsla(var(--color-neutral-50-base),0.75)] backdrop-blur-2xl transition-colors hover:border-accent-700 hover:text-accent-700 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:right-10 sm:bottom-20"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <svg

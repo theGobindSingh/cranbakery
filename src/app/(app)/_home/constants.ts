@@ -7,7 +7,7 @@ const unsplash = (photoId: string) => {
 export const images = {
   // no local shot of the storefront window yet — kept on unsplash
   heroBakeryWindow: unsplash("1674560819864-c2e1232f413e"),
-  chocolateCake: "/assets/images/cakes/cake1.jpg",
+  chocolateCake: "/assets/images/cakes/cake28.jpg",
   cheesecakeSlice: "/assets/images/cakes/cake2.jpg",
   cupcake: "/assets/images/cupcakes/cupcake1.jpg",
   // lifestyle/prop shots (ribbon, roses, pearls, dough) have no local equivalent yet

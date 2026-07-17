@@ -84,11 +84,9 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
       <head />
       <body>
         <ThemeSetter />
+        <Header />
         <main className="relative">
-          <Header />
-          <div id="main-content" className="pt-(--header-height)">
-            {children}
-          </div>
+          {children}
           <ThemeToggle />
         </main>
         <SmoothScroll />
