@@ -121,22 +121,33 @@ storefront doesn't ask "what mode is your phone in" before deciding what to look
 
 ## Typography
 
-Four font roles, loaded via `next/font/google` and mapped to CSS variables
-(`--ff-display` / `--ff-sans` / `--ff-cursive` / `--ff-mono`, registered into Tailwind's
-`@theme` as `--font-display` / `--font-sans` / `--font-cursive` / `--font-mono`). This is a
-full rebuild from the previous five-role system — Quicksand, Poppins, Fraunces, and Caveat
-are all retired; none of them can carry finesse (Quicksand and Caveat are exactly the
-"cute" tells the rewrite is removing, and Fraunces sits on the reflex-reject list for new
-brand decisions — it's the default italic-display pick behind half of 2026's
-"editorial-typographic" AI landing pages, which is the other failure mode this system is
-avoiding).
+Five font roles, loaded via `next/font/google` (four of them) plus one self-hosted local
+font, mapped to CSS variables (`--ff-display` / `--ff-sans` / `--ff-cursive` / `--ff-mono` /
+`--ff-gothic`, registered into Tailwind's `@theme` as `--font-display` / `--font-sans` /
+`--font-cursive` / `--font-mono` / `--font-gothic`). This is a full rebuild from the
+previous five-role system — Quicksand, Poppins, Fraunces, and Caveat are all retired; none
+of them can carry finesse (Quicksand and Caveat are exactly the "cute" tells the rewrite is
+removing, and Fraunces sits on the reflex-reject list for new brand decisions — it's the
+default italic-display pick behind half of 2026's "editorial-typographic" AI landing pages,
+which is the other failure mode this system is avoiding).
 
+- **`--ff-gothic`** — **Special Gothic Expanded One** (self-hosted via `next/font/local`,
+  weight 400 only). The **headline voice**: the hero H1, the category marquee, and every
+  `SectionHeading` title across the homepage all pull from here, set bold/uppercase-leaning
+  with tight tracking. This is the one place the system deliberately lets weight and scale
+  carry hierarchy rather than restraint — a confident, expanded grotesque that reads as the
+  storefront's raised voice, set against the quieter registers below it. Reserve it for
+  hero copy, section titles, and marquee/ticker text; never body copy, never a secondary
+  heading, never more than one weight (there's only one to have).
 - **`--ff-display`** — **EB Garamond.** A garamond revival literally cut for book
   interiors — the physical object is a well-worn hardback, not a magazine cover. Its
   italic is lush and slightly feminine without becoming a costume, which is what makes it
   do double duty across both aesthetics: set upright, it's the calm library serif; a key
-  word set in italic is the coquette flourish. Weight 400–600, never forced bold — size
-  and spacing carry the hierarchy, not weight.
+  word set in italic is the coquette flourish. Now scoped to the **secondary** heading
+  tier — product names, story/CTA sub-headings — one step down from the gothic headline
+  voice. Weight 400–600; `font-semibold` is the default, `font-bold` shows up in a couple
+  of secondary headings today and is tolerated there but shouldn't spread further — size
+  and spacing should carry hierarchy over weight wherever the choice is open.
 - **`--ff-sans`** — **Karla.** A quiet humanist grotesque for everything that isn't a
   headline: body copy, UI labels, nav, buttons. It has just enough warmth in its curves to
   sit next to a garamond without fighting it, and it stays out of the way — this is the
@@ -151,10 +162,11 @@ avoiding).
   Don't reach for it as a decorative "kicker" label above section headings; that's the
   editorial-magazine trope this system explicitly avoids.
 
-**Pairing logic:** the contrast axis is serif (EB Garamond) against sans (Karla) — one
-family each, chosen for voice rather than by reflex, with the script held in reserve as a
-rare third accent. Don't add a second sans or a second serif; the pairing is deliberately
-narrow.
+**Pairing logic:** a three-way contrast, not a two-family one — an expanded gothic
+headline voice, set against a garamond serif for secondary headings, set against a Karla
+sans for body and UI — chosen for voice rather than by reflex, with the script held in
+reserve as a rare fourth accent. Don't add a second sans, a second serif, or a second
+display/gothic face; the pairing is deliberately narrow even with the extra role.
 
 **Type scale — use `--fs-*` only**, exactly as before: `--fs-4xs`…`--fs-4xl` for all UI/body
 text (including most headings), the `--fs-display-section`/`--fs-display-hero` clamp()
@@ -178,9 +190,9 @@ Two systems working together, matching what's actually implemented:
 
 1. **Tailwind's default spacing scale** (`gap-16`, `py-12`, `p-4`, etc.) drives internal
    rhythm. Default for everything.
-2. **`CommonFullWidthWrapper`** (`src/components/common-full-width-wrapper`) is the
-   width-containment primitive: full-width outer element, centered `w-[85%]` (`w-[90%]`
-   under `1024px`) inner element. Every section-level block goes through it.
+2. **`FullWidthWrapper`** (`src/components/full-width-wrapper`) is the width-containment
+   primitive: full-width outer element, centered `w-[85%]` (`w-[90%]` under `1024px`)
+   inner element. Every section-level block goes through it.
 3. **The hero/display-type exception**: hand-tuned `clamp()` sizing for hero headline and
    comparably large section-opener type, per `--fs-display-hero`/`--fs-display-section`.
    Don't extend fluid sizing to ordinary body copy, card padding, or grid gaps. Even here,
@@ -285,8 +297,14 @@ documented as they're actually built against the tokens above, not catalogued in
   Variants: `filled` / `outlined` / `text`; sizes `sm` / `md` (default) / `lg`. Default CTA
   usage on this brand: `color="accent"` `colorWeight={700}` (the wine register, not the old
   `600`).
-- **`CommonFullWidthWrapper`** (`src/components/common-full-width-wrapper`) — see Layout &
-  Spacing above.
+- **`FullWidthWrapper`** (`src/components/full-width-wrapper`) — see Layout & Spacing
+  above.
+- **`SectionHeading`** (`src/components/section-heading`) — the standard section-title
+  block: `--ff-gothic` title, optional description, optional right-aligned action slot, a
+  hairline bottom border. This is what carries the "headline voice" typography rule into
+  every section that uses it (`SignatureProducts`, `InstagramTeaser`, and equivalents).
+- **`Marquee`** (`src/components/marquee`) — the scrolling-text primitive behind
+  `CategoryMarquee`; also set in `--ff-gothic`.
 - **`ThemeSetter`** (`src/app/(app)/theme-setter.tsx`) / **`ThemeToggle`**
   (`src/components/theme-toggle.tsx`) — see Theming above. `ThemeSetter` resolves the
   initial theme (light-default, no system-preference inference); `ThemeToggle` is the only
