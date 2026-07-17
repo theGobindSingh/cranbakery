@@ -20,10 +20,10 @@ const Hero = () => {
   return (
     <FullWidthWrapper
       element="section"
-      wrapperClassName={tw`isolate relative overflow-hidden h-[calc(100svh-3.25rem)]`}
+      wrapperClassName={tw`isolate relative overflow-hidden h-svh mt-[calc(var(--header-height)*-1)]`}
       beforeContainer={<HomeHeroImg />}
     >
-      <div className="relative z-10 flex flex-col gap-5 py-24">
+      <div className="relative z-10 flex flex-col gap-5 pt-[calc(6rem+var(--header-height))] pb-24">
         <span className="m-0 font-cursive text-(length:--fs-3xl) leading-normal font-normal tracking-normal text-accent-950 not-md:text-[calc(var(--fs-4xl)-var(--fs-m))]">
           Life is too short to skip dessert.
         </span>

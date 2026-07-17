@@ -47,7 +47,7 @@ const ThemeToggle = () => {
         zIndex: "var(--z-nav)",
         transitionDuration: "var(--dur-base)",
       }}
-      className="fixed top-4 right-4 flex size-9 cursor-pointer items-center justify-center transition-colors hover:border-accent-700 hover:text-accent-700 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:top-6 sm:right-6"
+      className="fixed right-4 bottom-4 flex size-9 cursor-pointer items-center justify-center transition-colors hover:border-accent-700 hover:text-accent-700 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:right-6 sm:bottom-6"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <svg

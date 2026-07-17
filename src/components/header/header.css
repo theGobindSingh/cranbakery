@@ -1,0 +1,30 @@
+/*
+ * Header-specific styles: the mobile nav panel's open/close motion — a
+ * clip-path reveal (top edge fixed at the header's bottom edge, unrolling
+ * downward like a blind) rather than a transform, so the text never
+ * visibly squishes mid-animation. A CSS transition (not a @keyframes
+ * animation) so it plays symmetrically in both directions — the panel
+ * stays mounted and toggles [data-open] instead of being removed from the
+ * DOM on close, which is what let the close happen instantly before.
+ * defaults.css's global `@media (prefers-reduced-motion: reduce)` guard
+ * already collapses this transition's duration, so no extra guard is
+ * needed here.
+ */
+
+@utility header-mobile-panel {
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    clip-path var(--dur-slow) var(--ease-out),
+    visibility 0s linear var(--dur-slow);
+
+  &[data-open="true"] {
+    clip-path: inset(0 0 0% 0);
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      clip-path var(--dur-slow) var(--ease-out),
+      visibility 0s linear 0s;
+  }
+}

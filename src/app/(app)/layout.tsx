@@ -1,3 +1,4 @@
+import Header from "@components/header";
 import SmoothScroll from "@components/smooth-scroll";
 import ThemeSetter from "@components/theme-setter";
 import ThemeToggle from "@components/theme-toggle";
@@ -84,7 +85,10 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
       <body>
         <ThemeSetter />
         <main className="relative">
-          {children}
+          <Header />
+          <div id="main-content" className="pt-(--header-height)">
+            {children}
+          </div>
           <ThemeToggle />
         </main>
         <SmoothScroll />

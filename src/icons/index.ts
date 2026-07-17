@@ -8,3 +8,4 @@ export { LayersIcon } from "./layers-icon";
 export { MoonIcon } from "./moon-icon";
 export { SunIcon } from "./sun-icon";
 export { UploadIcon } from "./upload-icon";
+export { WhatsAppIcon } from "./whatsapp-icon";
