@@ -92,7 +92,8 @@ const SignatureProducts = () => {
           href="/menu"
           variant="filled"
           color="accent"
-          colorWeight={700}
+          colorWeight={600}
+          hoverBgColorWeight={800}
           size="lg"
         >
           Check All Signature Products

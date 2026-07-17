@@ -63,17 +63,13 @@ const ScrollReveal = ({
     <Element
       ref={ref}
       className={[
-        "transition-[opacity,transform]",
+        "transition-all ease-in-out duration-500",
         isRevealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
         className,
         wrapperClassName,
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{
-        transitionDuration: "var(--dur-reveal)",
-        transitionTimingFunction: "var(--ease-out)",
-      }}
       {...restWrapperProps}
     >
       {children}

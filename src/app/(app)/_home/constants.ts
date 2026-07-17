@@ -1,12 +1,12 @@
 import menu from "@/data/menu.json";
 
-const unsplash = (photoId: string) => {
-  return `https://images.unsplash.com/photo-${photoId}?auto=format&fit=crop&q=80`;
+const unsplash = (photoId: string, isPremium = false) => {
+  return `https://${isPremium ? "plus" : "images"}.unsplash.com/${isPremium ? "premium_photo" : "photo"}-${photoId}?auto=format&q=80`;
 };
 
 export const images = {
   // no local shot of the storefront window yet — kept on unsplash
-  heroBakeryWindow: unsplash("1674560819864-c2e1232f413e"),
+  heroBakeryWindow: unsplash("1644015272264-2d70518c2046"),
   chocolateCake: "/assets/images/cakes/cake28.jpg",
   cheesecakeSlice: "/assets/images/cakes/cake2.jpg",
   cupcake: "/assets/images/cupcakes/cupcake1.jpg",

@@ -49,7 +49,7 @@ const collectionsMapper = (
           }}
         />
         <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-          <span
+          <h3
             className={`m-0 block font-display leading-tight font-bold tracking-[-0.01em] text-neutral-50 ${
               isLarge
                 ? "mb-3 text-(length:--fs-2xl)"
@@ -57,7 +57,7 @@ const collectionsMapper = (
             }`}
           >
             {collection.name}
-          </span>
+          </h3>
           {collection.subtitle && (
             <p className="m-0 text-(length:--fs-4xs) leading-normal font-normal tracking-widest text-neutral-200 uppercase">
               {collection.subtitle}

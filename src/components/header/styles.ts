@@ -16,9 +16,9 @@ export const NAV_GLASS_STYLE: CSSProperties = {
 };
 
 export const ICON_BUTTON_STYLE: CSSProperties = {
-  borderRadius: "var(--radius-sm)",
-  border: "1px solid var(--color-border)",
-  background: "var(--color-surface)",
+  borderRadius: "4px",
+  border: "1px solid var(--color-neutral-950)",
+  background: "transparent",
   color: "var(--color-text-muted)",
   transitionDuration: "var(--dur-base)",
 };

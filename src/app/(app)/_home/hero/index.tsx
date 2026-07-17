@@ -36,8 +36,8 @@ const Hero = () => {
             href="/menu"
             variant="filled"
             color="accent"
-            colorWeight={700}
-            hoverBgColorWeight={600}
+            colorWeight={600}
+            hoverBgColorWeight={800}
             size="lg"
           >
             Browse the Menu
