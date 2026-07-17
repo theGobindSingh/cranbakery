@@ -32,7 +32,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "eslint.config.mjs",
-    "next.config.js"
+    "next.config.js",
+    "global.d.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -58,16 +58,51 @@ const fontGothic = localFont({
   ],
 });
 
+// eslint-disable-next-line react-refresh/only-export-components -- PWA
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#8b1828",
 };
 
 export const metadata: Metadata = {
   title: "Cranbakery — Belgian Chocolate Cakes & Desserts, Made to Order",
   description:
     "Cranbakery is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    // "default": opaque native status bar reserving its own space, so page
+    // content can never render behind it — sidesteps iOS Safari's fixed-element
+    // clipping bug in normal browser tabs, which "black-translucent" would re-introduce
+    capable: true,
+    statusBarStyle: "default",
+    title: "Cranbakery",
+  },
+  icons: {
+    icon: [
+      {
+        url: "/assets/icons/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/assets/icons/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/assets/icons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  // Next only emits the newer unprefixed "mobile-web-app-capable" from
+  // appleWebApp.capable; iOS itself still keys off the legacy apple- prefix
+  other: { "apple-mobile-web-app-capable": "yes" },
 };
 
 const getTheme = async () => {
