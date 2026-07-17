@@ -53,7 +53,7 @@
  *    Accent (cranberry, ~hue 350°, used for CTAs, links, focus rings, and merchandising tags): #8b1828 → #f8d8dd
  *
  *  TYPOGRAPHY — raw fs-* scale (line ~245) + display clamps; fonts wired via next/font
- *    into @theme as --font-display / --font-sans / --font-mono.
+ *    into @theme as --font-display / --font-sans / --font-mono / --font-cursive / --font-gothic.
  *
  *  HOW TO CONSUME (in components):
  *    1. Prefer semantic roles:      var(--color-text), var(--color-bg)
@@ -325,6 +325,7 @@
 
   /* home hero headline; smaller than the monumental --fs-display-hero tier above */
   --fs-hero-headline: clamp(calc(var(--fs-4xl) + var(--fs-1xs)), 12vw, 10rem);
+  --fs-hero-headline: clamp(calc(var(--fs-4xl) + var(--fs-1xs)), 7vw, 9rem);
   --tracking-display: -0.02em;
 
   /* ---- spacing (4px base) ---- */
@@ -537,6 +538,7 @@
   --font-sans: var(--ff-sans);
   --font-mono: var(--ff-mono);
   --font-cursive: var(--ff-cursive);
+  --font-gothic: var(--ff-gothic);
 
   --color-grey-50: var(--color-grey-50);
   --color-grey-100: var(--color-grey-100);

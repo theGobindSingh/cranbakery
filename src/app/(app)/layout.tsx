@@ -9,6 +9,7 @@ import {
   EB_Garamond as EbGaramond,
   Karla,
 } from "next/font/google";
+import localFont from "next/font/local";
 import { cookies } from "next/headers";
 import { type PropsWithChildren } from "react";
 
@@ -37,6 +38,25 @@ const fontMono = DmMono({
   subsets: ["latin", "latin-ext"],
 });
 
+// self-hosted: Next's bundled metrics table has no entry for "Special Gothic
+// Expanded One", so next/font/google's Turbopack loader always logs a fallback
+// warning for it — next/font/local sidesteps the lookup entirely
+const fontGothic = localFont({
+  variable: "--ff-gothic",
+  src: [
+    {
+      path: "../../../public/assets/fonts/special-gothic-expanded-one-latin.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../../public/assets/fonts/special-gothic-expanded-one-latin-ext.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
+
 export const metadata: Metadata = {
   title: "Cranbakery — Belgian Chocolate Cakes & Desserts, Made to Order",
   description:
@@ -58,7 +78,7 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
     <html
       lang="en"
       // eslint-disable-next-line better-tailwindcss/no-unknown-classes -- theme
-      className={`${fontDisplay.variable} ${fontSans.variable} ${fontCursive.variable} ${fontMono.variable} ${theme === "dark" ? "dark" : "light"}`}
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontCursive.variable} ${fontMono.variable} ${fontGothic.variable} ${theme === "dark" ? "dark" : "light"}`}
     >
       <head />
       <body>

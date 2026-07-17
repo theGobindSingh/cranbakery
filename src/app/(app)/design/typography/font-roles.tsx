@@ -50,6 +50,14 @@ const ROLES: {
     sample: "600G / BOX OF 8",
     size: "var(--fs-2xs)",
   },
+  {
+    token: "--ff-gothic",
+    utility: "font-gothic",
+    family: "Special Gothic Expanded One",
+    usage: "Eyebrows, badges, stat labels",
+    sample: "SIGNATURE · POPULAR",
+    size: "var(--fs-2xs)",
+  },
 ];
 
 const FontRoles = () => {

@@ -3,25 +3,31 @@ import FullWidthWrapper from "@components/full-width-wrapper";
 import Link from "@components/link";
 import { tw } from "@utils/tailwind";
 
+const H1 = () => {
+  return (
+    <h1 className="m-0 font-gothic text-hero-headline/4 font-bold tracking-[-0.02em] text-neutral-700 [text-box:trim-both_cap_text]">
+      <span className="">We bake </span>
+      <br />
+      <span className="m-0 font-[inherit] leading-normal tracking-normal text-accent-700">
+        happiness
+      </span>
+      <span className="">.</span>
+    </h1>
+  );
+};
+
 const Hero = () => {
   return (
     <FullWidthWrapper
       element="section"
-      wrapperClassName={tw`isolate relative overflow-hidden h-svh`}
+      wrapperClassName={tw`isolate relative overflow-hidden h-[calc(100svh-3.25rem)]`}
       beforeContainer={<HomeHeroImg />}
     >
       <div className="relative z-10 flex flex-col gap-5 py-24">
         <span className="m-0 font-cursive text-(length:--fs-3xl) leading-normal font-normal tracking-normal text-accent-950 not-md:text-[calc(var(--fs-4xl)-var(--fs-m))]">
           Life is too short to skip dessert.
         </span>
-        <h1 className="m-0 font-display text-hero-headline/4 font-bold tracking-[-0.02em] text-neutral-700 [text-box:trim-both_cap_text]">
-          <span className="">We bake </span>
-          <br />
-          <span className="m-0 font-[inherit] leading-normal tracking-normal text-accent-700">
-            happiness
-          </span>
-          <span className="">.</span>
-        </h1>
+        <H1 />
         <p className="m-0 max-w-[35ch] text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700 not-md:max-w-[50vw]">
           Callebaut Belgian chocolate, made to order, delivered across India.
         </p>

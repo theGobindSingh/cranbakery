@@ -9,14 +9,22 @@ const collectionsMapper = (
   index: number,
 ) => {
   const isLarge = collection.span === "large";
+  const isLong = collection.span === "long";
+  const getSizeStyles = () => {
+    if (isLarge) {
+      return "col-span-2 row-span-2";
+    }
+    if (isLong) {
+      return "col-span-2";
+    }
+    return "col-span-2 row-span-1 sm:col-span-1";
+  };
   return (
     <ScrollReveal
       key={collection.slug}
       className={[
         "group relative overflow-hidden bg-neutral-50",
-        isLarge
-          ? "col-span-2 row-span-2"
-          : "col-span-2 row-span-1 sm:col-span-1",
+        getSizeStyles(),
       ].join(" ")}
       wrapperProps={{
         style: { transitionDelay: `${index * 70}ms` },
@@ -55,7 +63,7 @@ const collectionsMapper = (
               {collection.subtitle}
             </p>
           )}
-          {isLarge && collection.cta && (
+          {(isLarge || isLong) && collection.cta && (
             <span className="inline-flex items-center gap-2 border-b-2 border-neutral-50 pb-1 text-(length:--fs-4xs) leading-normal font-semibold tracking-widest text-neutral-50 uppercase transition-all duration-300 group-hover:translate-x-1 group-hover:border-secondary-400 group-hover:text-secondary-200">
               {collection.cta}
               <span aria-hidden>→</span>
@@ -79,7 +87,7 @@ const CategoryShortcuts = () => {
         weight, by box, or by the piece.
       </p>
 
-      <div className="mx-auto grid max-w-330 grid-flow-row-dense auto-rows-[220px] grid-cols-2 gap-4 sm:grid-cols-4 lg:auto-rows-[300px] lg:gap-6">
+      <div className="mx-auto grid max-w-330 grid-flow-row-dense auto-rows-55 grid-cols-2 gap-4 sm:grid-cols-4 lg:auto-rows-75 lg:gap-6">
         {collections.map(collectionsMapper)}
       </div>
     </FullWidthWrapper>

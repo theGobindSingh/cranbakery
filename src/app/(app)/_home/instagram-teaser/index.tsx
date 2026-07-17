@@ -1,30 +1,27 @@
 import { moments } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import Link from "@components/link";
+import SectionHeading from "@components/section-heading";
 import Image from "next/image";
 
 const InstagramTeaser = () => {
   return (
     <FullWidthWrapper wrapperClassName="py-20 lg:py-28">
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-4 lg:mb-14">
-        <div className="flex max-w-[52ch] flex-col gap-3">
-          <h2 className="m-0 font-display text-(length:--fs-2xl) leading-normal font-bold tracking-normal text-neutral-950">
-            Finishing Touches
-          </h2>
-          <p className="m-0 text-(length:--fs-s) leading-normal font-normal tracking-normal text-neutral-700">
-            Ribbons, pearls, toppers — the small details we build into every
-            order, and the moments they belong to.
-          </p>
-        </div>
-        <Link
-          href="https://instagram.com/cranbakery"
-          variant="outlined"
-          color="accent"
-          colorWeight={700}
-        >
-          @cranbakery
-        </Link>
-      </div>
+      <SectionHeading
+        className="mb-10 lg:mb-14"
+        title="Finishing Touches"
+        description="Ribbons, pearls, toppers — the small details we build into every order, and the moments they belong to."
+        action={
+          <Link
+            href="https://instagram.com/cranbakery"
+            variant="outlined"
+            color="accent"
+            colorWeight={700}
+          >
+            @cranbakery
+          </Link>
+        }
+      />
       <div
         className="grid gap-3"
         style={{

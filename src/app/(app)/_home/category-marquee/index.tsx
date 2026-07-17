@@ -12,7 +12,7 @@ const CategoryMarquee = () => {
     >
       <Marquee
         items={categoryMarqueeWords}
-        itemClassName="font-display text-(length:--fs-2xl) leading-none font-bold tracking-normal text-neutral-950 uppercase not-md:text-(length:--fs-1xl)"
+        itemClassName="font-gothic text-(length:--fs-2xl) leading-none font-bold tracking-normal text-neutral-950 uppercase not-md:text-(length:--fs-1xl)"
         className="px-4"
       />
     </section>

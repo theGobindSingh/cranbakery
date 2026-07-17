@@ -1,35 +1,36 @@
+import menu from "@/data/menu.json";
+
 const unsplash = (photoId: string) => {
   return `https://images.unsplash.com/photo-${photoId}?auto=format&fit=crop&q=80`;
 };
 
 export const images = {
+  // no local shot of the storefront window yet — kept on unsplash
   heroBakeryWindow: unsplash("1674560819864-c2e1232f413e"),
-  chocolateCake: unsplash("1578985545062-69928b1d9587"),
-  cheesecakeSlice: unsplash("1543773495-2cd9248a5bda"),
-  cupcake: unsplash("1659549591823-c6efec55b82f"),
+  chocolateCake: "/assets/images/cakes/cake1.jpg",
+  cheesecakeSlice: "/assets/images/cakes/cake2.jpg",
+  cupcake: "/assets/images/cupcakes/cupcake1.jpg",
+  // lifestyle/prop shots (ribbon, roses, pearls, dough) have no local equivalent yet
   rosesWithRibbon: unsplash("1778861675433-a28590550789"),
   vintageRoses: unsplash("1610823140365-8d7f1adf01e6"),
   pearlNecklace: unsplash("1595345705177-ffe090eb0784"),
   handsShapingDough: unsplash("1689778560408-78595f912b97"),
-  cookies: unsplash("1499636136210-6f4ee915583e"),
-  brownies: unsplash("1607920591413-4ec007e70023"),
-  cakeTub: unsplash("1605807646837-485a3bc9bf1b"),
-  teaCake: unsplash("1595080623303-c5ae68d73e92"),
+  cookies: "/assets/images/cookies/cookie1.jpg",
+  brownies: "/assets/images/brownies/brownie1.jpg",
+  cakeTub: "/assets/images/cake-tubs/cake-tub1.jpg",
+  teaCake: "/assets/images/tea-cakes/tea-cake1.jpg",
+  // no local muffin shots yet — folder is empty
   muffins: unsplash("1722251172903-cc8774501df7"),
-  donuts: unsplash("1551106652-a5bcf4b29ab6"),
+  donuts: "/assets/images/donuts/donut1.jpg",
 };
 
-export const categoryMarqueeWords: string[] = [
-  "Cakes",
-  "Cheesecakes",
-  "Cake Tubs",
-  "Cookies",
-  "Brownies",
-  "Tea Cakes",
-  "Muffins",
-  "Cupcakes",
-  "Donuts",
-];
+export const categoryMarqueeWords: string[] = menu.categories
+  .filter((category) => {
+    return category.id !== "online-store-tins";
+  })
+  .map((category) => {
+    return category.name;
+  });
 
 export interface CollectionTile {
   name: string;
@@ -40,123 +41,173 @@ export interface CollectionTile {
   subtitle: string;
   image: string;
   alt: string;
-  span: "large" | "small";
+  span: "large" | "small" | "long";
 }
 
-export const collections: CollectionTile[] = [
-  {
-    name: "Cakes",
-    slug: "cakes",
+/** display metadata (image, layout) for each menu.json category id — keyed by id so the
+ * shortcut grid stays in sync with menu.json without duplicating category names/slugs */
+const collectionDisplayMeta: Record<
+  string,
+  Omit<CollectionTile, "name" | "slug">
+> = {
+  cakes: {
     cta: "Explore",
     image: images.chocolateCake,
     alt: "A rich chocolate layer cake with a slice cut away, revealing the crumb",
     span: "large",
-    subtitle: "Custom Layer Cakes",
+    subtitle: "Layer Cakes & Cheesecakes",
   },
-  {
-    name: "Cheesecakes",
-    slug: "cheesecakes",
+  "cake-tubs": {
     cta: "Order Now",
-    image: images.cheesecakeSlice,
-    alt: "A close-up slice of chocolate cheesecake on a plate",
-    span: "large",
-    subtitle: "Rich & Creamy",
+    image: images.cakeTub,
+    alt: "A slice of layered chocolate cake on a wooden board",
+    span: "long",
+    subtitle: "Sliceable Gateaux",
   },
-  {
-    name: "Cupcakes",
-    slug: "cupcakes",
+  cupcakes: {
     cta: "Explore",
     subtitle: "Boxes of 4 · 6 · 9",
     image: images.cupcake,
     alt: "A frosted cupcake with piped buttercream swirl",
     span: "small",
   },
-  {
-    name: "Cookies",
-    slug: "cookies",
+  cookies: {
     cta: "Explore",
     subtitle: "Half-Dozen · Dozen",
     image: images.cookies,
     alt: "A stack of chocolate chunk cookies on parchment",
     span: "small",
   },
-  {
-    name: "Brownies",
-    slug: "brownies",
+  brownies: {
     cta: "Explore",
     subtitle: "Sold by the Piece",
     image: images.brownies,
     alt: "Fudge brownie squares, drizzled and plated",
     span: "small",
   },
-  {
-    name: "Cake Tubs",
-    slug: "cake-tubs",
-    cta: "Explore",
-    subtitle: "Sliceable Gateaux",
-    image: images.cakeTub,
-    alt: "A slice of layered chocolate cake on a wooden board",
-    span: "small",
-  },
-  {
-    name: "Tea Cakes",
-    slug: "tea-cakes",
+  "tea-cakes": {
     cta: "Explore",
     subtitle: "Boxed in Fours",
     image: images.teaCake,
     alt: "A slice of tea cake served with a cup of tea",
     span: "small",
   },
-  {
-    name: "Muffins",
-    slug: "muffins",
+  muffins: {
     cta: "Explore",
     subtitle: "Minimum Order of 4",
     image: images.muffins,
     alt: "Stacked blueberry muffins dusted with powdered sugar",
     span: "small",
   },
-  {
-    name: "Donuts",
-    slug: "donuts",
+  donuts: {
     cta: "Explore",
-    subtitle: "Minimum Pack of 6",
+    subtitle: "Minimum Pack of 4",
     image: images.donuts,
     alt: "Stacked glazed donuts drizzled with chocolate",
     span: "small",
   },
-];
+};
+
+export const collections: CollectionTile[] = menu.categories
+  .filter((category) => {
+    return category.id in collectionDisplayMeta;
+  })
+  .map((category) => {
+    return {
+      name: category.name,
+      slug: category.id,
+      ...collectionDisplayMeta[category.id]!,
+    };
+  });
 
 export interface SignatureCreation {
   name: string;
   startingPrice: string;
   badge?: "Signature" | "Popular";
+  description: string;
   image: string;
   alt: string;
 }
 
-export const signatureCreations: SignatureCreation[] = [
+type MenuItem = (typeof menu.categories)[number]["items"][number];
+
+const findMenuItem = (categoryId: string, itemName: string): MenuItem => {
+  const item = menu.categories
+    .find((category) => {
+      return category.id === categoryId;
+    })
+    ?.items.find((candidate) => {
+      return candidate.name === itemName;
+    });
+  if (!item) {
+    throw new Error(`Menu item not found: ${categoryId}/${itemName}`);
+  }
+  return item;
+};
+
+const formatStartingPrice = (item: MenuItem): string => {
+  const lowestPrice = Math.min(
+    ...item.variants.map((variant) => {
+      return variant.price;
+    }),
+  );
+  const isPerPiece = item.variants.every((variant) => {
+    return variant.size === "per piece";
+  });
+  return isPerPiece ? `From ₹${lowestPrice} / piece` : `From ₹${lowestPrice}`;
+};
+
+/** editorial copy (badge, description, image) for each featured menu.json item — keyed by
+ * category id + item name so the starting price always tracks menu.json's real variants */
+const signatureDisplayMeta: {
+  categoryId: string;
+  itemName: string;
+  badge?: "Signature" | "Popular";
+  description: string;
+  image: string;
+  alt: string;
+}[] = [
   {
-    name: "Signature Chocolate Cake",
-    startingPrice: "From ₹650",
+    categoryId: "cakes",
+    itemName: "Signature Chocolate",
     badge: "Signature",
+    description:
+      "Layers of dark sponge, sandwiched and enclosed in a couverture ganache made from Callebaut Belgian chocolate — rich and glossy, never cloying. Piped, filled, and finished by hand the same day it ships.",
     image: images.chocolateCake,
     alt: "Signature chocolate layer cake, sliced",
   },
   {
-    name: "Belgian Chocolate Cheesecake",
-    startingPrice: "From ₹600",
+    categoryId: "cake-tubs",
+    itemName: "Matilda Chocolate Cake Tub",
     badge: "Popular",
-    image: images.cheesecakeSlice,
-    alt: "Belgian chocolate cheesecake slice",
+    description:
+      "Chocolaty, gooey, and built for spoons rather than forks — our most-repeated cake tub order, layered with the same Callebaut couverture that carries our signature cakes.",
+    image: images.cakeTub,
+    alt: "A spoonful of layered chocolate cake tub",
   },
   {
-    name: "Rose & Pearl Cupcake Box",
-    startingPrice: "From ₹90 / piece",
-    image: images.cupcake,
-    alt: "Box of frosted cupcakes",
+    categoryId: "brownies",
+    itemName: "Signature Chocolate Brownie",
+    description:
+      "Dense, fudgy squares finished with a crackly top — the box most often requested for office orders and last-minute gifting, sold by the piece.",
+    image: images.brownies,
+    alt: "Fudge brownie squares, drizzled and plated",
   },
 ];
+
+export const signatureCreations: SignatureCreation[] = signatureDisplayMeta.map(
+  (meta) => {
+    const item = findMenuItem(meta.categoryId, meta.itemName);
+    return {
+      name: item.name,
+      startingPrice: formatStartingPrice(item),
+      description: meta.description,
+      image: meta.image,
+      alt: meta.alt,
+      ...(meta.badge ? { badge: meta.badge } : {}),
+    };
+  },
+);
 
 export interface Testimonial {
   quote: string;
