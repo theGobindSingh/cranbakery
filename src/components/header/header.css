@@ -19,7 +19,7 @@
   position: fixed;
   inset-inline: 0;
   bottom: 0;
-  top: var(--header-height);
+  top: calc(var(--header-height) + env(safe-area-inset-top));
   display: flex;
   flex-direction: column;
   gap: 0.25rem;

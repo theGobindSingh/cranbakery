@@ -11,6 +11,9 @@
 
   html {
     color-scheme: light;
+    /* stops iOS Safari's elastic overscroll bounce, which can momentarily
+       reveal page content above the fixed header behind the status bar */
+    overscroll-behavior-y: none;
   }
 
   html.dark {

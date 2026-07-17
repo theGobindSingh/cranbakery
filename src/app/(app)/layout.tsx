@@ -3,7 +3,7 @@ import SmoothScroll from "@components/smooth-scroll";
 import ThemeSetter from "@components/theme-setter";
 import ThemeToggle from "@components/theme-toggle";
 import "@styles/globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Bonheur_Royale as BonheurRoyale,
   DM_Mono as DmMono,
@@ -57,6 +57,12 @@ const fontGothic = localFont({
     },
   ],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Cranbakery — Belgian Chocolate Cakes & Desserts, Made to Order",

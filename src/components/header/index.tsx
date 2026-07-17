@@ -1,4 +1,5 @@
 import FullWidthWrapper from "@components/full-width-wrapper";
+import { tw } from "@utils/tailwind";
 import type { CSSProperties } from "react";
 import Nav from "./nav";
 import { GLASS_STYLE } from "./styles";
@@ -23,11 +24,12 @@ const Header = () => {
       </a>
       <FullWidthWrapper
         element="header"
-        wrapperClassName="fixed inset-x-0 top-0"
+        wrapperClassName={tw`fixed inset-x-0 top-0`}
         wrapperProps={{
           style: {
             borderBottom: "1px solid var(--color-border)",
             zIndex: "var(--z-nav)",
+            paddingTop: "env(safe-area-inset-top)",
           },
         }}
         // glass lives on this sibling, not the <header> itself — backdrop-filter

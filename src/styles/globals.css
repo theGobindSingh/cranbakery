@@ -529,6 +529,14 @@
   }
 }
 
+@media (max-width: 640px) {
+  :root {
+    /* phone floor: the 1024px-breakpoint floor above (68px) never shrinks
+       further, so it overflows/wraps on phone-width containers */
+    --fs-hero-headline: clamp(2.5rem, 13vw, 6rem);
+  }
+}
+
 @theme {
   /*
     fonts: role-based raw vars (--ff-*) are produced by next/font. Assign any family to a role

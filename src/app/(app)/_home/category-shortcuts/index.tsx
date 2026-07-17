@@ -1,6 +1,7 @@
 import { collections } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import ScrollReveal from "@components/scroll-reveal";
+import { tw } from "@utils/tailwind";
 import Image from "next/image";
 import NextLink from "next/link";
 
@@ -17,7 +18,7 @@ const collectionsMapper = (
     if (isLong) {
       return "col-span-2";
     }
-    return "col-span-2 row-span-1 sm:col-span-1";
+    return tw`col-span-1 row-span-1 sm:col-span-1`;
   };
   return (
     <ScrollReveal

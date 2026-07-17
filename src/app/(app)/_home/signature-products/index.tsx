@@ -21,7 +21,7 @@ const signaturesMapper = (
       }}
     >
       <div
-        className={`relative aspect-4/5 w-full overflow-hidden lg:aspect-3/4 lg:h-[75vh] lg:w-auto lg:max-w-[50%] lg:shrink-0 lg:grow-0 ${
+        className={`relative aspect-4/5 w-full overflow-hidden lg:aspect-3/4 lg:h-[75svh] lg:w-auto lg:max-w-[50%] lg:shrink-0 lg:grow-0 ${
           isReversed ? "lg:order-2" : "lg:order-1"
         }`}
       >
