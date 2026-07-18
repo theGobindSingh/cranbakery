@@ -154,8 +154,26 @@ claude mcp add playwright -- npx -y @playwright/mcp
 
 ## Subagents
 
-Not yet implemented — `.claude/agents/` exists but is empty. If added, subagents would live
-in `.claude/agents/<name>.md` and Claude would spawn them automatically for relevant tasks.
+Implemented. Source of truth is **`.agents/agents/`**; `.claude/agents` is a generated symlink
+to it (same `scripts/skills.js` that links skills, run on `pnpm install`). **New agents go in
+`.agents/agents/`, never `.claude/agents/`.** Each agent is a thin identity + `model` + `tools`
+with a **preloaded skill** (`skills:` frontmatter) that carries the exact repo procedure — so
+Haiku-tier agents stay reliable and a Sonnet orchestrator can delegate most work.
+
+See `.agents/agents/README.md` for the full roster and orchestration pattern. In short:
+
+- **Builders**: `section-builder` (sonnet), `route-scaffolder` (haiku).
+- **Editors**: `token-smith` (haiku).
+- **Auditors (read-only)**: `design-auditor`, `dod-check`
+- **QA**: `responsive-qa` (sonnet, Playwright).
+- for more, check the folder
+
+Each pairs with a skill under `.agents/skills/` (`new-section`, `asset-pipeline`, `token-edit`,
+`design-audit`, `dod-check`, `seo-audit`, `perf-check`, `responsive-qa`). Visual/taste redesign
+stays with the `impeccable` skill on the orchestrator, not a subagent.
+
+Note: after the first agent file lands in a freshly created `agents/` dir, restart Claude Code
+once so the watcher registers the directory; later edits hot-reload.
 
 ---
 

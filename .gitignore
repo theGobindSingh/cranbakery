@@ -44,4 +44,5 @@ pnpm-lock.yaml
 
 docs/superpowers
 .claude/skills
+.claude/agents
 .playwright-mcp

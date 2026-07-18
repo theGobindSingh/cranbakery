@@ -56,15 +56,20 @@ are not changing** — every hue and stop already in `globals.css` stays exactly
 changes is which stops this system actually reaches for, and why.
 
 - **`neutral`** — Cream & Ink. The dominant surface and text ramp, and now wired into every
-  semantic alias (`--color-bg`, `--color-text`, …). This *is* the room: parchment-cream
+  semantic alias (`--color-bg`, `--color-text`, …). This _is_ the room: parchment-cream
   backgrounds (`50`–`200`), warm ink text (`900`/`950`). Nearly everything on the page is
   drawn from this ramp.
 - **`accent`** — Cranberry, reframed as a two-register ramp instead of one flat color:
   - **Deep register (`600`–`800`, read as "wine"/"oxblood")** — the single
-    call-to-action color. Every button, link, focus ring, and the one closing-CTA band
-    per page pulls from here, `700` as the default. This is what used to be the flat
-    `accent-500` cranberry; pulling one register darker is what turns "fruit-juice pink"
-    into "burgundy velvet."
+    call-to-action color, split by job: **`600` fills the primary buttons** (hero
+    "Browse the Menu", "Check All Signature Products", the emphasized "happiness" word)
+    with an `800` hover; **`700` is the inline/decorative wine** — a starting-price label,
+    the wax-seal badge fill, a cursive eyebrow like "The Atelier", an outlined link, and
+    the one closing-CTA band per page. (`700` was the original spec for filled buttons too;
+    the shipped homepage settled one stop lighter for the button face and reserved `700`
+    for accents — this is deliberate, not drift.) Both are a register darker than the flat
+    `accent-500` cranberry — that's what turns "fruit-juice pink" into "burgundy velvet."
+    `accent-950` (near-black wine) is allowed for the hero tagline set over a light photo.
   - **Pale register (`50`–`200`, read as "blush")** — the coquette decorative note:
     hairline dividers, a wax-seal badge fill, a soft card wash behind a testimonial. Never
     a large fill, never body text on it below 4.5:1 contrast (test against `neutral-950`
@@ -109,7 +114,7 @@ storefront doesn't ask "what mode is your phone in" before deciding what to look
 - `ThemeSetter` (`src/app/(app)/theme-setter.tsx`) resolves theme as
   `?theme= query param → cookie → "light"` — it must never call
   `window.matchMedia("(prefers-color-scheme: dark)")`. That media query is for a
-  visitor's *explicit* toggle to persist across visits, not for the initial guess.
+  visitor's _explicit_ toggle to persist across visits, not for the initial guess.
 - `RootLayout` (`src/app/(app)/layout.tsx`) mirrors this server-side: the `<html>` class is
   `"dark"` only when the `theme` cookie is literally `"dark"`; every other case (missing
   cookie, any other value) renders `"light"`.
@@ -152,11 +157,13 @@ which is the other failure mode this system is avoiding).
   headline: body copy, UI labels, nav, buttons. It has just enough warmth in its curves to
   sit next to a garamond without fighting it, and it stays out of the way — this is the
   linen tablecloth, not the centerpiece.
-- **`--ff-cursive`** — **Bonheur Royale.** A dainty calligraphic script, used *rarely* —
-  a single word, a signature-style line, never a heading and never body copy. This is the
-  literal "love letter" reference: the tagline treatment, a wax-seal badge's lettering, a
-  testimonial's closing flourish. If it shows up more than once or twice on a page, it's
-  being overused.
+- **`--ff-cursive`** — **Bonheur Royale.** A dainty calligraphic script, used _rarely_ —
+  a single word or a signature-style line, never a heading and never body copy. This is the
+  literal "love letter" reference: the hero tagline, a wax-seal badge's lettering, the
+  closing band's "With love, from our kitchen." **Cursive eyebrow** — a short cursive label
+  set _above_ a gothic H2 (e.g. "The Atelier" over the brand-story heading) is the sanctioned
+  replacement for the banned mono kicker; it's a signature-line, not a heading, so it's
+  allowed.
 - **`--ff-mono`** — kept for genuinely technical/meta text only (weights, SKUs, prices on
   future catalog pages) — not part of the homepage's vocabulary. Uppercase when used.
   Don't reach for it as a decorative "kicker" label above section headings; that's the
@@ -208,10 +215,12 @@ Two systems working together, matching what's actually implemented:
 every section to a centered heading over a uniform `auto-fit` card grid, this one should
 break that rhythm on purpose where the content earns it: a dominant image against a
 narrower text column, one large "featured" tile beside two or three smaller ones, a quiet
-text index running alongside a photograph rather than below it. `repeat(auto-fit,
-minmax(Npx, 1fr))` is still the right tool for a genuinely uniform grid (the "moments"
-gallery, a future catalog page) — just don't reach for a uniform grid as the default
-composition for every section.
+text index running alongside a photograph rather than below it. The homepage takes this
+further than the previous rewrite anticipated: both the **category-shortcuts** grid and the
+**"Finishing Touches" gallery** are dense span-based mosaics (`grid-flow-row-dense` with
+`small`/`wide`/`tall`/`large` tiles), not uniform grids. `repeat(auto-fit, minmax(Npx, 1fr))`
+is reserved for the genuinely uniform cases — the **Testimonials** row, a future catalog page
+— and is not the default composition for a section.
 
 ## Shape & Elevation
 
@@ -231,9 +240,9 @@ composition for every section.
 - **Shadows stay barely-there:** `--shadow-sm`/`--shadow-md`, reserved for genuinely
   liftable/interactive elements (a hovered photo, the hero's floating text panel). Never
   pair a soft wide shadow with a visible border on the same element — pick one.
-- **Wine as indicator first, fill second:** same rule as before, now pointed at the deep
-  register (`accent-700`) instead of the old flat `accent-600`. One full-bleed wine band
-  is still allowed as the single end-of-page CTA moment per page.
+- **Wine as indicator first, fill second:** deep register throughout — `accent-600` for
+  the button face, `accent-700` for inline accents and the closing band (see Colors). One
+  full-bleed wine band is still allowed as the single end-of-page CTA moment per page.
 
 ## Signature techniques
 
@@ -256,6 +265,19 @@ composition for every section.
   subject (a bakery window's pastry display, a hand shaping dough, a ribboned bouquet, a
   pearl necklace standing in for "the finishing touches: ribbon, pearl, topper") rather
   than a generic "food" stock choice or a colored placeholder rectangle.
+- **Photo treatment (how imagery is handled, not just chosen).** Three repeated moves:
+  (1) **gradient scrim** for text legibility over a photo — a `neutral-300` left-fade on the
+  hero, a `neutral-600` bottom-fade on the category tiles, always token-driven `linear-gradient`;
+  (2) **sepia warming** on lifestyle shots that skew cool (`filter: sepia(0.18) saturate(1.05)`
+  on the brand-story hands image) to keep every photo in the same cream register;
+  (3) **hero parallax** — the hero image translates at `0.5×` scroll via a `useLenis` hook
+  (`hero/img.tsx`), the one place motion is tied to the photograph itself. Text set over a
+  photo drops to `neutral-700` rather than the `900`/`950` ink used on cream — a legibility
+  exception, not a new text color.
+- **Frosted-glass header.** The fixed header's translucency is a `backdrop-filter` glass
+  layer (`GLASS_STYLE`) rendered on a _sibling_ of `<header>`, not the header itself —
+  putting `backdrop-filter` on the header would make it a containing block and break the
+  fixed-position mobile nav sheet. Hairline bottom border, no shadow.
 - **Noise-grain overlay** — unchanged, `body::before` with the `feTurbulence` filter,
   `opacity: 0.035` light / `0.05` dark, implemented once in `defaults.css`.
 - **No mono kicker labels, no `NN //` section numbering.** Still true, and now doubly
@@ -295,14 +317,22 @@ documented as they're actually built against the tokens above, not catalogued in
   interaction primitive via `colorStyleVars()` in `button/styles.ts`. `ColorFamily` covers
   `grey | neutral | primary | secondary | accent | success | caution | info | error`.
   Variants: `filled` / `outlined` / `text`; sizes `sm` / `md` (default) / `lg`. Default CTA
-  usage on this brand: `color="accent"` `colorWeight={700}` (the wine register, not the old
-  `600`).
+  usage on this brand: `color="accent"` `colorWeight={600}` with `hoverBgColorWeight={800}`
+  for filled primary buttons; `colorWeight={700}` for outlined/inline wine accents.
 - **`FullWidthWrapper`** (`src/components/full-width-wrapper`) — see Layout & Spacing
   above.
+- **`Header`** (`src/components/header/*`) — fixed site header: `Wordmark`, `Nav` (desktop
+  row + mobile sheet), `UtilityIcons`, a skip-to-content link, and the frosted-glass layer
+  (see Signature techniques). Sits above content via `--z-nav`; not documented before but
+  part of the global kit.
 - **`SectionHeading`** (`src/components/section-heading`) — the standard section-title
   block: `--ff-gothic` title, optional description, optional right-aligned action slot, a
-  hairline bottom border. This is what carries the "headline voice" typography rule into
-  every section that uses it (`SignatureProducts`, `InstagramTeaser`, and equivalents).
+  hairline bottom border. Carries the "headline voice" into `SignatureProducts`,
+  `InstagramTeaser`, and equivalents. **Not every section uses it:** a section with just a
+  title and no description/action (Testimonials' "Love Notes", BrandStory, ClosingCta) may
+  hand-roll a raw `<h2 className="font-gothic …">` instead. Both are sanctioned — reach for
+  `SectionHeading` when you need the description/action row and border, a raw gothic `<h2>`
+  when you only need the title.
 - **`Marquee`** (`src/components/marquee`) — the scrolling-text primitive behind
   `CategoryMarquee`; also set in `--ff-gothic`.
 - **`ThemeSetter`** (`src/app/(app)/theme-setter.tsx`) / **`ThemeToggle`**
@@ -319,3 +349,9 @@ documented as they're actually built against the tokens above, not catalogued in
 
 If a pattern needs to be reused by a second route, promote it into `src/components/` at
 that point rather than importing across page boundaries.
+
+**Shipped homepage composition** (`src/app/(app)/_home/*`), in order:
+`Hero` → `CategoryMarquee` → `CategoryShortcuts` → `SignatureProducts` → `BrandStory` →
+`Testimonials` → `InstagramTeaser` → `ClosingCta`. Everything from `SignatureProducts` down
+is wrapped in `ScrollReveal`. Editorial copy (images, badges, descriptions) lives in
+`_home/constants.ts`, keyed off `menu.json` so prices/category names never duplicate.
