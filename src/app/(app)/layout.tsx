@@ -1,3 +1,4 @@
+import Footer from "@components/footer";
 import Header from "@components/header";
 import SmoothScroll from "@components/smooth-scroll";
 import ThemeSetter from "@components/theme-setter";
@@ -11,7 +12,6 @@ import {
   Karla,
 } from "next/font/google";
 import localFont from "next/font/local";
-import { cookies } from "next/headers";
 import { type PropsWithChildren } from "react";
 
 const fontDisplay = EbGaramond({
@@ -105,22 +105,12 @@ export const metadata: Metadata = {
   other: { "apple-mobile-web-app-capable": "yes" },
 };
 
-const getTheme = async () => {
-  try {
-    const cookieStore = await cookies();
-    return cookieStore.get("theme")?.value ?? null;
-  } catch {
-    return null;
-  }
-};
-
-const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
-  const theme = await getTheme();
+const RootLayout = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <html
       lang="en"
       // eslint-disable-next-line better-tailwindcss/no-unknown-classes -- theme
-      className={`${fontDisplay.variable} ${fontSans.variable} ${fontCursive.variable} ${fontMono.variable} ${fontGothic.variable} ${theme === "dark" ? "dark" : "light"}`}
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontCursive.variable} ${fontMono.variable} ${fontGothic.variable} light`}
     >
       <head />
       <body>
@@ -130,6 +120,8 @@ const RootLayout = async ({ children }: PropsWithChildren<unknown>) => {
           {children}
           <ThemeToggle />
         </main>
+
+        <Footer />
         <SmoothScroll />
       </body>
     </html>

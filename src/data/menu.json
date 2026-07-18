@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "cake-tubs",
-      "name": "Cake Tubs",
+      "id": "cake-tubs-and-tins",
+      "name": "Cake Tubs & Tins",
       "description": "Layered dessert tubs and gateaux. Customizable with a festive ribbon, flower, or topper; can also be crafted as a sliceable cake.",
       "orderContact": "WhatsApp +91 8400019540 (Devpriya)",
       "items": [
@@ -316,6 +316,56 @@
           "name": "Vanilla Caramel Tres Leches Dream Cake Tin",
           "isSignatureProduct": false,
           "variants": [{ "size": "regular", "price": 700 }]
+        },
+        {
+          "name": "Mango Tres Leches Tin",
+          "variants": [{ "size": "regular", "price": 800 }]
+        },
+        {
+          "name": "Tiramisu Cake",
+          "variants": [
+            { "size": "half kg", "price": 800 },
+            { "size": "1 kg", "price": 1500 }
+          ]
+        },
+        {
+          "name": "Black Forest Gateaux (Tin)",
+          "variants": [{ "size": "regular", "price": 450 }]
+        },
+        {
+          "name": "Mocha Tres Leches Tin",
+          "variants": [
+            { "size": "small box", "price": 400 },
+            { "size": "regular", "price": 750 }
+          ]
+        },
+        {
+          "name": "OG Butter Cake",
+          "variants": [
+            { "size": "regular", "price": 400, "originalPrice": 450 }
+          ]
+        },
+        {
+          "name": "Mango Chocolate Tin",
+          "variants": [
+            { "size": "small", "price": 300 },
+            { "size": "regular", "price": 750 }
+          ]
+        },
+        {
+          "name": "Tiramisu Tin",
+          "variants": [{ "size": "regular", "price": 750 }]
+        },
+        {
+          "name": "Butter Cake Tin",
+          "variants": [{ "size": "regular", "price": 250 }]
+        },
+        {
+          "name": "Fudge Brownie",
+          "variants": [
+            { "size": "box of 4", "price": 480 },
+            { "size": "box of 6", "price": 720 }
+          ]
         }
       ]
     },
@@ -432,63 +482,6 @@
         { "name": "White Chocolate", "variants": [{ "size": "per piece", "price": 80 }] },
         { "name": "Sugar Glazed", "variants": [{ "size": "per piece", "price": 70 }] },
         { "name": "Berliners", "variants": [{ "size": "per piece", "price": 125 }] }
-      ]
-    },
-    {
-      "id": "online-store-tins",
-      "name": "Online Store Tins & Quick Treats",
-      "description": "Snapshot of items and pricing from Cranbakery's online ordering menu; sizes and promotional pricing may vary from the flagship menus above.",
-      "items": [
-        {
-          "name": "Mango Tres Leches Tin",
-          "variants": [{ "size": "regular", "price": 800 }]
-        },
-        {
-          "name": "Tiramisu Cake",
-          "variants": [
-            { "size": "half kg", "price": 800 },
-            { "size": "1 kg", "price": 1500 }
-          ]
-        },
-        {
-          "name": "Black Forest Gateaux",
-          "variants": [{ "size": "regular", "price": 450 }]
-        },
-        {
-          "name": "Mocha Tres Leches Tin",
-          "variants": [
-            { "size": "small box", "price": 400 },
-            { "size": "regular", "price": 750 }
-          ]
-        },
-        {
-          "name": "OG Butter Cake",
-          "variants": [
-            { "size": "regular", "price": 400, "originalPrice": 450 }
-          ]
-        },
-        {
-          "name": "Mango Chocolate Tin",
-          "variants": [
-            { "size": "small", "price": 300 },
-            { "size": "regular", "price": 750 }
-          ]
-        },
-        {
-          "name": "Tiramisu Tin",
-          "variants": [{ "size": "regular", "price": 750 }]
-        },
-        {
-          "name": "Butter Cake Tin",
-          "variants": [{ "size": "regular", "price": 250 }]
-        },
-        {
-          "name": "Fudge Brownie",
-          "variants": [
-            { "size": "box of 4", "price": 480 },
-            { "size": "box of 6", "price": 720 }
-          ]
-        }
       ]
     }
   ]

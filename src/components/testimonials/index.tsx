@@ -1,5 +1,5 @@
-import { testimonials } from "@app/_home/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
+import { testimonials } from "./data";
 
 const testimonialsMapper = (testimonial: (typeof testimonials)[number]) => {
   return (

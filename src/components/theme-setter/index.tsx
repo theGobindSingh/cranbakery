@@ -1,10 +1,10 @@
 "use client";
 
 import { clientCookies } from "@utils/cookies";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function ThemeSetter() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const queryTheme = new URLSearchParams(window.location.search).get("theme");
     const cookieTheme = clientCookies.get("theme");
 
