@@ -24,7 +24,7 @@ const Hero = () => {
       beforeContainer={<HomeHeroImg />}
     >
       <div className="relative z-10 flex flex-col gap-5 pt-[calc(6rem+var(--header-height)+env(safe-area-inset-top))] pb-24">
-        <span className="m-0 font-cursive text-(length:--fs-3xl) leading-normal font-normal tracking-normal text-accent-950 not-md:text-[calc(var(--fs-4xl)-var(--fs-m))]">
+        <span className="m-0 mb-4 font-cursive text-(length:--fs-3xl) leading-normal font-normal tracking-normal text-accent-950 not-md:text-[calc(var(--fs-4xl)-var(--fs-m))]">
           Life is too short to skip dessert.
         </span>
         <H1 />

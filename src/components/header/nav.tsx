@@ -1,5 +1,6 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,6 +28,7 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const isMenuActive = pathname === "/menu" || pathname.startsWith("/menu/");
+  const lenis = useLenis();
 
   const close = () => {
     setOpen(false);
@@ -43,15 +45,17 @@ const Nav = () => {
     if (!open) return;
 
     document.body.style.overflow = "hidden";
+    lenis?.stop();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   return (
     <>
@@ -78,6 +82,7 @@ const Nav = () => {
       <nav
         aria-label="Primary"
         data-open={open}
+        data-lenis-prevent
         className="header-nav lg:col-start-2 lg:justify-self-center"
         style={NAV_GLASS_STYLE}
       >

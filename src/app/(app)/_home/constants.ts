@@ -22,6 +22,13 @@ export const images = {
   // no local muffin shots yet — folder is empty
   muffins: unsplash("1722251172903-cc8774501df7"),
   donuts: "/assets/images/donuts/donut1.jpg",
+  // extra local shots used for the "Finishing Touches" masonry gallery
+  cakeTiered: "/assets/images/cakes/cake15.jpg",
+  cakeTubFloral: "/assets/images/cake-tubs/cake-tub3.jpg",
+  cakeTubGold: "/assets/images/cake-tubs/cake-tub7.jpg",
+  cookieStack: "/assets/images/cookies/cookie3.jpg",
+  brownieSquares: "/assets/images/brownies/brownie2.jpg",
+  donutGlazed: "/assets/images/donuts/donut2.jpg",
 };
 
 export const categoryMarqueeWords: string[] = menu.categories
@@ -239,24 +246,65 @@ export const testimonials: Testimonial[] = [
 export interface MomentTile {
   image: string;
   alt: string;
-  span?: "wide" | "tall";
+  /** controls how many grid columns/rows the tile spans in the mosaic gallery */
+  size: "small" | "wide" | "tall" | "large";
 }
 
 export const moments: MomentTile[] = [
   {
     image: images.rosesWithRibbon,
     alt: "A bouquet of pink roses tied with white ribbon",
-    span: "tall",
+    size: "large",
   },
-  { image: images.chocolateCake, alt: "Chocolate cake, sliced" },
-  { image: images.pearlNecklace, alt: "A pearl necklace laid on linen" },
+  { image: images.chocolateCake, alt: "Chocolate cake, sliced", size: "small" },
   {
-    image: images.cheesecakeSlice,
-    alt: "Chocolate cheesecake slice close-up",
+    image: images.cakeTubFloral,
+    alt: "A gateau cake tub finished with sugar flowers",
+    size: "wide",
+  },
+  {
+    image: images.pearlNecklace,
+    alt: "A pearl necklace laid on linen",
+    size: "small",
+  },
+  {
+    image: images.cupcake,
+    alt: "Frosted cupcake with buttercream swirl",
+    size: "tall",
+  },
+  {
+    image: images.cookieStack,
+    alt: "A stack of iced cookies",
+    size: "small",
   },
   {
     image: images.vintageRoses,
     alt: "Close-up of vintage pink roses",
+    size: "wide",
   },
-  { image: images.cupcake, alt: "Frosted cupcake with buttercream swirl" },
+  {
+    image: images.cakeTiered,
+    alt: "A tiered celebration cake, finished and ready for delivery",
+    size: "large",
+  },
+  {
+    image: images.brownieSquares,
+    alt: "Fudge brownie squares, freshly cut",
+    size: "small",
+  },
+  {
+    image: images.donutGlazed,
+    alt: "A glazed donut with a delicate drizzle finish",
+    size: "tall",
+  },
+  {
+    image: images.cakeTubGold,
+    alt: "A cake tub finished with a gold ribbon accent",
+    size: "small",
+  },
+  {
+    image: images.cheesecakeSlice,
+    alt: "Chocolate cheesecake slice close-up",
+    size: "wide",
+  },
 ];
