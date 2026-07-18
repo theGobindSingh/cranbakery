@@ -1,3 +1,4 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 const devIps = [];
 for (let i = 1; i <= 150; i++) {
   devIps.push("192.168.1." + i);
@@ -18,4 +19,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);
