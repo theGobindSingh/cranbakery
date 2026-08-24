@@ -1,16 +1,16 @@
-# Cranbakery — Product Document
+# Your Brand Name — Product Document
 
 ## 1. Business Overview
 
-**Cranbakery** ("Desserts & Delights") is a home/boutique bakery brand, established 2024, selling cakes, cheesecakes, cake tubs, cookies, brownies, tea cakes, muffins, cupcakes, and donuts. It currently operates as an Instagram-and-WhatsApp order business with no website — customers browse PDF/image menus and order via WhatsApp/DM.
+**Your Brand Name** ("Desserts & Delights") is a home/boutique bakery brand, established 2024, selling cakes, cheesecakes, cake tubs, cookies, brownies, tea cakes, muffins, cupcakes, and donuts. It currently operates as an Instagram-and-WhatsApp order business with no website — customers browse PDF/image menus and order via WhatsApp/DM.
 
 - **Brand tagline:** "We bake happiness"
 - **Brand line:** "Life is too short to skip dessert!"
 - **Positioning:** premium ingredients, notably Belgian chocolate sourced from Callebaut; 100% hygiene during production and packaging
 - **Contact / ordering channels:**
-  - Instagram: [@cranbakery](https://instagram.com/cranbakery)
-  - WhatsApp ordering: +91 84000 19540 (Devpriya)
-  - Additional listed contact: +91 8174955472
+  - Instagram: [@yourbrand](https://instagram.com/yourbrand)
+  - WhatsApp ordering: +91 9415507316 (Owner)
+  - Additional listed contact: +91 9415507316
 - **Fulfillment model:** delivery only — no pickup/storefront flow needed on the site.
 - **Visual identity:** see `DESIGN.md` for brand colors, typography, and visual direction — not covered in this document.
 
@@ -27,7 +27,7 @@ This is **not** intended (at least initially) to be a full e-commerce checkout/p
 ## 3. Target Users
 
 - **Primary:** Local customers (Kanpur, Uttar Pradesh region, per existing WhatsApp-based ordering) browsing on mobile, deciding what to order for birthdays, get-togethers, or personal indulgence.
-- **Secondary:** People discovering Cranbakery via Instagram and wanting a more detailed/organized menu than an IG grid can offer.
+- **Secondary:** People discovering "Your Brand Name" via Instagram and wanting a more detailed/organized menu than an IG grid can offer.
 - **Tertiary:** Repeat/corporate customers wanting bulk orders (cookie boxes, cupcake boxes, tea cakes) for events.
 
 ## 4. Core Requirements
@@ -158,17 +158,17 @@ This keeps every page essentially a thin fetch-from-Payload + map-to-component l
 - **Frontend:** fully custom — Payload's prebuilt admin UI is used only for content management; none of Payload's default frontend components/blocks are used for the public-facing site. All public UI is built from scratch per §7.
 - **Data fetching:** use Payload's Local API (since it's embedded in the same app) for server-side fetching, with ISR/SSG so menu pages stay fast and SEO-friendly while still reflecting CMS edits without a redeploy.
 - **Images:** need proper product photography or at least consistent illustration/photo treatment — currently a mix of illustrated menu graphics and real photos; pick one visual language for the live site (recommend real photography for trust, illustrations only for decorative/hero use). Payload's upload collection can serve as the image source of truth.
-- **WhatsApp deep links:** use `https://wa.me/918400019540?text=...` with a URL-encoded message built from the full cart contents (all items, packs, quantities) as a single combined order summary.
+- **WhatsApp deep links:** use `https://wa.me/919415507316?text=...` with a URL-encoded message built from the full cart contents (all items, packs, quantities) as a single combined order summary.
 - **SEO:** category and item names/descriptions should be indexable (not locked behind client-side-only rendering) — good candidate for Next.js SSG/ISR.
 - **Performance:** optimize images (next/image), since menu pages will be image-heavy.
 
 ## 9. Decisions Log
 
-| Question | Decision |
-|---|---|
-| Payload deployment | Embedded in the same Next.js app; custom frontend only, no Payload prebuilt UI components on the public site |
-| Fulfillment | Delivery only, no pickup |
-| Order flow | Full cart system (add/edit/remove across categories), single combined WhatsApp message on checkout, prompt to clear cart when user returns from WhatsApp |
-| Out-of-stock items | Stay visible in the catalog, clearly marked, order action disabled |
-| Visual direction | Tracked separately in `DESIGN.md` |
-| WhatsApp CTA | No persistent floating sticky button; WhatsApp surfaces at cart checkout (compiled order message) and as a contextual contact action (header, footer, contact section) elsewhere |
+| Question           | Decision                                                                                                                                                                         |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Payload deployment | Embedded in the same Next.js app; custom frontend only, no Payload prebuilt UI components on the public site                                                                     |
+| Fulfillment        | Delivery only, no pickup                                                                                                                                                         |
+| Order flow         | Full cart system (add/edit/remove across categories), single combined WhatsApp message on checkout, prompt to clear cart when user returns from WhatsApp                         |
+| Out-of-stock items | Stay visible in the catalog, clearly marked, order action disabled                                                                                                               |
+| Visual direction   | Tracked separately in `DESIGN.md`                                                                                                                                                |
+| WhatsApp CTA       | No persistent floating sticky button; WhatsApp surfaces at cart checkout (compiled order message) and as a contextual contact action (header, footer, contact section) elsewhere |

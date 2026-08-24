@@ -1,11 +1,7 @@
 import FullWidthWrapper from "@components/full-width-wrapper";
-import {
-  INSTAGRAM_HREF,
-  MENU_CATEGORIES,
-  NAV_LINKS,
-  WHATSAPP_HREF,
-} from "@components/header/constants";
+import { MENU_CATEGORIES, NAV_LINKS } from "@components/header/constants";
 import Wordmark from "@components/header/wordmark";
+import { INSTAGRAM_HREF, WHATSAPP_HREF } from "@constants";
 import NextLink from "next/link";
 
 const LINK_CLASS =
@@ -88,8 +84,8 @@ const Footer = () => {
         className="mt-10 flex w-full flex-wrap items-center justify-between gap-2 border-t pt-6 text-(length:--fs-5xs) text-neutral-600"
         style={{ borderColor: "var(--color-border)" }}
       >
-        <span>© {year} Cranbakery. All rights reserved.</span>
-        <span>Made with love in Kanpur.</span>
+        <span>© {year} Your Brand Name. All rights reserved.</span>
+        <span>Made with love in India.</span>
       </div>
     </FullWidthWrapper>
   );

@@ -1,10 +1,10 @@
 {
   "brand": {
-    "name": "Cranbakery",
+    "name": "Your Brand Name",
     "tagline": "Desserts & Delights",
     "slogan": "Life is too short to skip dessert!",
-    "instagram": "@cranbakery",
-    "contactNumbers": ["+91 84000 19540", "+91 8174955472"],
+    "instagram": "@yourbrand",
+    "contactNumbers": ["+91 9415507316", "+91 9415507316"],
     "notes": [
       "All delicacies are made using premium ingredients, including Belgian chocolate sourced from Callebaut.",
       "100% hygiene is maintained during production and packaging."
@@ -145,7 +145,7 @@
       "id": "cake-tubs-and-tins",
       "name": "Cake Tubs & Tins",
       "description": "Layered dessert tubs and gateaux. Customizable with a festive ribbon, flower, or topper; can also be crafted as a sliceable cake.",
-      "orderContact": "WhatsApp +91 8400019540 (Devpriya)",
+      "orderContact": "WhatsApp +91 9415507316 (Owner)",
       "items": [
         {
           "name": "Rasmalai",

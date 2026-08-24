@@ -30,7 +30,7 @@ const TypeScale = () => {
                 color: "var(--color-text)",
               }}
             >
-              Aa Cranbakery
+              Aa Your Brand Name
             </span>
             <TokenChip label={`--fs-${step}`} />
           </div>

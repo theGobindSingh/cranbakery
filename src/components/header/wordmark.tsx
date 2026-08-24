@@ -5,7 +5,7 @@ const Wordmark = () => {
   return (
     <NextLink
       href="/"
-      aria-label="Cranbakery — home"
+      aria-label="Your Brand Name — home"
       className="relative h-10 w-40 shrink-0 overflow-hidden focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
       style={{ borderRadius: "var(--radius-sm)" }}
     >

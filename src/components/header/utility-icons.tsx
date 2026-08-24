@@ -1,6 +1,6 @@
+import { WHATSAPP_HREF } from "@constants";
 import { WhatsAppIcon } from "@icons";
 import { ShoppingBag } from "lucide-react";
-import { WHATSAPP_HREF } from "./constants";
 import { ICON_BUTTON_CLASS, ICON_BUTTON_STYLE } from "./styles";
 
 const UtilityIcons = () => {

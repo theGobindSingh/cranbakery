@@ -15,7 +15,7 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   email: resendAdapter({
     defaultFromAddress: "thesinghgobind@gmail.com",
-    defaultFromName: "Devpriya Kapoor",
+    defaultFromName: "Your Brand Name",
     apiKey: process.env.RESEND_API_KEY ?? "",
   }),
   admin: {

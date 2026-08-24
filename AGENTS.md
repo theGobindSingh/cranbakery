@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Entry point for anyone (or any agent) working on the Cranbakery website. Read this first, then go to whichever doc below actually matters for the task at hand.
+Entry point for anyone (or any agent) working on the "Your Brand Name" (template) website. Read this first, then go to whichever doc below actually matters for the task at hand.
 
 ## What this project is
 
-A Next.js (App Router) + TypeScript + Tailwind site for Cranbakery, a boutique bakery, with Payload CMS embedded in the same app for content (products, categories, pricing). Public frontend is fully custom — no Payload prebuilt UI. Delivery-only business, no online payments; the site ends in a cart that compiles into a single WhatsApp message.
+A Next.js (App Router) + TypeScript + Tailwind site for "Your Brand Name" (template), a boutique bakery, with Payload CMS embedded in the same app for content (products, categories, pricing). Public frontend is fully custom — no Payload prebuilt UI. Delivery-only business, no online payments; the site ends in a cart that compiles into a single WhatsApp message.
 
 ## Docs Index
 
@@ -24,7 +24,7 @@ A Next.js (App Router) + TypeScript + Tailwind site for Cranbakery, a boutique b
 
 - Don't guess when a doc already has the answer — check the relevant one before deciding on a page, a component's data shape, a style, a file's location, or a command.
 - `CONVENTIONS.md` isn't optional context — it applies to every file touched in a session, not just new features.
-- If two docs seem to conflict, `PRODUCT.md` wins on *what* to build, `DESIGN.md` wins on *how it looks*, `CONVENTIONS.md` wins on *how it's coded*, `AUTOMATIONS.md` wins on *how it runs/deploys*. Flag the conflict instead of silently picking one.
+- If two docs seem to conflict, `PRODUCT.md` wins on _what_ to build, `DESIGN.md` wins on _how it looks_, `CONVENTIONS.md` wins on _how it's coded_, `AUTOMATIONS.md` wins on _how it runs/deploys_. Flag the conflict instead of silently picking one.
 - If something isn't covered in any doc, make the smallest reasonable decision, note the assumption, and keep going rather than blocking on it.
 
 ## Skill source of truth

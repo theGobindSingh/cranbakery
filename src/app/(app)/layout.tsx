@@ -67,9 +67,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Cranbakery — Belgian Chocolate Cakes & Desserts, Made to Order",
+  title: "Your Brand Name — Belgian Chocolate Cakes & Desserts, Made to Order",
   description:
-    "Cranbakery is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
+    "Your Brand Name is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     // "default": opaque native status bar reserving its own space, so page
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     // clipping bug in normal browser tabs, which "black-translucent" would re-introduce
     capable: true,
     statusBarStyle: "default",
-    title: "Cranbakery",
+    title: "Your Brand Name",
   },
   icons: {
     icon: [

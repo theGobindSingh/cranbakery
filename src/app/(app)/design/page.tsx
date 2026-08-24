@@ -8,7 +8,7 @@ import TypographySection from "./typography";
 import ZIndexSection from "./z-index";
 
 export const metadata = {
-  title: "Design System — Cranbakery",
+  title: "Design System — Your Brand Name",
   description:
     "Internal, at-a-glance reference for every design token in this project.",
   robots: { index: false, follow: false },
@@ -50,7 +50,7 @@ const DesignPage = () => {
             style={{ fontSize: "var(--fs-2xs)" }}
           >
             Every color, font, space, shape, and motion token that makes up the
-            Cranbakery UI — in one place, so nobody has to reverse-engineer
+            Your Brand Name UI — in one place, so nobody has to reverse-engineer
             globals.css. Click any token chip to copy it.
           </p>
         </div>

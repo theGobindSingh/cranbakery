@@ -82,8 +82,12 @@ A route is built from two kinds of folders:
 - **Per-route `constants.ts`** (i.e. `src/app/(app)/<route>/constants.ts`) — that route's copy
   and presentation data (section titles, descriptions, image URLs, tag lists). Route sections
   import from their own route's `constants.ts`, not from another route's.
-- No shared raw-data layer (`@data`) exists yet. If cross-route data emerges, introduce a
-  `src/data.ts` aliased `@data` at that point — add the alias to `tsconfig.json` first (see §6) and update this line.
+- **`src/constants.ts`** (imported via `@constants`) — global, cross-cutting business config
+  used by 2+ routes/components (currently: `phoneNumber`, `WHATSAPP_HREF`, `INSTAGRAM_HREF`).
+  This is the shared layer this doc used to say didn't exist yet — it emerged once contact
+  links were needed by both route pages (`about`, `contact`) and global components (`header`,
+  `footer`). Don't duplicate these values in a route or component `constants.ts`; import from
+  here instead.
 
 ## 5. Modular code (applies to ALL files, not just components)
 

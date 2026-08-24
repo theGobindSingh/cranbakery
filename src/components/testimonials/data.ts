@@ -19,7 +19,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "We ordered a cookie box for a work event and people kept asking about it for a week. Cranbakery is our go-to for office orders now.",
+      "We ordered a cookie box for a work event and people kept asking about it for a week. Your Brand Name is our go-to for office orders now.",
     name: "Priya K.",
     location: "Kakadeo",
   },

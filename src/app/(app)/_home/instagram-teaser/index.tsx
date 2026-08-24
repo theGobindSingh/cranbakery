@@ -3,6 +3,7 @@ import FullWidthWrapper from "@components/full-width-wrapper";
 import Link from "@components/link";
 import ScrollReveal from "@components/scroll-reveal";
 import SectionHeading from "@components/section-heading";
+import { INSTAGRAM_HREF } from "@constants";
 import Image from "next/image";
 
 const spanClass: Record<MomentTile["size"], string> = {
@@ -21,12 +22,12 @@ const InstagramTeaser = () => {
         description="Ribbons, pearls, toppers — the small details we build into every order, and the moments they belong to."
         action={
           <Link
-            href="https://instagram.com/cranbakery"
+            href={INSTAGRAM_HREF}
             variant="outlined"
             color="accent"
             colorWeight={700}
           >
-            @cranbakery
+            @yourbrand
           </Link>
         }
       />

@@ -1,17 +1,13 @@
 "use client";
 
+import { INSTAGRAM_HREF, WHATSAPP_HREF } from "@constants";
 import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import {
-  INSTAGRAM_HREF,
-  MENU_CATEGORIES,
-  NAV_LINKS,
-  WHATSAPP_HREF,
-} from "./constants";
+import { MENU_CATEGORIES, NAV_LINKS } from "./constants";
 import {
   ICON_BUTTON_CLASS,
   ICON_BUTTON_STYLE,
@@ -163,7 +159,7 @@ const Nav = () => {
             rel="noopener noreferrer"
             className="text-center text-(length:--fs-3xs) text-neutral-700 transition-colors hover:text-accent-700"
           >
-            @cranbakery on Instagram
+            @yourbrand on Instagram
           </a>
         </div>
       </nav>

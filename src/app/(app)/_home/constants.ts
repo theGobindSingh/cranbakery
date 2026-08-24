@@ -1,34 +1,30 @@
 import menu from "@/data/menu.json";
-
-const unsplash = (photoId: string, isPremium = false) => {
-  return `https://${isPremium ? "plus" : "images"}.unsplash.com/${isPremium ? "premium_photo" : "photo"}-${photoId}?auto=format&q=80`;
-};
+import { unsplash } from "@utils/stock-photo";
 
 export const images = {
   // no local shot of the storefront window yet — kept on unsplash
   heroBakeryWindow: unsplash("1644015272264-2d70518c2046"),
-  chocolateCake: "/assets/images/cakes/cake28.jpg",
-  cheesecakeSlice: "/assets/images/cakes/cake2.jpg",
-  cupcake: "/assets/images/cupcakes/cupcake1.jpg",
-  // lifestyle/prop shots (ribbon, roses, pearls, dough) have no local equivalent yet
+  cake: unsplash("1588195538326-c5b1e9f80a1b"),
+  cheesecakeSlice: unsplash("1702925614886-50ad13c88d3f"),
+  cupcake: unsplash("1599785209796-786432b228bc"),
   rosesWithRibbon: unsplash("1778861675433-a28590550789"),
   vintageRoses: unsplash("1610823140365-8d7f1adf01e6"),
   pearlNecklace: unsplash("1595345705177-ffe090eb0784"),
   handsShapingDough: unsplash("1689778560408-78595f912b97"),
-  cookies: "/assets/images/cookies/cookie1.jpg",
-  brownies: "/assets/images/brownies/brownie1.jpg",
-  cakeTub: "/assets/images/cake-tubs/cake-tub1.jpg",
-  teaCake: "/assets/images/tea-cakes/tea-cake1.jpg",
+  cookies: unsplash("1497051788611-2c64812349fa"),
+  brownies: unsplash("1636743715220-d8f8dd900b87"),
+  cakeTub: unsplash("1629704582607-ec9e48407016"),
+  teaCake: unsplash("1505804750389-62ac45da38b7"),
   // no local muffin shots yet — folder is empty
   muffins: unsplash("1722251172903-cc8774501df7"),
-  donuts: "/assets/images/donuts/donut1.jpg",
-  // extra local shots used for the "Finishing Touches" masonry gallery
-  cakeTiered: "/assets/images/cakes/cake15.jpg",
-  cakeTubFloral: "/assets/images/cake-tubs/cake-tub3.jpg",
-  cakeTubGold: "/assets/images/cake-tubs/cake-tub7.jpg",
-  cookieStack: "/assets/images/cookies/cookie3.jpg",
-  brownieSquares: "/assets/images/brownies/brownie2.jpg",
-  donutGlazed: "/assets/images/donuts/donut2.jpg",
+  donuts: unsplash("1551106652-a5bcf4b29ab6"),
+  // extra shots used for the "Finishing Touches" masonry gallery
+  cakeTiered: unsplash("1780337092355-fdf7b9b7b2cc"),
+  cakeTubFloral: unsplash("1673540324062-cb03978d0054"),
+  cakeTubGold: unsplash("1645562270042-f7208b0a1321"),
+  cookieStack: unsplash("1672351883507-212c1c70f9e9"),
+  brownieSquares: unsplash("1461009312844-e80697a81cc7"),
+  donutGlazed: unsplash("1685779923216-5b386a173447"),
 };
 
 export const categoryMarqueeWords: string[] = menu.categories.map(
@@ -57,7 +53,7 @@ const collectionDisplayMeta: Record<
 > = {
   cakes: {
     cta: "Explore",
-    image: images.chocolateCake,
+    image: images.cake,
     alt: "A rich chocolate layer cake with a slice cut away, revealing the crumb",
     span: "large",
     subtitle: "Layer Cakes & Cheesecakes",
@@ -178,7 +174,7 @@ const signatureDisplayMeta: {
     badge: "Signature",
     description:
       "Layers of dark sponge, sandwiched and enclosed in a couverture ganache made from Callebaut Belgian chocolate — rich and glossy, never cloying. Piped, filled, and finished by hand the same day it ships.",
-    image: images.chocolateCake,
+    image: images.cake,
     alt: "Signature chocolate layer cake, sliced",
   },
   {
@@ -227,7 +223,7 @@ export const moments: MomentTile[] = [
     alt: "A bouquet of pink roses tied with white ribbon",
     size: "large",
   },
-  { image: images.chocolateCake, alt: "Chocolate cake, sliced", size: "small" },
+  { image: images.cake, alt: "Chocolate cake, sliced", size: "small" },
   {
     image: images.cakeTubFloral,
     alt: "A gateau cake tub finished with sugar flowers",

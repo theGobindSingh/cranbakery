@@ -1,6 +1,7 @@
 import { HomeHeroImg } from "@app/_home/hero/img";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import Link from "@components/link";
+import { INSTAGRAM_HREF } from "@constants";
 import { tw } from "@utils/tailwind";
 
 const H1 = () => {
@@ -43,14 +44,14 @@ const Hero = () => {
             Browse the Menu
           </Link>
           <Link
-            href="https://instagram.com/cranbakery"
+            href={INSTAGRAM_HREF}
             className="text-neutral-700"
             variant="text"
             color="neutral"
             hoverBgColor="neutral"
             hoverBgColorWeight={950}
           >
-            @cranbakery
+            @yourbrand
           </Link>
         </div>
       </div>

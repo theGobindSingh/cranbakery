@@ -1,4 +1,5 @@
 import Link from "@components/link";
+import { INSTAGRAM_HREF } from "@constants";
 
 const LinkDemo = () => {
   return (
@@ -6,11 +7,7 @@ const LinkDemo = () => {
       <Link href="/" color="primary" colorWeight={600}>
         Internal link →
       </Link>
-      <Link
-        href="https://instagram.com/cranbakery"
-        color="accent"
-        colorWeight={600}
-      >
+      <Link href={INSTAGRAM_HREF} color="accent" colorWeight={600}>
         External link ↗
       </Link>
       <Link href="#" variant="outlined" color="secondary" colorWeight={600}>

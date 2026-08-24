@@ -3,10 +3,10 @@ import type { MetadataRoute } from "next";
 
 const manifest = (): MetadataRoute.Manifest => {
   return {
-    name: "Cranbakery — Belgian Chocolate Cakes & Desserts",
-    short_name: "Cranbakery",
+    name: "Your Brand Name — Belgian Chocolate Cakes & Desserts",
+    short_name: "Your Brand Name",
     description:
-      "Cranbakery is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
+      "Your Brand Name is a five-star patisserie experience: Callebaut Belgian chocolate cakes, cheesecakes, and confections made to order and delivered across India.",
     start_url: "/",
     display: "standalone",
     background_color: "#fffaf4",

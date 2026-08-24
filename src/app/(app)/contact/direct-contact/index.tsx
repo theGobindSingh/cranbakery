@@ -1,8 +1,8 @@
 import { directContact } from "@app/contact/constants";
 import FullWidthWrapper from "@components/full-width-wrapper";
-import { INSTAGRAM_HREF, WHATSAPP_HREF } from "@components/header/constants";
 import Link from "@components/link";
 import SectionHeading from "@components/section-heading";
+import { INSTAGRAM_HREF, WHATSAPP_HREF } from "@constants";
 
 const DirectContactSection = () => {
   return (
@@ -30,7 +30,7 @@ const DirectContactSection = () => {
           colorWeight={700}
           size="lg"
         >
-          @cranbakery
+          @yourbrand
         </Link>
       </div>
       <p className="m-0 mt-8 max-w-[55ch] text-(length:--fs-4xs) leading-normal font-normal tracking-normal text-neutral-700">

@@ -26,11 +26,11 @@ export const generateMetadata = async (
     return {};
   }
 
-  const title = `${category.name} — Cranbakery`;
+  const title = `${category.name} — Your Brand Name`;
   const description =
     category.description ??
-    `Browse all ${category.name.toLowerCase()} from Cranbakery. Handcrafted with premium Belgian chocolate.`;
-  const url = `https://cranbakery.com/menu/${params.category}`;
+    `Browse all ${category.name.toLowerCase()} from Your Brand Name. Handcrafted with premium Belgian chocolate.`;
+  const url = `https://yourbrand.com/menu/${params.category}`;
 
   return {
     title,

@@ -1,6 +1,6 @@
-# Cranbakery Website
+# Your Brand Name Website
 
-Website for [Cranbakery](https://instagram.com/cranbakery) — Desserts & Delights. Replaces the current Instagram/WhatsApp PDF-menu ordering flow with a proper digital catalog and a WhatsApp-based checkout.
+Website for [Your Brand Name](https://instagram.com/yourbrand) — Desserts & Delights. Replaces the current Instagram/WhatsApp PDF-menu ordering flow with a proper digital catalog and a WhatsApp-based checkout.
 
 ## Stack
 

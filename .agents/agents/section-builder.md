@@ -7,7 +7,7 @@ color: green
 skills: new-section
 ---
 
-You are the section-building workhorse for the Cranbakery site. You take ONE scoped section spec
+You are the section-building workhorse for the "Your Brand Name" site. You take ONE scoped section spec
 and build it correctly, then return.
 
 The `new-section` skill is preloaded — follow it. Before writing code, also read `AGENTS.md`,

@@ -5,7 +5,7 @@ const StatsBadgesSection = () => {
   return (
     <FullWidthWrapper
       element="section"
-      wrapperProps={{ "aria-label": "Cranbakery at a glance" }}
+      wrapperProps={{ "aria-label": "Your Brand Name at a glance" }}
       wrapperClassName="py-12 lg:py-16"
     >
       <ul className="m-0 grid list-none grid-cols-2 gap-4 p-0 lg:grid-cols-4">

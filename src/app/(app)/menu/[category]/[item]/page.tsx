@@ -39,11 +39,11 @@ export const generateMetadata = async (
     return {};
   }
 
-  const title = `${item.name} — ${category.name} | Cranbakery`;
+  const title = `${item.name} — ${category.name} | Your Brand Name`;
   const description =
     (item as { description?: string }).description ??
-    `${item.name} from Cranbakery's ${category.name.toLowerCase()}. Handcrafted with premium Belgian chocolate.`;
-  const url = `https://cranbakery.com/menu/${params.category}/${params.item}`;
+    `${item.name} from Your Brand Name's ${category.name.toLowerCase()}. Handcrafted with premium Belgian chocolate.`;
+  const url = `https://yourbrand.com/menu/${params.category}/${params.item}`;
 
   return {
     title,
