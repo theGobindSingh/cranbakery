@@ -39,6 +39,9 @@ duplicating the files.
 latter is a generated symlink and gets recreated on next install. If `.claude/skills` is ever
 missing or stale, run `pnpm run setup:skills` to relink it.
 
+**Always invoke the `ponytail` skill before touching any file in the code.** This applies to
+every edit, add, refactor, or fix — no exceptions for "trivial" changes.
+
 ## Working agreement (how the owner wants you to operate)
 
 These bias toward caution over speed. For genuinely trivial edits, use judgment rather than
