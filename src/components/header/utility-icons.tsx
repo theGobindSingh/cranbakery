@@ -1,6 +1,6 @@
 import { WHATSAPP_HREF } from "@constants";
 import { WhatsAppIcon } from "@icons";
-import { ShoppingBag } from "lucide-react";
+import CartIcon from "./cart-icon";
 import { ICON_BUTTON_CLASS, ICON_BUTTON_STYLE } from "./styles";
 
 const UtilityIcons = () => {
@@ -17,17 +17,7 @@ const UtilityIcons = () => {
       >
         <WhatsAppIcon width="1.05rem" height="1.05rem" />
       </a>
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        aria-label="Cart — coming soon"
-        title="Cart — coming soon"
-        style={ICON_BUTTON_STYLE}
-        className={ICON_BUTTON_CLASS}
-      >
-        <ShoppingBag size="1.05rem" aria-hidden="true" />
-      </button>
+      <CartIcon />
     </div>
   );
 };

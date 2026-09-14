@@ -1,3 +1,4 @@
+import CartHydrator from "@components/cart-hydrator";
 import Footer from "@components/footer";
 import Header from "@components/header";
 import SmoothScroll from "@components/smooth-scroll";
@@ -115,6 +116,7 @@ const RootLayout = ({ children }: PropsWithChildren<unknown>) => {
       <head />
       <body>
         <ThemeSetter />
+        <CartHydrator />
         <Header />
         <main className="relative">
           {children}

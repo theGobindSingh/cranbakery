@@ -1,7 +1,6 @@
 import { getItemImage } from "@app/menu/lib/images";
 import { getCategory, getMenuItem } from "@app/menu/lib/menu-data";
 import WaxSealBadge from "@app/menu/wax-seal-badge";
-import { Button } from "@components/button";
 import FullWidthWrapper from "@components/full-width-wrapper";
 import Image from "next/image";
 import VariantList from "./variant-list";
@@ -64,7 +63,11 @@ const ItemDetail = (props: ItemDetailProps) => {
             {item.description}
           </p>
 
-          <VariantList variants={item.variants} />
+          <VariantList
+            category={props.category}
+            item={props.item}
+            variants={item.variants}
+          />
 
           {item.allergens && item.allergens.length > 0 && (
             <p className="m-0 text-(length:--fs-4xs) font-normal tracking-normal text-neutral-500">
@@ -83,16 +86,6 @@ const ItemDetail = (props: ItemDetailProps) => {
               {item.note}
             </p>
           )}
-
-          <Button
-            variant="filled"
-            color="accent"
-            colorWeight={600}
-            size="lg"
-            className="w-fit"
-          >
-            Order Now
-          </Button>
         </div>
       </div>
     </FullWidthWrapper>

@@ -121,6 +121,7 @@ A route is built from two kinds of folders:
 | `@hooks/*`           | `src/hooks/*`                        |
 | `@utils/*`           | `src/utils/*`                        |
 | `@styles/*`          | `src/styles/*`                       |
+| `@store/*`           | `src/store/*`                        |
 | `@icons`, `@icons/*` | `src/icons/*` — last resort, see §7a |
 | `@images/*`          | `public/assets/images/*`             |
 | `@assets/*`          | `public/assets/*`                    |
